@@ -2054,7 +2054,7 @@ GotPalID:
 	ld [rSVBK],a
 	ret
 
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 LoadHPBarAndEXPBar:
 	ld de,HpBarAndStatusGraphics
 	ld hl,vChars2 + $620
@@ -4973,7 +4973,7 @@ INCLUDE "engine/items/tms.asm"
 INCLUDE "engine/battle/4_2.asm"
 INCLUDE "engine/random.asm"
 
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 EXPBarGraphics:  INCBIN "gfx/gs/exp_bar.2bpp"
 ENDC
 
@@ -6121,7 +6121,7 @@ INCLUDE "engine/menu/diploma.asm"
 
 INCLUDE "engine/overworld/trainers.asm"
 
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 INCLUDE "engine/battle/exp_bar.asm"
 ENDC
 

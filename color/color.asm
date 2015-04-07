@@ -74,7 +74,7 @@ BuildBattlePalPacket:
 	ld e,3
 	callba LoadSGBPalette
 
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	; Player exp bar
 	ld d, PAL_EXP
 ELSE
@@ -146,7 +146,7 @@ ENDC
 	dec b
 	jr nz,.eDrawLine
 
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	; Player exp bar
 	ld hl, W2_TilesetPaletteMap + 10 + 11 * 20
 	ld b, 8

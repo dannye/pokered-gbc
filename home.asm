@@ -3180,7 +3180,7 @@ LoadTextBoxTilePatterns::
 
 ; copies HP bar and status display tile patterns into VRAM
 LoadHpBarAndStatusTilePatterns:: ; 36c0 (0:36c0)
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	callba LoadHPBarAndEXPBar
 	ret
 	ds $17

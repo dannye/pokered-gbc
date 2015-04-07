@@ -1,5 +1,5 @@
 GEN_2_GRAPHICS	EQU 1
-
+GEN_2_EXP_BAR	EQU 1
 INCLUDE "macros.asm"
 
 INCLUDE "hram.asm"

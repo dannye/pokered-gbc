@@ -1894,7 +1894,7 @@ DrawPlayerHUDAndHPBar: ; 3cd60 (f:4d60)
 	ld [hl], $73
 	ld de, wBattleMonNick
 	hlCoord 10, 7
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	call PlaceString
 	call PrintEXPBar
 ELSE
@@ -8721,7 +8721,7 @@ LoadMonBackSpriteHook: ; HAX
 	ld c,a
 	jp LoadUncompressedSpriteData
 
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 PrintEXPBar:
 	call CalcEXPBarPixelLength
 	ld a, [H_QUOTIENT + 3] ; pixel length

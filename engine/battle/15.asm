@@ -150,7 +150,7 @@ GainExperience: ; 5524f (15:524f)
 	call PrintText
 	xor a ; party mon data
 	ld [wcc49], a
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	call AnimateEXPBar
 ELSE
 	call LoadMonData
@@ -164,7 +164,7 @@ ENDC
 	ld a, [hl] ; current level
 	cp d
 	jp z, .nextMon ; if level didn't change, go to next mon
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	call KeepEXPBarFull
 ELSE
 	ld a, [W_CURENEMYLVL]
@@ -252,7 +252,7 @@ ENDC
 	call PrintText
 	xor a ; party mon data
 	ld [wcc49], a
-IF GEN_2_GRAPHICS
+IF GEN_2_EXP_BAR
 	call AnimateEXPBarAgain
 ELSE
 	call LoadMonData
