@@ -1928,13 +1928,13 @@ ENDC
 	ld de, wLoadedMonLevel
 	ld bc, $b
 	call CopyData
-	coord hl, 14, 8
+	coord hl, 10, 8
 	push hl
 	inc hl
 	ld de, wLoadedMonStatus
 	call PrintStatusConditionNotFainted
 	pop hl
-	jr nz, .asm_3cdae
+	coord hl, 14, 8
 	call PrintLevel
 .asm_3cdae
 	ld a, [wLoadedMonSpecies]
@@ -1980,20 +1980,19 @@ DrawEnemyHUDAndHPBar: ; 3cdec (f:4dec)
 	call CenterMonName
 	call PlaceString
 IF GEN_2_GRAPHICS
-	coord hl, 6, 1
+	coord hl, 2, 1
 ELSE
-	coord hl, 4, 1
+	coord hl, 2, 1
 ENDC
 	push hl
 	inc hl
 	ld de, wEnemyMonStatus
 	call PrintStatusConditionNotFainted
 	pop hl
-	jr nz, .skipPrintLevel ; if the mon has a status condition, skip printing the level
 	ld a, [wEnemyMonLevel]
 	ld [wLoadedMonLevel], a
+	coord hl, 6, 1
 	call PrintLevel
-.skipPrintLevel
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ld [H_MULTIPLICAND + 1], a
