@@ -40,7 +40,7 @@ label_2c_l001:
 	ld [hli],a
 	dec c
 	jr nz,label_2c_l000
-	jp $1ee9
+	jp ReturnPoint
 
 	ORG $2c, $7080
 label_2c_l002:
@@ -55,7 +55,7 @@ label_2c_l003:
 	ld [hli],a
 	dec c
 	jr nz,label_2c_l002
-	jp $1ee9
+	jp ReturnPoint
 
 SECTION "bank2F",ROMX,BANK[$2F]
 

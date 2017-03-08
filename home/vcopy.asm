@@ -296,7 +296,7 @@ UpdateMovingBgTiles::
 	cp 20
 	ret c
 	cp 21
-	jr z, .flower
+	jr z, FlowerTiles
 
 ; water
 
@@ -317,6 +317,7 @@ UpdateMovingBgTiles::
 	jp nz,label_2c_l000
 	jp label_2c_l002
 
+ReturnPoint::
 	ld a,[H_LOADEDROMBANK]
 	ld [MBC1RomBank],a
 
@@ -328,7 +329,7 @@ UpdateMovingBgTiles::
 	ld [hMovingBGTilesCounter1], a
 	ret
 
-.flower
+FlowerTiles:
 	xor a
 	ld [hMovingBGTilesCounter1], a
 
