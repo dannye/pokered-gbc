@@ -85,7 +85,7 @@ _GbcPrepareVBlank:
 	reti
 
 ; Prevent data shifting
-SECTION "JpPoint", ROM0[$1dd9]
+;SECTION "JpPoint", ROM0[$1dd9]
 
 ; HAX: This function is reimplemented elsewhere.
 ; Note: this doesn't update "H_LOADEDROMBANK", but no interrupts will occur at this time,

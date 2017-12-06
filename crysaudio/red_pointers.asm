@@ -1,0 +1,103 @@
+tbp: MACRO
+	dbw BANK(\1), \1
+	ENDM
+
+IF GEN_2_MUSIC
+
+    tbp Music_Nothing
+    tbp Music_NewBarkTown
+    tbp Music_MobileCenter
+    tbp Music_Gym
+    tbp Music_CherrygroveCity
+    tbp Music_AzaleaTown
+    tbp Music_VioletCity
+    tbp Music_EcruteakCity
+    tbp Music_Vermilion
+    tbp Music_Lavender
+    tbp Music_SSAnne
+    tbp Music_ProfOak
+    tbp Music_LookRival
+    tbp Music_MuseumGuy
+    tbp Music_SafariZone
+    tbp Music_PkmnHealed
+    tbp Music_Route29
+    tbp Music_Route30
+    tbp Music_Route36
+    tbp Music_Route37
+    tbp Music_IndigoPlateau
+    tbp Music_JohtoGymBattle
+    tbp Music_JohtoTrainerBattle
+    tbp Music_JohtoWildBattle
+    tbp Music_ChampionBattle
+    tbp Music_TrainerVictory
+    tbp Music_WildPokemonVictory
+    tbp Music_GymLeaderVictory
+    tbp Music_TitleScreen
+    tbp Music_Credits
+    tbp Music_HallOfFame
+    tbp Music_ElmsLab
+    tbp Music_RuinsOfAlphRadio
+    tbp Music_Bicycle
+    tbp Music_Surf
+    tbp Music_GameCorner
+    tbp Music_GoldSilverOpening2
+    tbp Music_UnionCave
+    tbp Music_DarkCave
+    tbp Music_Dungeon3
+    tbp Music_CinnabarMansion
+    tbp Music_PokemonTower
+    tbp Music_SilphCo
+    tbp Music_MeetEvilTrainer
+    tbp Music_LookLass
+    tbp Music_LookYoungster
+
+ELSE
+
+	tbp Music_Nothing
+	tbp Music_RBYPalletTown
+	tbp Music_Pokecenter
+	tbp Music_RBYGym
+	tbp Music_Cities1
+	tbp Music_Cities2
+	tbp Music_Celadon
+	tbp Music_Cinnabar
+	tbp Music_Vermilion
+	tbp Music_Lavender
+	tbp Music_SSAnne
+	tbp Music_MeetProfOak
+	tbp Music_MeetRival
+	tbp Music_MuseumGuy
+	tbp Music_SafariZone
+	tbp Music_PkmnHealed
+	tbp Music_Routes1
+	tbp Music_Routes2
+	tbp Music_Routes3
+	tbp Music_Routes4
+	tbp Music_RBYIndigoPlateau
+	tbp Music_GymLeaderBattle
+	tbp Music_TrainerBattle
+	tbp Music_WildBattle
+	tbp Music_FinalBattle
+	tbp Music_DefeatedTrainer
+	tbp Music_DefeatedWildMon
+	tbp Music_DefeatedGymLeader
+	tbp Music_RBYTitleScreen
+	tbp Music_RBYCredits
+	tbp Music_RBYHallOfFame
+	tbp Music_OaksLab
+	tbp Music_JigglypuffSong
+	tbp Music_BikeRiding
+	tbp Music_Surfing
+	tbp Music_RBYGameCorner
+	tbp Music_IntroBattle
+	tbp Music_Dungeon1
+	tbp Music_Dungeon2
+	tbp Music_Dungeon3
+	tbp Music_CinnabarMansion
+	tbp Music_PokemonTower
+	tbp Music_SilphCo
+	tbp Music_MeetEvilTrainer
+	tbp Music_MeetFemaleTrainer
+	tbp Music_MeetMaleTrainer
+
+ENDC
