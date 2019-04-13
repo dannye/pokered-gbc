@@ -148,7 +148,7 @@ PalletMovementScript_Done:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
-	ld a, $0
+	ld a, HS_PALLET_TOWN_OAK
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	ld hl, wd730
@@ -268,7 +268,7 @@ RLEList_PewterGymGuy:
 
 FreezeEnemyTrainerSprite:
 	ld a, [wCurMap]
-	cp POKEMONTOWER_7
+	cp POKEMON_TOWER_7F
 	ret z ; the Rockets on Pokemon Tower 7F leave after battling, so don't freeze them
 	ld hl, RivalIDs
 	ld a, [wEngagedTrainerClass]

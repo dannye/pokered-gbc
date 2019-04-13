@@ -122,14 +122,14 @@ LoadTilesetPalette:
 .notCeladonRoof
 	; Check for celadon 3rd floor (fix miscoloration on counter)
 	ld a,b
-	cp CELADON_MART_3
+	cp CELADON_MART_3F
 	jr nz,.notCeladon3rd
 	ld hl,W2_TilesetPaletteMap + $37
 	ld [hl],BROWN
 .notCeladon3rd
 	; Check for celadon 1st floor (change bench color from blue to yellow)
 	ld a,b
-	cp CELADON_MART_1
+	cp CELADON_MART_1F
 	jr nz,.notCeladon1st
 	ld hl,W2_TilesetPaletteMap + $07
 	ld a,YELLOW

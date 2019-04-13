@@ -1,6 +1,6 @@
 
 lb: MACRO ; r, hi, lo
-	ld \1, (\2) << 8 + ((\3) & $ff)
+	ld \1, ((\2) & $ff) << 8 + ((\3) & $ff)
 ENDM
 
 homecall: MACRO
@@ -185,4 +185,8 @@ ENDM
 tx_pre_jump: MACRO
 	tx_pre_id \1
 	jp PrintPredefTextID
+ENDM
+
+ldPal: MACRO
+	ld \1, \2 << 6 | \3 << 4 | \4 << 2 | \5
 ENDM

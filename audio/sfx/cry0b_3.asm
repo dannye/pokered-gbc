@@ -1,37 +1,37 @@
 SFX_Cry0B_3_Ch4:
 	dutycycle 204
-	unknownsfx0x20 4, 241, 0, 7
-	unknownsfx0x20 4, 225, 128, 7
-	unknownsfx0x20 4, 209, 64, 7
-	unknownsfx0x20 4, 225, 64, 7
-	unknownsfx0x20 4, 241, 128, 7
-	unknownsfx0x20 4, 209, 0, 7
-	unknownsfx0x20 4, 241, 1, 7
-	unknownsfx0x20 4, 209, 130, 7
-	unknownsfx0x20 4, 193, 66, 7
-	unknownsfx0x20 8, 177, 65, 7
+	squarenote 4, 15, 1, 1792
+	squarenote 4, 14, 1, 1920
+	squarenote 4, 13, 1, 1856
+	squarenote 4, 14, 1, 1856
+	squarenote 4, 15, 1, 1920
+	squarenote 4, 13, 1, 1792
+	squarenote 4, 15, 1, 1793
+	squarenote 4, 13, 1, 1922
+	squarenote 4, 12, 1, 1858
+	squarenote 8, 11, 1, 1857
 	endchannel
 
 
 SFX_Cry0B_3_Ch5:
 	dutycycle 68
-	unknownsfx0x20 12, 8, 0, 0
-	unknownsfx0x20 4, 241, 1, 7
-	unknownsfx0x20 4, 225, 130, 7
-	unknownsfx0x20 4, 209, 65, 7
-	unknownsfx0x20 4, 225, 65, 7
-	unknownsfx0x20 4, 241, 130, 7
-	unknownsfx0x20 8, 209, 1, 7
+	squarenote 12, 0, 8, 0
+	squarenote 4, 15, 1, 1793
+	squarenote 4, 14, 1, 1922
+	squarenote 4, 13, 1, 1857
+	squarenote 4, 14, 1, 1857
+	squarenote 4, 15, 1, 1922
+	squarenote 8, 13, 1, 1793
 	endchannel
 
 
 SFX_Cry0B_3_Ch7:
-	unknownnoise0x20 15, 8, 0
-	unknownnoise0x20 4, 8, 0
-	unknownnoise0x20 4, 209, 76
-	unknownnoise0x20 4, 177, 44
-	unknownnoise0x20 4, 209, 60
-	unknownnoise0x20 4, 177, 60
-	unknownnoise0x20 4, 193, 44
-	unknownnoise0x20 8, 161, 76
+	noisenote 15, 0, 8, 0
+	noisenote 4, 0, 8, 0
+	noisenote 4, 13, 1, 76
+	noisenote 4, 11, 1, 44
+	noisenote 4, 13, 1, 60
+	noisenote 4, 11, 1, 60
+	noisenote 4, 12, 1, 44
+	noisenote 8, 10, 1, 76
 	endchannel

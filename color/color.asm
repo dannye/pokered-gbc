@@ -1,5 +1,5 @@
 ; Extending bank 1C, same bank as engine/palettes.asm (for "SetPal" functions)
-SECTION "bank1C_extension",ROMX,BANK[$1C]
+SECTION "bank1C_extension",ROMX
 
 ; Set all palettes to black at beginning of battle
 SetPal_BattleBlack:
@@ -79,7 +79,7 @@ SetPal_Battle:
 
 SetPal_Battle_Common:
  	ld a, [wPlayerBattleStatus3]
-	bit Transformed,a
+	bit TRANSFORMED,a
 	jr z,.getBattleMonPal
 
 	; If transformed, don't trust the "DetermineBackSpritePaletteID" function.
@@ -941,7 +941,7 @@ LoadTitleMonTilesAndPalettes:
 
 
 ; Everything else goes in bank $2C (unused by original game)
-SECTION "bank2C",ROMX,BANK[$2C]
+SECTION "bank2C",ROMX
 
 INCLUDE "color/init.asm"
 INCLUDE "color/refreshmaps.asm"
@@ -958,5 +958,5 @@ INCLUDE "color/data/badgepalettemap.asm"
 INCLUDE "color/dmg.asm"
 
 ; Copy of sound engine used by dmg-mode to play jingle
-SECTION "bank31",ROMX,BANK[$31]
+SECTION "bank31",ROMX
 INCBIN "color/data/bank31.bin",$0000,$c8000-$c4000

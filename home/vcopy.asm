@@ -10,27 +10,27 @@ GetRowColAddressBgMap::
 	srl h
 	rr a
 	or l
-	ld l,a
-	ld a,b
+	ld l, a
+	ld a, b
 	or h
-	ld h,a
+	ld h, a
 	ret
 
 ; clears a VRAM background map with blank space tiles
 ; INPUT: h - high byte of background tile map address in VRAM
 ClearBgMap::
-	ld a," "
+	ld a, " "
 	jr .next
-	ld a,l
+	ld a, l
 .next
-	ld de,$400 ; size of VRAM background map
-	ld l,e
+	ld de, $400 ; size of VRAM background map
+	ld l, e
 .loop
-	ld [hli],a
+	ld [hli], a
 	dec e
-	jr nz,.loop
+	jr nz, .loop
 	dec d
-	jr nz,.loop
+	jr nz, .loop
 	ret
 
 ; This function redraws a BG row of height 2 or a BG column of width 2.
@@ -41,14 +41,14 @@ ClearBgMap::
 ; when necessary. It is also used in trade animation and elevator code.
 ; This function has beex HAXed to call other functions, which will also refresh palettes.
 RedrawRowOrColumn::
-	ld a,[hRedrawRowOrColumnMode]
+	ld a, [hRedrawRowOrColumnMode]
 	and a
 	ret z
-	ld b,a
+	ld b, a
 	xor a
-	ld [hRedrawRowOrColumnMode],a
+	ld [hRedrawRowOrColumnMode], a
 	dec b
-	jr nz,.redrawRow
+	jr nz, .redrawRow
 	CALL_INDIRECT DrawMapColumn
 	ret
 .redrawRow
@@ -63,11 +63,11 @@ RedrawRowOrColumn::
 ; the above function, RedrawRowOrColumn, is used when walking to
 ; improve efficiency.
 AutoBgMapTransfer: ; HAXED function
-	ld a,BANK(RefreshWindow)
-	ld [MBC1RomBank],a
+	ld a, BANK(RefreshWindow)
+	ld [MBC1RomBank], a
 	call RefreshWindow
-	ld a,[H_LOADEDROMBANK]
-	ld [MBC1RomBank],a
+	ld a, [H_LOADEDROMBANK]
+	ld [MBC1RomBank], a
 	ret
 
 
@@ -85,7 +85,7 @@ _GbcPrepareVBlank:
 	reti
 
 ; Prevent data shifting
-SECTION "JpPoint", ROM0[$1dd9]
+SECTION "JpPoint", ROM0
 
 ; HAX: This function is reimplemented elsewhere.
 ; Note: this doesn't update "H_LOADEDROMBANK", but no interrupts will occur at this time,
@@ -98,27 +98,27 @@ TransferBgRows::
 ; Copies [H_VBCOPYBGNUMROWS] rows from H_VBCOPYBGSRC to H_VBCOPYBGDEST.
 ; If H_VBCOPYBGSRC is XX00, the transfer is disabled.
 VBlankCopyBgMap::
-	ld a,[H_VBCOPYBGSRC] ; doubles as enabling byte
+	ld a, [H_VBCOPYBGSRC] ; doubles as enabling byte
 	and a
 	ret z
-	ld hl,[sp + 0]
-	ld a,h
-	ld [H_SPTEMP],a
-	ld a,l
-	ld [H_SPTEMP + 1],a ; save stack pointer
-	ld a,[H_VBCOPYBGSRC]
-	ld l,a
-	ld a,[H_VBCOPYBGSRC + 1]
-	ld h,a
-	ld sp,hl
-	ld a,[H_VBCOPYBGDEST]
-	ld l,a
-	ld a,[H_VBCOPYBGDEST + 1]
-	ld h,a
-	ld a,[H_VBCOPYBGNUMROWS]
-	ld b,a
+	ld hl, sp + 0
+	ld a, h
+	ld [H_SPTEMP], a
+	ld a, l
+	ld [H_SPTEMP + 1], a ; save stack pointer
+	ld a, [H_VBCOPYBGSRC]
+	ld l, a
+	ld a, [H_VBCOPYBGSRC + 1]
+	ld h, a
+	ld sp, hl
+	ld a, [H_VBCOPYBGDEST]
+	ld l, a
+	ld a, [H_VBCOPYBGDEST + 1]
+	ld h, a
+	ld a, [H_VBCOPYBGNUMROWS]
+	ld b, a
 	xor a
-	ld [H_VBCOPYBGSRC],a ; disable transfer so it doesn't continue next V-blank
+	ld [H_VBCOPYBGSRC], a ; disable transfer so it doesn't continue next V-blank
 	jr TransferBgRows
 
 
@@ -134,7 +134,7 @@ VBlankCopyDouble::
 	and a
 	ret z
 
-	ld hl, [sp + 0]
+	ld hl, sp + 0
 	ld a, h
 	ld [H_SPTEMP], a
 	ld a, l
@@ -186,7 +186,7 @@ VBlankCopyDouble::
 	ld a, h
 	ld [H_VBCOPYDOUBLEDEST + 1], a
 
-	ld hl, [sp + 0]
+	ld hl, sp + 0
 	ld a, l
 	ld [H_VBCOPYDOUBLESRC], a
 	ld a, h
@@ -212,7 +212,7 @@ VBlankCopy::
 	and a
 	ret z
 
-	ld hl, [sp + 0]
+	ld hl, sp + 0
 	ld a, h
 	ld [H_SPTEMP], a
 	ld a, l
@@ -256,7 +256,7 @@ VBlankCopy::
 	ld a, h
 	ld [H_VBCOPYDEST + 1], a
 
-	ld hl, [sp + 0]
+	ld hl, sp + 0
 	ld a, l
 	ld [H_VBCOPYSRC], a
 	ld a, h

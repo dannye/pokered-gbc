@@ -1,21 +1,21 @@
 SFX_Cry16_2_Ch4:
 	dutycycle 240
-	unknownsfx0x20 15, 215, 128, 7
-	unknownsfx0x20 4, 230, 160, 7
-	unknownsfx0x20 15, 210, 64, 7
+	squarenote 15, 13, 7, 1920
+	squarenote 4, 14, 6, 1952
+	squarenote 15, 13, 2, 1856
 	endchannel
 
 
 SFX_Cry16_2_Ch5:
 	dutycycle 90
-	unknownsfx0x20 15, 199, 83, 7
-	unknownsfx0x20 5, 182, 114, 7
-	unknownsfx0x20 15, 194, 17, 7
+	squarenote 15, 12, 7, 1875
+	squarenote 5, 11, 6, 1906
+	squarenote 15, 12, 2, 1809
 	endchannel
 
 
 SFX_Cry16_2_Ch7:
-	unknownnoise0x20 13, 246, 76
-	unknownnoise0x20 4, 230, 60
-	unknownnoise0x20 15, 242, 76
+	noisenote 13, 15, 6, 76
+	noisenote 4, 14, 6, 60
+	noisenote 15, 15, 2, 76
 	endchannel

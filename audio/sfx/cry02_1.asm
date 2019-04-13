@@ -1,16 +1,16 @@
 SFX_Cry02_1_Ch4:
 	duty 0
-	unknownsfx0x20 8, 245, 128, 4
-	unknownsfx0x20 2, 225, 224, 5
-	unknownsfx0x20 8, 209, 220, 5
+	squarenote 8, 15, 5, 1152
+	squarenote 2, 14, 1, 1504
+	squarenote 8, 13, 1, 1500
 	endchannel
 
 
 SFX_Cry02_1_Ch5:
 	dutycycle 165
-	unknownsfx0x20 7, 149, 65, 4
-	unknownsfx0x20 2, 129, 33, 5
-	unknownsfx0x20 8, 97, 26, 5
+	squarenote 7, 9, 5, 1089
+	squarenote 2, 8, 1, 1313
+	squarenote 8, 6, 1, 1306
 
 
 SFX_Cry02_1_Ch7:

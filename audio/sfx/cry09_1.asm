@@ -1,35 +1,35 @@
 SFX_Cry09_1_Ch4:
 	dutycycle 240
-	unknownsfx0x20 15, 247, 160, 7
-	unknownsfx0x20 6, 230, 163, 7
-	unknownsfx0x20 10, 244, 160, 7
+	squarenote 15, 15, 7, 1952
+	squarenote 6, 14, 6, 1955
+	squarenote 10, 15, 4, 1952
 	dutycycle 165
-	unknownsfx0x20 10, 246, 216, 7
-	unknownsfx0x20 4, 227, 215, 7
-	unknownsfx0x20 15, 242, 216, 7
+	squarenote 10, 15, 6, 2008
+	squarenote 4, 14, 3, 2007
+	squarenote 15, 15, 2, 2008
 	endchannel
 
 
 SFX_Cry09_1_Ch5:
 	dutycycle 5
-	unknownsfx0x20 2, 8, 0, 0
-	unknownsfx0x20 15, 167, 161, 6
-	unknownsfx0x20 6, 134, 162, 6
-	unknownsfx0x20 10, 116, 161, 6
+	squarenote 2, 0, 8, 0
+	squarenote 15, 10, 7, 1697
+	squarenote 6, 8, 6, 1698
+	squarenote 10, 7, 4, 1697
 	dutycycle 95
-	unknownsfx0x20 10, 118, 214, 6
-	unknownsfx0x20 4, 131, 217, 6
-	unknownsfx0x20 15, 162, 215, 6
+	squarenote 10, 7, 6, 1750
+	squarenote 4, 8, 3, 1753
+	squarenote 15, 10, 2, 1751
 	endchannel
 
 
 SFX_Cry09_1_Ch7:
-	unknownnoise0x20 2, 242, 60
-	unknownnoise0x20 8, 228, 62
-	unknownnoise0x20 15, 215, 60
-	unknownnoise0x20 6, 197, 59
-	unknownnoise0x20 6, 228, 61
-	unknownnoise0x20 8, 182, 60
-	unknownnoise0x20 6, 212, 61
-	unknownnoise0x20 8, 193, 59
+	noisenote 2, 15, 2, 60
+	noisenote 8, 14, 4, 62
+	noisenote 15, 13, 7, 60
+	noisenote 6, 12, 5, 59
+	noisenote 6, 14, 4, 61
+	noisenote 8, 11, 6, 60
+	noisenote 6, 13, 4, 61
+	noisenote 8, 12, 1, 59
 	endchannel
