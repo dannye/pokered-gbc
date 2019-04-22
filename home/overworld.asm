@@ -771,19 +771,19 @@ HandleBlackOut::
 	jp SpecialEnterMap
 
 StopMusic::
-    xor a
-	ld [MusicFadeID], a
+	xor a
+	ld [wMusicFadeID], a
 	ld a, 1
-	ld [MusicFade], a
+	ld [wMusicFade], a
 .wait0
-    ld a, [MusicFadeCount]
-    and a
-    jr z, .wait0
+	ld a, [wMusicFadeCount]
+	and a
+	jr z, .wait0
 .wait1
-    ld a, [MusicFadeCount]
-    and a
-    jr nz, .wait1
-    ret
+	ld a, [wMusicFadeCount]
+	and a
+	jr nz, .wait1
+	ret
 ;	ld [wAudioFadeOutControl], a
 ;	ld a, $ff
 ;	ld [wNewSoundID], a
@@ -1260,11 +1260,11 @@ CollisionCheckOnLand::
 	;ld a, [wChannelSoundIDs + Ch4]
 	;cp SFX_COLLISION ; check if collision sound is already playing
 	; curSFX is not cleared for some reason.
-	
-    ; ch5 on?
-    ld hl, Channel5 + Channel1Flags - Channel1
-    bit 0, [hl]
-    
+
+	; ch5 on?
+	ld hl, wChannel5 + wChannel1Flags1 - wChannel1 ; + CHANNEL_FLAGS1
+	bit 0, [hl]
+
 	jr nz, .setCarry
 	ld a, SFX_COLLISION
 	call PlaySound ; play collision sound (if it's not already playing)
@@ -1967,9 +1967,15 @@ CollisionCheckOnWater::
 	jr z, .stopSurfing ; stop surfing if the tile is passable
 	jr .loop
 .collision
-	ld a, [wChannelSoundIDs + Ch4]
-	cp SFX_COLLISION ; check if collision sound is already playing
-	jr z, .setCarry
+	;ld a, [wChannelSoundIDs + Ch4]
+	;cp SFX_COLLISION ; check if collision sound is already playing
+	; curSFX is not cleared for some reason.
+
+	; ch5 on?
+	ld hl, wChannel5 + wChannel1Flags1 - wChannel1 ; + CHANNEL_FLAGS1
+	bit 0, [hl]
+
+	jr nz, .setCarry
 	ld a, SFX_COLLISION
 	call PlaySound ; play collision sound (if it's not already playing)
 .setCarry
@@ -2376,7 +2382,7 @@ LoadMapData::
 	ld a, [wFlags_D733]
 	bit 1, a
 	jr nz, .restoreRomBank
-	call UpdateMusic6Times
+;	call UpdateMusic6Times
 	call PlayDefaultMusicFadeOutCurrent
 .restoreRomBank
 	pop af

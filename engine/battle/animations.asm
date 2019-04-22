@@ -3064,6 +3064,3 @@ PlayApplyingAttackSound:
 	ld [wTempoModifier], a
 	ld a, c
 	jp PlaySound 
-
-
-

@@ -59,7 +59,7 @@ AnimateHealingMachine:
 	ld d, %01110100
 	call FlashSprite8Times
 .waitLoop2
-	ld a, [Channel1MusicID]
+	ld a, [wChannel1MusicID]
 	and a
 	jr nz, .waitLoop2
 
