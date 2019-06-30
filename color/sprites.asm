@@ -18,7 +18,27 @@ SPR_PAL_GREEN	EQU 2
 SPR_PAL_BROWN	EQU 3
 
 LoadOverworldSpritePalettes:
+	ld a,[rSVBK]
+	ld b,a
+	xor a
+	ld [rSVBK],a
+	push bc
+	; Does the map we're on use dark/night palettes?
+	; Load the matching Object Pals if so
+	ld a, [wCurMapTileset]
+	ld hl,SpritePalettesNite
+	cp CAVERN
+	jr z, .gotPaletteList
+	; If it is the Pokemon Center, load different pals for the Heal Machine to flash
+	ld hl,SpritePalettesPokecenter
+	cp POKECENTER
+	jr z, .gotPaletteList
+	; If not, load the normal Object Pals
 	ld hl,SpritePalettes
+.gotPaletteList
+	pop bc
+	ld a, b
+	ld [rSVBK], a
 	jr LoadSpritePaletteData
 
 LoadAttackSpritePalettes:
