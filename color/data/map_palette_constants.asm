@@ -34,9 +34,9 @@ const_value = 0
 	const FOREST_ROCKS      ; 20
 	const FOREST_TREES      ; 21
 	const ALT_TEXTBOX_PAL   ; 22: used in areas with skeleton pokemon
+	const INDOOR_PURPLE     ; 23
 
 	; These are unused
-	const MAP_PALETTE_23    ; 23
 	const MAP_PALETTE_24    ; 24
 	const MAP_PALETTE_25    ; 25
 	const MAP_PALETTE_26    ; 26
