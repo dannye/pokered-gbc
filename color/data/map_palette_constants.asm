@@ -34,9 +34,9 @@ const_value = 0
 	const FOREST_ROCKS      ; 20
 	const FOREST_TREES      ; 21
 	const ALT_TEXTBOX_PAL   ; 22: used in areas with skeleton pokemon
+	const INDOOR_PURPLE     ; 23
 
 	; These are unused
-	const MAP_PALETTE_23    ; 23
 	const MAP_PALETTE_24    ; 24
 	const MAP_PALETTE_25    ; 25
 	const MAP_PALETTE_26    ; 26
@@ -68,11 +68,22 @@ const_value = 0
 
 ; Named to make tileset palette assignments consistent with Pokecrystal
 const_value = 0
-	const GRAY      ; 00
-	const RED       ; 01
-	const GREEN     ; 02
-	const BLUE      ; 03
-	const YELLOW    ; 04
-	const BROWN     ; 05
-	const ROOF      ; 06
-	const TEXT      ; 07
+	const PAL_BG_GRAY      ; 00
+	const PAL_BG_RED       ; 01
+	const PAL_BG_GREEN     ; 02
+	const PAL_BG_WATER     ; 03
+	const PAL_BG_YELLOW    ; 04
+	const PAL_BG_BROWN     ; 05
+	const PAL_BG_ROOF      ; 06
+	const PAL_BG_TEXT      ; 07
+
+; Used when you want a tile to display above the Player and NPCs
+const_value SET $80
+	const PAL_BG_PRIORITY_GRAY   ; 80
+	const PAL_BG_PRIORITY_RED    ; 81
+	const PAL_BG_PRIORITY_GREEN  ; 82
+	const PAL_BG_PRIORITY_WATER  ; 83
+	const PAL_BG_PRIORITY_YELLOW ; 84
+	const PAL_BG_PRIORITY_BROWN  ; 85
+	const PAL_BG_PRIORITY_ROOF   ; 86
+	const PAL_BG_PRIORITY_TEXT   ; 87

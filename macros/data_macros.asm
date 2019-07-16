@@ -240,3 +240,13 @@ ENDC
 	ENDR
 	db x
 ENDM
+
+tilepal: MACRO
+; vram bank, pals
+; without some code rewrites, only vram0 is usable for now
+x = \1 << 3
+rept _NARG +- 1
+	db (x | PAL_BG_\2)
+	shift
+endr
+endm

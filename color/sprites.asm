@@ -6,7 +6,7 @@ ATK_PAL_RED     EQU 2
 ATK_PAL_BROWN   EQU 3
 ATK_PAL_YELLOW  EQU 4
 ATK_PAL_GREEN   EQU 5
-ATK_PAL_ICE	EQU 6
+ATK_PAL_ICE     EQU 6
 ATK_PAL_PURPLE	EQU 7
 ; 8: color based on attack type
 ; 9: don't change color palette (assume it's already set properly from elsewhere)
@@ -16,9 +16,34 @@ SPR_PAL_ORANGE	EQU 0
 SPR_PAL_BLUE	EQU 1
 SPR_PAL_GREEN	EQU 2
 SPR_PAL_BROWN	EQU 3
+SPR_PAL_PURPLE  EQU 4
+SPR_PAL_EMOJI   EQU 5
+SPR_PAL_TREE    EQU 6
+SPR_PAL_ROCK    EQU 7
+SPR_PAL_RANDOM  EQU 8
 
 LoadOverworldSpritePalettes:
+	ld a,[rSVBK]
+	ld b,a
+	xor a
+	ld [rSVBK],a
+	push bc
+	; Does the map we're on use dark/night palettes?
+	; Load the matching Object Pals if so
+	ld a, [wCurMapTileset]
+	ld hl,SpritePalettesNite
+	cp CAVERN
+	jr z, .gotPaletteList
+	; If it is the Pokemon Center, load different pals for the Heal Machine to flash
+	ld hl,SpritePalettesPokecenter
+	cp POKECENTER
+	jr z, .gotPaletteList
+	; If not, load the normal Object Pals
 	ld hl,SpritePalettes
+.gotPaletteList
+	pop bc
+	ld a, b
+	ld [rSVBK], a
 	jr LoadSpritePaletteData
 
 LoadAttackSpritePalettes:
@@ -70,8 +95,8 @@ ColorOverworldSprite:
 .noCarry
 	ld a,[de]		; Get the picture ID's palette
 
-	; If it's 4, that means no particular palette is assigned
-	cp 4
+	; If it's 8, that means no particular palette is assigned
+	cp SPR_PAL_RANDOM
 	jr nz,.norandomColor
 
 	; This is a (somewhat) random but consistent color
@@ -286,40 +311,40 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_BROWN
 
 	; 0x04: SPRITE_BUG_CATCHER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x05: SPRITE_SLOWBRO
 	db SPR_PAL_ORANGE
 
 	; 0x06: SPRITE_LASS
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x07: SPRITE_BLACK_HAIR_BOY_1
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x08: SPRITE_LITTLE_GIRL
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x09: SPRITE_BIRD
 	db SPR_PAL_ORANGE
 
 	; 0x0a: SPRITE_FAT_BALD_GUY
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x0b: SPRITE_GAMBLER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x0c: SPRITE_BLACK_HAIR_BOY_2
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x0d: SPRITE_GIRL
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x0e: SPRITE_HIKER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x0f: SPRITE_FOULARD_WOMAN
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x10: SPRITE_GENTLEMAN
 	db SPR_PAL_BLUE
@@ -328,16 +353,16 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_BLUE
 
 	; 0x12: SPRITE_BIKER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x13: SPRITE_SAILOR
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x14: SPRITE_COOK
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x15: SPRITE_BIKE_SHOP_GUY
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x16: SPRITE_MR_FUJI
 	db SPR_PAL_GREEN
@@ -349,19 +374,19 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_BROWN
 
 	; 0x19: SPRITE_MEDIUM
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x1a: SPRITE_WAITER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x1b: SPRITE_ERIKA
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x1c: SPRITE_MOM_GEISHA
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x1d: SPRITE_BRUNETTE_GIRL
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x1e: SPRITE_LANCE
 	db SPR_PAL_ORANGE
@@ -373,28 +398,28 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_BROWN
 
 	; 0x21: SPRITE_ROCKER ($20)
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x22: SPRITE_SWIMMER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x23: SPRITE_WHITE_PLAYER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x24: SPRITE_GYM_HELPER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x25: SPRITE_OLD_PERSON
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x26: SPRITE_MART_GUY
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x27: SPRITE_FISHER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x28: SPRITE_OLD_MEDIUM_WOMAN
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x29: SPRITE_NURSE
 	db SPR_PAL_ORANGE
@@ -403,43 +428,43 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_GREEN
 
 	; 0x2b: SPRITE_MR_MASTERBALL
-	db 4
+	db SPR_PAL_PURPLE
 
 	; 0x2c: SPRITE_LAPRAS_GIVER
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x2d: SPRITE_WARDEN
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x2e: SPRITE_SS_CAPTAIN
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x2f: SPRITE_FISHER2
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x30: SPRITE_BLACKBELT
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x31: SPRITE_GUARD ($30)
-	db 4
+	db SPR_PAL_BLUE
 
 	; 0x32: $32
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x33: SPRITE_MOM
-	db 4
+	db SPR_PAL_ORANGE
 
 	; 0x34: SPRITE_BALDING_GUY
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x35: SPRITE_YOUNG_BOY
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x36: SPRITE_GAMEBOY_KID
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x37: SPRITE_GAMEBOY_KID_COPY
-	db 4
+	db SPR_PAL_RANDOM
 
 	; 0x38: SPRITE_CLEFAIRY
 	db SPR_PAL_ORANGE
@@ -454,16 +479,16 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_ORANGE
 
 	; 0x3c: SPRITE_SEEL
-	db SPR_PAL_ORANGE
+	db SPR_PAL_BLUE
 
 	; 0x3d: SPRITE_BALL
 	db SPR_PAL_ORANGE
 
 	; 0x3e: SPRITE_OMANYTE
-	db SPR_PAL_ORANGE
+	db SPR_PAL_ROCK
 
 	; 0x3f: SPRITE_BOULDER
-	db SPR_PAL_BROWN
+	db SPR_PAL_ROCK
 
 	; 0x40: SPRITE_PAPER_SHEET
 	db SPR_PAL_BROWN
@@ -478,16 +503,16 @@ SpritePaletteAssignments: ; Characters on the overworld
 	db SPR_PAL_ORANGE
 
 	; 0x44: SPRITE_OLD_AMBER_COPY
-	db SPR_PAL_BROWN
+	db SPR_PAL_ROCK
 
 	; 0x45: SPRITE_OLD_AMBER
-	db SPR_PAL_BROWN
+	db SPR_PAL_ROCK
 
 	; 0x46: SPRITE_LYING_OLD_MAN_UNUSED_1
-	db 4
+	db SPR_PAL_BROWN
 
 	; 0x47: SPRITE_LYING_OLD_MAN_UNUSED_2
-	db 4
+	db SPR_PAL_BROWN
 
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
