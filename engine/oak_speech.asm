@@ -34,9 +34,9 @@ SetDefaultNames:
 OakSpeech:
 	ld a, $FF
 	call PlaySound ; stop music
-	ld a, 0 ; BANK(Music_Routes2)
+	ld a, 0 ; BANK(Music_Route30)
 	ld c, a
-	ld a, MUSIC_ROUTES2
+	ld a, MUSIC_OAK_INTRO
 	call PlayMusic
 	call ClearScreen
 	call LoadTextBoxTilePatterns

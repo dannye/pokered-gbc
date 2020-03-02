@@ -48,7 +48,7 @@ const_value = 1
 	const MUSIC_POKECENTER
 	const MUSIC_GYM
 	const MUSIC_CITIES1
-	const MUSIC_CITIES2
+	const MUSIC_VICTORY_ROAD
 	const MUSIC_CELADON
 	const MUSIC_CINNABAR
 	const MUSIC_VERMILION
@@ -91,6 +91,8 @@ const_value = 1
 	const MUSIC_MEET_EVIL_TRAINER
 	const MUSIC_MEET_FEMALE_TRAINER
 	const MUSIC_MEET_MALE_TRAINER
+	
+	const MUSIC_OAK_INTRO
 
 	const NUM_SONGS
 

@@ -5,29 +5,29 @@ Music:
 IF GEN_2_MUSIC
 
     dba Music_Nothing
-    dba Music_NewBarkTown
-    dba Music_MobileCenter
+    dba Music_PalletTown
+    dba Music_PokemonCenter
     dba Music_Gym
-    dba Music_CherrygroveCity
-    dba Music_AzaleaTown
-    dba Music_VioletCity
-    dba Music_EcruteakCity
-    dba Music_Vermilion
-    dba Music_Lavender
-    dba Music_SSAnne
+    dba Music_ViridianCity
+    dba Music_VictoryRoad
+    dba Music_CeladonCity
+    dba Music_Cinnabar ; X
+    dba Music_VermilionCity
+    dba Music_LavenderTown
+    dba Music_SSAqua
     dba Music_ProfOak
     dba Music_LookRival
-    dba Music_MuseumGuy
-    dba Music_SafariZone
-    dba Music_PkmnHealed
-    dba Music_Route29
-    dba Music_Route30
-    dba Music_Route36
-    dba Music_Route37
+    dba Music_ShowMeAround
+    dba Music_Evolution
+    dba Music_HealPokemon
+    dba Music_Route1
+    dba Music_Route2
+    dba Music_Route3
+    dba Music_Route12
     dba Music_IndigoPlateau
-    dba Music_JohtoGymBattle
-    dba Music_JohtoTrainerBattle
-    dba Music_JohtoWildBattle
+    dba Music_KantoGymBattle
+    dba Music_KantoTrainerBattle
+    dba Music_KantoWildBattle
     dba Music_ChampionBattle
     dba Music_TrainerVictory
     dba Music_WildPokemonVictory
@@ -35,21 +35,22 @@ IF GEN_2_MUSIC
     dba Music_TitleScreen
     dba Music_Credits
     dba Music_HallOfFame
-    dba Music_ElmsLab
-    dba Music_RuinsOfAlphRadio
+    dba Music_ProfOaksPokemonTalk
+    dba Music_JigglypuffSong ; X
     dba Music_Bicycle
     dba Music_Surf
     dba Music_GameCorner
     dba Music_GoldSilverOpening2
-    dba Music_UnionCave
-    dba Music_DarkCave
-    dba Music_Dungeon3
-    dba Music_CinnabarMansion
-    dba Music_PokemonTower
-    dba Music_SilphCo
-    dba Music_MeetEvilTrainer
-    dba Music_LookLass
-    dba Music_LookYoungster
+    dba Music_Dungeon1 ; X
+    dba Music_Dungeon2 ; X
+    dba Music_MtMoon
+    dba Music_CinnabarMansion ; X
+    dba Music_PokemonTower ; X
+    dba Music_SilphCo ; X
+	dba Music_LookHiker
+	dba Music_LookLass
+	dba Music_LookOfficer
+	dba Music_Route30
 
 ELSE
 
