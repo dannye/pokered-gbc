@@ -197,8 +197,8 @@ HoFLoadPlayerPics:
 	call UncompressSpriteFromDE
 
 IF GEN_2_GRAPHICS ; Use uncompressed red sprite
-	ld a,$66
-	ld c,a
+	ld a, $66
+	ld c, a
 	ld de, vBackPic
 	call LoadUncompressedSpriteData
 	nop

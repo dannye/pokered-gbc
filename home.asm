@@ -14,7 +14,7 @@ INCLUDE "home/clear_sprites.asm"
 INCLUDE "home/copy.asm"
 
 
-SECTION "ColorizationHome",ROM0
+SECTION "ColorizationHome", ROM0
 
 InitializeColor:
 	cp $11
@@ -35,29 +35,27 @@ _InitGbcMode:
 ; Called once for each sprite. This needs to preserve variables, so it can't use
 ; BankSwitch.
 _ColorOverworldSprite::
-	ldh [hColorHackTmp],a ; Need to preserve value of 'a'
+	ldh [hColorHackTmp], a ; Need to preserve value of 'a'
 
-	ldh a,[hLoadedROMBank]
+	ldh a, [hLoadedROMBank]
 	push af
 
-	ld a,BANK(ColorOverworldSprite)
+	ld a, BANK(ColorOverworldSprite)
 	call SetRomBank
 
-	ldh a,[hColorHackTmp]
+	ldh a, [hColorHackTmp]
 	call ColorOverworldSprite
 
-	ldh [hColorHackTmp],a
+	ldh [hColorHackTmp], a
 	pop af
 	call SetRomBank
-	ldh a,[hColorHackTmp]
+	ldh a, [hColorHackTmp]
 	ret
 
 
 ; Soft reset code (clears memory then goes to normal code)
 SoftReset::
-	ld b,BANK(ClearGbcMemory)
-	ld hl,ClearGbcMemory
-	rst $18 ; Bankswitch
+	CALL_INDIRECT ClearGbcMemory
 	jp SoftReset_orig
 
 
@@ -142,14 +140,14 @@ InterruptWrapper:
 	push af
 	push bc
 	push de
-	ldh a,[rSVBK]
-	ld b,a
+	ldh a, [rSVBK]
+	ld b, a
 
-	ldh a,[hLoadedROMBank]
-	ld c,a
+	ldh a, [hLoadedROMBank]
+	ld c, a
 
 	; Change ROM bank if an interrupt occurred in the middle of DelayFrameHook
-	ldh a,[hDelayFrameHookBank]
+	ldh a, [hDelayFrameHookBank]
 	and a
 	jr z, .notInDelayFrame
 	; Change rom bank
@@ -158,14 +156,14 @@ InterruptWrapper:
 .notInDelayFrame
 
 	xor a
-	ldh [rSVBK],a
-	ld de,.ret
+	ldh [rSVBK], a
+	ld de, .ret
 	push de
 	jp hl
 .ret
-	ld a,b
-	ldh [rSVBK],a
-	ld a,c
+	ld a, b
+	ldh [rSVBK], a
+	ld a, c
 	call SetRomBank
 	pop de
 	pop bc

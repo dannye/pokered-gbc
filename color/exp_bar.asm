@@ -4,7 +4,7 @@ AnimateEXPBarAgain:
 	ret nz
 	xor a
 	ld [wEXPBarPixelLength], a
-	coord hl, 17, 11
+	hlcoord 17, 11
 	ld a, $c0
 	ld c, $08
 .loop
@@ -30,7 +30,7 @@ AnimateEXPBar:
 	jr z, .done
 	ld b, a
 	ld c, $08
-	coord hl, 17, 11
+	hlcoord 17, 11
 .loop1
 	ld a, [hl]
 	cp $c8
@@ -48,7 +48,7 @@ AnimateEXPBar:
 	jr .loop1
 .done
 	ld bc, $08
-	coord hl, 10, 11
+	hlcoord 10, 11
 	ld de, wTileMapBackup + 10 + 11 * 20
 	call CopyData
 	ld c, $20

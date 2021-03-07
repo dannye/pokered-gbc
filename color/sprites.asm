@@ -7,15 +7,15 @@ ATK_PAL_BROWN   EQU 3
 ATK_PAL_YELLOW  EQU 4
 ATK_PAL_GREEN   EQU 5
 ATK_PAL_ICE     EQU 6
-ATK_PAL_PURPLE	EQU 7
+ATK_PAL_PURPLE  EQU 7
 ; 8: color based on attack type
 ; 9: don't change color palette (assume it's already set properly from elsewhere)
 
 
-SPR_PAL_ORANGE	EQU 0
-SPR_PAL_BLUE	EQU 1
-SPR_PAL_GREEN	EQU 2
-SPR_PAL_BROWN	EQU 3
+SPR_PAL_ORANGE  EQU 0
+SPR_PAL_BLUE    EQU 1
+SPR_PAL_GREEN   EQU 2
+SPR_PAL_BROWN   EQU 3
 SPR_PAL_PURPLE  EQU 4
 SPR_PAL_EMOJI   EQU 5
 SPR_PAL_TREE    EQU 6
@@ -23,23 +23,23 @@ SPR_PAL_ROCK    EQU 7
 SPR_PAL_RANDOM  EQU 8
 
 LoadOverworldSpritePalettes:
-	ldh a,[rSVBK]
-	ld b,a
+	ldh a, [rSVBK]
+	ld b, a
 	xor a
-	ldh [rSVBK],a
+	ldh [rSVBK], a
 	push bc
 	; Does the map we're on use dark/night palettes?
 	; Load the matching Object Pals if so
 	ld a, [wCurMapTileset]
-	ld hl,SpritePalettesNite
+	ld hl, SpritePalettesNite
 	cp CAVERN
 	jr z, .gotPaletteList
 	; If it is the Pokemon Center, load different pals for the Heal Machine to flash
-	ld hl,SpritePalettesPokecenter
+	ld hl, SpritePalettesPokecenter
 	cp POKECENTER
 	jr z, .gotPaletteList
 	; If not, load the normal Object Pals
-	ld hl,SpritePalettes
+	ld hl, SpritePalettes
 .gotPaletteList
 	pop bc
 	ld a, b
@@ -47,28 +47,28 @@ LoadOverworldSpritePalettes:
 	jr LoadSpritePaletteData
 
 LoadAttackSpritePalettes:
-	ld hl,AttackSpritePalettes
+	ld hl, AttackSpritePalettes
 
 LoadSpritePaletteData:
-	ldh a,[rSVBK]
-	ld b,a
-	ld a,2
-	ldh [rSVBK],a
+	ldh a, [rSVBK]
+	ld b, a
+	ld a, 2
+	ldh [rSVBK], a
 	push bc
 
-	ld de,W2_SprPaletteData
-	ld b,$40
+	ld de, W2_SprPaletteData
+	ld b, $40
 .sprCopyLoop
-	ld a,[hli]
-	ld [de],a
+	ld a, [hli]
+	ld [de], a
 	inc de
 	dec b
-	jr nz,.sprCopyLoop
-	ld a,1
-	ld [W2_ForceOBPUpdate],a
+	jr nz, .sprCopyLoop
+	ld a, 1
+	ld [W2_ForceOBPUpdate], a
 
 	pop af
-	ldh [rSVBK],a
+	ldh [rSVBK], a
 	ret
 
 ; Set an overworld sprite's colors
@@ -79,28 +79,28 @@ ColorOverworldSprite::
 	push bc
 	push de
 	and $f8
-	ld b,a
+	ld b, a
 
-	ldh a,[hSpriteOffset2]
-	ld e,a
-	ld d,wSpriteStateData1>>8
-	ld a,[de]		; Load A with picture ID
+	ldh a, [hSpriteOffset2]
+	ld e, a
+	ld d, wSpriteStateData1 >> 8
+	ld a, [de] ; Load A with picture ID
 	dec a
 
 	ld de, SpritePaletteAssignments
 	add e
-	ld e,a
-	jr nc,.noCarry
+	ld e, a
+	jr nc, .noCarry
 	inc d
 .noCarry
-	ld a,[de]		; Get the picture ID's palette
+	ld a, [de] ; Get the picture ID's palette
 
 	; If it's 8, that means no particular palette is assigned
 	cp SPR_PAL_RANDOM
-	jr nz,.norandomColor
+	jr nz, .norandomColor
 
 	; This is a (somewhat) random but consistent color
-	ldh a,[hSpriteOffset2]
+	ldh a, [hSpriteOffset2]
 	swap a
 	and 3
 
@@ -108,7 +108,7 @@ ColorOverworldSprite::
 
 	pop de
 	or b
-	ld [de],a
+	ld [de], a
 	inc hl
 	inc e
 	pop bc
@@ -124,8 +124,8 @@ ColorOverworldSprite::
 ;
 ; This colorizes: attack sprites, party menu, exclamation mark, trades, perhaps more?
 ColorNonOverworldSprites::
-	ld a,2
-	ldh [rSVBK],a
+	ld a, 2
+	ldh [rSVBK], a
 
 	ld hl, wOAMBuffer
 	ld b, 40
@@ -133,20 +133,20 @@ ColorNonOverworldSprites::
 .spriteLoop
 	inc hl
 	inc hl
-	ld a,[hli] ; tile
+	ld a, [hli] ; tile
 	ld e, a
-	ld d, W2_SpritePaletteMap>>8
-	ld a,[de]
+	ld d, W2_SpritePaletteMap >> 8
+	ld a, [de]
 	cp 8 ; if 8, colorize based on attack type
-	jr z,.getAttackType
+	jr z, .getAttackType
 	cp 9 ; if 9, do not colorize (use whatever palette it's set to already)
-	jr z,.nextSprite
+	jr z, .nextSprite
 	cp 10 ; if 10 (used in game freak intro), color based on sprite number
 	jr z, .gameFreakIntro
 	jr .setPalette ; Otherwise, use the value as-is
 
 .gameFreakIntro: ; The stars under the logo all get different colors
-	ld a,b
+	ld a, b
 	and 3
 	add 4
 	jr .setPalette
@@ -156,57 +156,57 @@ ColorNonOverworldSprites::
 
 	; Load animation (move) being used
 	xor a
-	ldh [rSVBK],a
-	ld a,[wAnimationID]
-	ld d,a
-	ld a,2
-	ldh [rSVBK],a
+	ldh [rSVBK], a
+	ld a, [wAnimationID]
+	ld d, a
+	ld a, 2
+	ldh [rSVBK], a
 
 	; If the absorb animation is playing, it's always green. (Needed for leech seed)
-	ld a,d
+	ld a, d
 	cp ABSORB
-	ld a,GRASS
-	jr z,.gotType
+	ld a, GRASS
+	jr z, .gotType
 
 	; Make stun spore and solarbeam yellow, despite being grass moves
-	ld a,d
+	ld a, d
 	cp STUN_SPORE
-	ld a,ELECTRIC
-	jr z,.gotType
-	ld a,d
+	ld a, ELECTRIC
+	jr z, .gotType
+	ld a, d
 	cp SOLARBEAM
-	ld a,ELECTRIC
-	jr z,.gotType
+	ld a, ELECTRIC
+	jr z, .gotType
 
 	; Make tri-attack yellow, despite being a normal move
-	ld a,d
+	ld a, d
 	cp TRI_ATTACK
-	ld a,ELECTRIC
-	jr z,.gotType
+	ld a, ELECTRIC
+	jr z, .gotType
 
-	ldh a,[hWhoseTurn]
+	ldh a, [hWhoseTurn]
 	and a
-	jr z,.playersTurn
-	ld a,[wEnemyMoveType] ; Enemy move type
+	jr z, .playersTurn
+	ld a, [wEnemyMoveType] ; Enemy move type
 	jr .gotType
 .playersTurn
-	ld a,[wPlayerMoveType] ; Move type
+	ld a, [wPlayerMoveType] ; Move type
 .gotType
 	ld hl, TypeColorTable
 	add l
-	ld l,a
-	jr nc,.noCarry
+	ld l, a
+	jr nc, .noCarry
 	inc h
 .noCarry
-	ld a,[hl]
+	ld a, [hl]
 	pop hl
 
 .setPalette
-	ld c,a
-	ld a,$f8
+	ld c, a
+	ld a, $f8
 	and [hl]
 	or c
-	ld [hl],a
+	ld [hl], a
 
 .nextSprite
 	inc hl
@@ -215,47 +215,47 @@ ColorNonOverworldSprites::
 
 .end
 	xor a
-	ldh [rSVBK],a
+	ldh [rSVBK], a
 	ret
 
 ; Called whenever an animation plays in-battle. There are two animation tilesets, each
 ; with its own palette.
 LoadAnimationTilesetPalettes:
 	push de
-	ld a,[wWhichBattleAnimTileset] ; Animation tileset (0-2)
-	ld c,a
-	ld a,2
-	ldh [rSVBK],a
+	ld a, [wWhichBattleAnimTileset] ; Animation tileset (0-2)
+	ld c, a
+	ld a, 2
+	ldh [rSVBK], a
 
 	xor a
-	ld [W2_UseOBP1],a
+	ld [W2_UseOBP1], a
 
 	call LoadAttackSpritePalettes
 
 	; Indices 0 and 2 both refer to "AnimationTileset1", just different amounts of it.
 	; 0 is in-battle, 2 is during a trade.
 	; Index 1 refers to "AnimationTileset2".
-	ld a,c
+	ld a, c
 	cp 1
 	ld hl, AnimationTileset2Palettes
-	jr z,.gotPalette
+	jr z, .gotPalette
 	ld hl, AnimationTileset1Palettes
 .gotPalette
 	ld de, W2_SpritePaletteMap
 	ld b, $80
 .copyLoop
-	ld a,[hli]
-	ld [de],a
+	ld a, [hli]
+	ld [de], a
 	inc e
 	dec b
-	jr nz,.copyLoop
+	jr nz, .copyLoop
 
 	; If in a trade, some of the tiles near the end are different. Override some tiles
 	; for the link cable, and replace the "purple" palette to match the exact color of
 	; the link cable.
-	ld a,c
+	ld a, c
 	cp 2
-	jr nz,.done
+	jr nz, .done
 
 	; Replace ATK_PAL_PURPLE with PAL_MEWMON
 	ld d, PAL_MEWMON
@@ -264,16 +264,16 @@ LoadAnimationTilesetPalettes:
 
 	; Set the link cable sprite tiles
 	ld a, ATK_PAL_PURPLE
-	ld hl, W2_SpritePaletteMap+$7e
-	ld [hli],a
-	ld [hli],a
+	ld hl, W2_SpritePaletteMap + $7e
+	ld [hli], a
+	ld [hli], a
 
 .done
-	ld a,1
-	ld [W2_ForceOBPUpdate],a
+	ld a, 1
+	ld [W2_ForceOBPUpdate], a
 
 	xor a
-	ldh [rSVBK],a
+	ldh [rSVBK], a
 
 	pop de
 	ret
@@ -281,22 +281,22 @@ LoadAnimationTilesetPalettes:
 
 ; Set all sprite palettes to not be colorized by "ColorNonOverworldSprites".
 ClearSpritePaletteMap:
-	ldh a,[rSVBK]
-	ld b,a
-	ld a,2
-	ldh [rSVBK],a
+	ldh a, [rSVBK]
+	ld b, a
+	ld a, 2
+	ldh [rSVBK], a
 	push bc
 
 	ld hl, W2_SpritePaletteMap
-	ld b,$0 ; $100
-	ld a,9
+	ld b, $0 ; $100
+	ld a, 9
 .loop
-	ld [hli],a
+	ld [hli], a
 	dec b
-	jr nz,.loop
+	jr nz, .loop
 
 	pop af
-	ldh [rSVBK],a
+	ldh [rSVBK], a
 	ret
 
 

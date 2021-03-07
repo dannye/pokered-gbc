@@ -345,7 +345,7 @@ LoadAnimationTileset:
 	add hl, de
 	ld a, [hli]
 	ld [wTempTilesetNumTiles], a ; number of tiles
-	ld c,a
+	ld c, a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl] ; de = address of tileset

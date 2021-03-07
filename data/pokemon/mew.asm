@@ -9,7 +9,7 @@
 ; http://iwataasks.nintendo.com/interviews/#/ds/pokemon/0/0
 
 ; Mew sprites removed from here
-SECTION "Mew Base Stats",ROMX
+SECTION "Mew Base Stats", ROMX
 
 MewBaseStats::
 INCLUDE "data/pokemon/base_stats/mew.asm"

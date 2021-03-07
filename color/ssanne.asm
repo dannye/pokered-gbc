@@ -21,8 +21,8 @@ EraseSSAnneWithColor::
 	; Note: setting the vram bank to 1 is a bit dangerous, since it'll be left at
 	; 1 for most of vblank. In this specific case, it seems to work ok (since vblank
 	; doesn't need to do anything else at this point in time).
-	ld a,1
-	ldh [rVBK],a
+	ld a, 1
+	ldh [rVBK], a
 
 	hlbgcoord 0, 10
 	ld de, wVermilionDockTileMapBuffer
@@ -30,5 +30,5 @@ EraseSSAnneWithColor::
 	call CopyVideoData
 
 	xor a
-	ldh [rVBK],a
+	ldh [rVBK], a
 	ret

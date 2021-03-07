@@ -57,7 +57,7 @@ SlidePlayerAndEnemySilhouettesOnScreen:
 	;call Delay3
 	nop
 	nop
-	ld a,1 ; HAX: don't disable bg transfer. Makes the battle transition smoother.
+	ld a, 1 ; HAX: don't disable bg transfer. Makes the battle transition smoother.
 	ldh [hAutoBGTransferEnabled], a
 	ld b, $70
 	ld c, $90
@@ -7052,7 +7052,7 @@ LoadMonBackPic:
 
 	ld hl, vSprites
 	ld de, vBackPic
-	ld c, (2*SPRITEBUFFERSIZE)/16 ; count of 16-byte chunks to be copied
+	ld c, (2 * SPRITEBUFFERSIZE) / 16 ; count of 16-byte chunks to be copied
 	ldh a, [hLoadedROMBank]
 	ld b, a
 	jp CopyVideoData
@@ -7065,9 +7065,9 @@ INCLUDE "engine/battle/effects.asm"
 IF GEN_2_GRAPHICS
 
 LoadMonBackSpriteHook:
-	ld a,$66
-	ld de,vBackPic
-	ld c,a
+	ld a, $66
+	ld de, vBackPic
+	ld c, a
 	jp LoadUncompressedSpriteData
 
 PrintEXPBarAt1711:

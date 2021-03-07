@@ -90,8 +90,8 @@ SECTION "JpPoint", ROM0
 ; Note: this doesn't update "hLoadedROMBank", but no interrupts will occur at this time,
 ; so it's fine.
 TransferBgRows::
-	ld a,BANK(WindowTransferBgRowsAndColors)
-	ld [MBC1RomBank],a
+	ld a, BANK(WindowTransferBgRowsAndColors)
+	ld [MBC1RomBank], a
 	jp WindowTransferBgRowsAndColors
 
 ; Copies [hVBlankCopyBGNumRows] rows from hVBlankCopyBGSource to hVBlankCopyBGDest.

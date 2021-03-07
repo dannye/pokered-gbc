@@ -3,67 +3,67 @@
 ; disassembled for now...
 
 RunDmgError::
-	ld hl,Code_d000
-	ld de,$d000
-	ld b,Code_d000_end-Code_d000
+	ld hl, Code_d000
+	ld de, $d000
+	ld b, Code_d000_end - Code_d000
 
 .codeCopyLoop
-	ld a,[hli]
-	ld [de],a
+	ld a, [hli]
+	ld [de], a
 	inc de
 	dec b
-	jr nz,.codeCopyLoop
+	jr nz, .codeCopyLoop
 
 	xor a
-	ld [wAudioFadeOutCounterReloadValue],a
-	ld [wAudioFadeOutCounter],a
+	ld [wAudioFadeOutCounterReloadValue], a
+	ld [wAudioFadeOutCounter], a
 
 	; Use sound engine copy in bank $31
-	ld a,$31
-	ld [wAudioSavedROMBank],a
-	ld [wAudioROMBank],a
+	ld a, $31
+	ld [wAudioSavedROMBank], a
+	ld [wAudioROMBank], a
 
-	ld a,$c3
-	ld [wAudioFadeOutControl],a
+	ld a, $c3
+	ld [wAudioFadeOutControl], a
 
 	di
 	call DisableLCD
 
 	; Load font
-	ld de,FontCopy
-	ld bc,$0200
-	ld hl,$8800
+	ld de, FontCopy
+	ld bc, (FontCopyEnd - FontCopy) / 2
+	ld hl, vFont
 
 .nextByte
-	ld a,[de]
-	ld [hli],a
-	ld [hli],a
+	ld a, [de]
+	ld [hli], a
+	ld [hli], a
 	inc de
 	dec bc
-	ld a,c
+	ld a, c
 	or b
-	jr nz,.nextByte
+	jr nz, .nextByte
 
 	; Load text
 
-	ld de,DmgText
-	ld bc,$0414
-	ld hl,$98e0
+	ld de, DmgText
+	lb bc, 4, 20
+	hlbgcoord 0, 7
 
 .nextCharacter
-	ld a,[de]
+	ld a, [de]
 	inc de
-	ldi [hl],a
+	ld [hli], a
 	dec c
-	jr nz,.nextCharacter
+	jr nz, .nextCharacter
 
 	push de
-	ld de,$000c
-	add hl,de
+	ld de, 32 - 20
+	add hl, de
 	pop de
-	ld c,$14
+	ld c, 20
 	dec b
-	jr nz,.nextCharacter
+	jr nz, .nextCharacter
 
 	call EnableLCD
 	ei
@@ -77,18 +77,18 @@ Code_d000:
 	push de
 	push hl
 	call FadeOutAudio
-	ld a,[wAudioROMBank]
-	ldh [hLoadedROMBank],a
-	ld [MBC1RomBank],a
-	call $5177
+	ld a, [wAudioROMBank]
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+	call $5177 ; Audio4_UpdateMusic
 	pop hl
 	pop de
 	pop bc
 	pop af
-	ld hl,rSTAT
+	ld hl, rSTAT
 .frameWait
-	bit 2,[hl]
-	jr z,.frameWait
+	bit 2, [hl]
+	jr z, .frameWait
 	jr Code_d000
 Code_d000_end:
 
@@ -96,6 +96,7 @@ Code_d000_end:
 
 FontCopy:
 	INCBIN "gfx/font/font.1bpp"
+FontCopyEnd:
 
 DmgText:
 	db "This game will only "
