@@ -4,7 +4,7 @@
 ; d: length of bar (tiles)
 ; e: # pixels to fill
 ; hl: where to draw
-DrawHPBarWithColor
+DrawHPBarWithColor:
 	call DrawHPBar
 	push bc
 	push de
@@ -30,7 +30,7 @@ DrawHPBarWithColor
 	call GetHealthBarColor ; Reads value of 'e' (bar length) to determine color
 
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	; wHPBarType = 0 for enemy hp bar, 1 for player hp bar, 2 for pokemon menu.
 	ld a,[wHPBarType]
@@ -74,7 +74,7 @@ DrawHPBarWithColor
 	ld [W2_ForceBGPUpdate],a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	pop hl
 	pop de

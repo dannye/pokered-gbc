@@ -3,7 +3,7 @@
 CopyMonPicFromBGToSpriteVRAM:
 	; Copy enemy palette to sprite palette 4
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ld hl,W2_BgPaletteData + 1*8 ; bg palette 1 (enemy)
 	ld de,W2_SprPaletteData+ 4*8 ; spr palette 4
 	ld bc,8
@@ -15,6 +15,6 @@ CopyMonPicFromBGToSpriteVRAM:
 	ld [W2_ForceOBPUpdate],a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	jp CopyMonPicFromBGToSpriteVRAM_orig

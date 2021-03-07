@@ -1,15 +1,15 @@
-InitGbcMode: ; Sets double speed & clears extra memory
+InitGbcMode:: ; Sets double speed & clears extra memory
 	ld a,$01
 	; Set double speed mode
-	ld [$ff4d],a
+	ldh [rKEY1],a
 	stop
 
 	; Clear memory (banks 2-7)
-ClearGbcMemory:
+ClearGbcMemory::
 	ld d,7
 .clearBank
 	ld a,d
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	xor a
 	ld hl, W2_BgPaletteData
 	ld bc, $0f00 ; Leave a bit of space for the stack
@@ -20,5 +20,5 @@ ClearGbcMemory:
 	jr nz,.clearBank
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret

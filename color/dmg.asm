@@ -2,7 +2,7 @@
 ; There's a copy of the audio engine in bank $31 that's used for this, hasn't been
 ; disassembled for now...
 
-RunDmgError:
+RunDmgError::
 	ld hl,Code_d000
 	ld de,$d000
 	ld b,Code_d000_end-Code_d000
@@ -78,7 +78,7 @@ Code_d000:
 	push hl
 	call FadeOutAudio
 	ld a,[wAudioROMBank]
-	ld [H_LOADEDROMBANK],a
+	ldh [hLoadedROMBank],a
 	ld [MBC1RomBank],a
 	call $5177
 	pop hl
@@ -95,7 +95,7 @@ Code_d000_end:
 
 
 FontCopy:
-	INCBIN "gfx/font.1bpp"
+	INCBIN "gfx/font/font.1bpp"
 
 DmgText:
 	db "This game will only "

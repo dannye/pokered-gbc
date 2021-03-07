@@ -1,49 +1,50 @@
 INCLUDE "constants.asm"
 
 
-SECTION "Sound Effect Headers 1", ROMX ; BANK $02
+SECTION "Sound Effect Headers 1", ROMX
 INCLUDE "audio/headers/sfxheaders1.asm"
 
-SECTION "Sound Effect Headers 2", ROMX ; BANK $08
+SECTION "Sound Effect Headers 2", ROMX
 INCLUDE "audio/headers/sfxheaders2.asm"
 
-SECTION "Sound Effect Headers 3", ROMX ; BANK $1f
+SECTION "Sound Effect Headers 3", ROMX
 INCLUDE "audio/headers/sfxheaders3.asm"
 
 
-SECTION "Music Headers 1", ROMX ; BANK $02
+SECTION "Music Headers 1", ROMX
 INCLUDE "audio/headers/musicheaders1.asm"
 
-SECTION "Music Headers 2", ROMX ; BANK $08
+SECTION "Music Headers 2", ROMX
 INCLUDE "audio/headers/musicheaders2.asm"
 
-SECTION "Music Headers 3", ROMX ; BANK $1f
+SECTION "Music Headers 3", ROMX
 INCLUDE "audio/headers/musicheaders3.asm"
 
 
-SECTION "Sound Effects 1", ROMX ; BANK $02
+SECTION "Sound Effects 1", ROMX
 
-INCLUDE "audio/sfx/snare1_1.asm"
-INCLUDE "audio/sfx/snare2_1.asm"
-INCLUDE "audio/sfx/snare3_1.asm"
-INCLUDE "audio/sfx/snare4_1.asm"
-INCLUDE "audio/sfx/snare5_1.asm"
-INCLUDE "audio/sfx/triangle1_1.asm"
-INCLUDE "audio/sfx/triangle2_1.asm"
-INCLUDE "audio/sfx/snare6_1.asm"
-INCLUDE "audio/sfx/snare7_1.asm"
-INCLUDE "audio/sfx/snare8_1.asm"
-INCLUDE "audio/sfx/snare9_1.asm"
-INCLUDE "audio/sfx/cymbal1_1.asm"
-INCLUDE "audio/sfx/cymbal2_1.asm"
-INCLUDE "audio/sfx/cymbal3_1.asm"
-INCLUDE "audio/sfx/muted_snare1_1.asm"
-INCLUDE "audio/sfx/triangle3_1.asm"
-INCLUDE "audio/sfx/muted_snare2_1.asm"
-INCLUDE "audio/sfx/muted_snare3_1.asm"
-INCLUDE "audio/sfx/muted_snare4_1.asm"
+INCLUDE "audio/sfx/noise_instrument01_1.asm"
+INCLUDE "audio/sfx/noise_instrument02_1.asm"
+INCLUDE "audio/sfx/noise_instrument03_1.asm"
+INCLUDE "audio/sfx/noise_instrument04_1.asm"
+INCLUDE "audio/sfx/noise_instrument05_1.asm"
+INCLUDE "audio/sfx/noise_instrument06_1.asm"
+INCLUDE "audio/sfx/noise_instrument07_1.asm"
+INCLUDE "audio/sfx/noise_instrument08_1.asm"
+INCLUDE "audio/sfx/noise_instrument09_1.asm"
+INCLUDE "audio/sfx/noise_instrument10_1.asm"
+INCLUDE "audio/sfx/noise_instrument11_1.asm"
+INCLUDE "audio/sfx/noise_instrument12_1.asm"
+INCLUDE "audio/sfx/noise_instrument13_1.asm"
+INCLUDE "audio/sfx/noise_instrument14_1.asm"
+INCLUDE "audio/sfx/noise_instrument15_1.asm"
+INCLUDE "audio/sfx/noise_instrument16_1.asm"
+INCLUDE "audio/sfx/noise_instrument17_1.asm"
+INCLUDE "audio/sfx/noise_instrument18_1.asm"
+INCLUDE "audio/sfx/noise_instrument19_1.asm"
 
-Audio1_WavePointers: INCLUDE "audio/wave_instruments.asm"
+Audio1_WavePointers:
+INCLUDE "audio/wave_instruments.asm"
 
 INCLUDE "audio/sfx/start_menu_1.asm"
 INCLUDE "audio/sfx/pokeflute.asm"
@@ -120,29 +121,30 @@ INCLUDE "audio/sfx/cry21_1.asm"
 INCLUDE "audio/sfx/cry22_1.asm"
 
 
-SECTION "Sound Effects 2", ROMX ; BANK $08
+SECTION "Sound Effects 2", ROMX
 
-INCLUDE "audio/sfx/snare1_2.asm"
-INCLUDE "audio/sfx/snare2_2.asm"
-INCLUDE "audio/sfx/snare3_2.asm"
-INCLUDE "audio/sfx/snare4_2.asm"
-INCLUDE "audio/sfx/snare5_2.asm"
-INCLUDE "audio/sfx/triangle1_2.asm"
-INCLUDE "audio/sfx/triangle2_2.asm"
-INCLUDE "audio/sfx/snare6_2.asm"
-INCLUDE "audio/sfx/snare7_2.asm"
-INCLUDE "audio/sfx/snare8_2.asm"
-INCLUDE "audio/sfx/snare9_2.asm"
-INCLUDE "audio/sfx/cymbal1_2.asm"
-INCLUDE "audio/sfx/cymbal2_2.asm"
-INCLUDE "audio/sfx/cymbal3_2.asm"
-INCLUDE "audio/sfx/muted_snare1_2.asm"
-INCLUDE "audio/sfx/triangle3_2.asm"
-INCLUDE "audio/sfx/muted_snare2_2.asm"
-INCLUDE "audio/sfx/muted_snare3_2.asm"
-INCLUDE "audio/sfx/muted_snare4_2.asm"
+INCLUDE "audio/sfx/noise_instrument01_2.asm"
+INCLUDE "audio/sfx/noise_instrument02_2.asm"
+INCLUDE "audio/sfx/noise_instrument03_2.asm"
+INCLUDE "audio/sfx/noise_instrument04_2.asm"
+INCLUDE "audio/sfx/noise_instrument05_2.asm"
+INCLUDE "audio/sfx/noise_instrument06_2.asm"
+INCLUDE "audio/sfx/noise_instrument07_2.asm"
+INCLUDE "audio/sfx/noise_instrument08_2.asm"
+INCLUDE "audio/sfx/noise_instrument09_2.asm"
+INCLUDE "audio/sfx/noise_instrument10_2.asm"
+INCLUDE "audio/sfx/noise_instrument11_2.asm"
+INCLUDE "audio/sfx/noise_instrument12_2.asm"
+INCLUDE "audio/sfx/noise_instrument13_2.asm"
+INCLUDE "audio/sfx/noise_instrument14_2.asm"
+INCLUDE "audio/sfx/noise_instrument15_2.asm"
+INCLUDE "audio/sfx/noise_instrument16_2.asm"
+INCLUDE "audio/sfx/noise_instrument17_2.asm"
+INCLUDE "audio/sfx/noise_instrument18_2.asm"
+INCLUDE "audio/sfx/noise_instrument19_2.asm"
 
-Audio2_WavePointers: INCLUDE "audio/wave_instruments.asm"
+Audio2_WavePointers:
+INCLUDE "audio/wave_instruments.asm"
 
 INCLUDE "audio/sfx/press_ab_2.asm"
 INCLUDE "audio/sfx/start_menu_2.asm"
@@ -155,7 +157,7 @@ INCLUDE "audio/sfx/ball_poof.asm"
 INCLUDE "audio/sfx/faint_thud.asm"
 INCLUDE "audio/sfx/run.asm"
 INCLUDE "audio/sfx/dex_page_added.asm"
-INCLUDE "audio/sfx/pokeflute_ch6.asm"
+INCLUDE "audio/sfx/pokeflute_ch7.asm"
 INCLUDE "audio/sfx/peck.asm"
 INCLUDE "audio/sfx/faint_fall.asm"
 INCLUDE "audio/sfx/battle_09.asm"
@@ -245,29 +247,30 @@ INCLUDE "audio/sfx/cry21_2.asm"
 INCLUDE "audio/sfx/cry22_2.asm"
 
 
-SECTION "Sound Effects 3", ROMX ; BANK $1f
+SECTION "Sound Effects 3", ROMX
 
-INCLUDE "audio/sfx/snare1_3.asm"
-INCLUDE "audio/sfx/snare2_3.asm"
-INCLUDE "audio/sfx/snare3_3.asm"
-INCLUDE "audio/sfx/snare4_3.asm"
-INCLUDE "audio/sfx/snare5_3.asm"
-INCLUDE "audio/sfx/triangle1_3.asm"
-INCLUDE "audio/sfx/triangle2_3.asm"
-INCLUDE "audio/sfx/snare6_3.asm"
-INCLUDE "audio/sfx/snare7_3.asm"
-INCLUDE "audio/sfx/snare8_3.asm"
-INCLUDE "audio/sfx/snare9_3.asm"
-INCLUDE "audio/sfx/cymbal1_3.asm"
-INCLUDE "audio/sfx/cymbal2_3.asm"
-INCLUDE "audio/sfx/cymbal3_3.asm"
-INCLUDE "audio/sfx/muted_snare1_3.asm"
-INCLUDE "audio/sfx/triangle3_3.asm"
-INCLUDE "audio/sfx/muted_snare2_3.asm"
-INCLUDE "audio/sfx/muted_snare3_3.asm"
-INCLUDE "audio/sfx/muted_snare4_3.asm"
+INCLUDE "audio/sfx/noise_instrument01_3.asm"
+INCLUDE "audio/sfx/noise_instrument02_3.asm"
+INCLUDE "audio/sfx/noise_instrument03_3.asm"
+INCLUDE "audio/sfx/noise_instrument04_3.asm"
+INCLUDE "audio/sfx/noise_instrument05_3.asm"
+INCLUDE "audio/sfx/noise_instrument06_3.asm"
+INCLUDE "audio/sfx/noise_instrument07_3.asm"
+INCLUDE "audio/sfx/noise_instrument08_3.asm"
+INCLUDE "audio/sfx/noise_instrument09_3.asm"
+INCLUDE "audio/sfx/noise_instrument10_3.asm"
+INCLUDE "audio/sfx/noise_instrument11_3.asm"
+INCLUDE "audio/sfx/noise_instrument12_3.asm"
+INCLUDE "audio/sfx/noise_instrument13_3.asm"
+INCLUDE "audio/sfx/noise_instrument14_3.asm"
+INCLUDE "audio/sfx/noise_instrument15_3.asm"
+INCLUDE "audio/sfx/noise_instrument16_3.asm"
+INCLUDE "audio/sfx/noise_instrument17_3.asm"
+INCLUDE "audio/sfx/noise_instrument18_3.asm"
+INCLUDE "audio/sfx/noise_instrument19_3.asm"
 
-Audio3_WavePointers: INCLUDE "audio/wave_instruments.asm"
+Audio3_WavePointers:
+INCLUDE "audio/wave_instruments.asm"
 
 INCLUDE "audio/sfx/start_menu_3.asm"
 INCLUDE "audio/sfx/cut_3.asm"
@@ -352,249 +355,31 @@ INCLUDE "audio/sfx/cry21_3.asm"
 INCLUDE "audio/sfx/cry22_3.asm"
 
 
+SECTION "Audio Engine 1", ROMX
 
-SECTION "Audio Engine 1", ROMX ; BANK $02
-
-PlayBattleMusic::
-	xor a
-	ld [wAudioFadeOutControl], a
-	ld [wLowHealthAlarm], a
-	dec a
-	ld [wNewSoundID], a
-	call PlaySound ; stop music
-	call DelayFrame
-	ld c, BANK(Music_GymLeaderBattle)
-	ld a, [wGymLeaderNo]
-	and a
-	jr z, .notGymLeaderBattle
-	ld a, MUSIC_GYM_LEADER_BATTLE
-	jr .playSong
-.notGymLeaderBattle
-	ld a, [wCurOpponent]
-	cp 200
-	jr c, .wildBattle
-	cp OPP_SONY3
-	jr z, .finalBattle
-	cp OPP_LANCE
-	jr nz, .normalTrainerBattle
-	ld a, MUSIC_GYM_LEADER_BATTLE ; lance also plays gym leader theme
-	jr .playSong
-.normalTrainerBattle
-	ld a, MUSIC_TRAINER_BATTLE
-	jr .playSong
-.finalBattle
-	ld a, MUSIC_FINAL_BATTLE
-	jr .playSong
-.wildBattle
-	ld a, MUSIC_WILD_BATTLE
-.playSong
-	jp PlayMusic
-
-
+INCLUDE "audio/play_battle_music.asm"
 INCLUDE "audio/engine_1.asm"
+INCLUDE "audio/alternate_tempo.asm"
 
 
-; an alternate start for MeetRival which has a different first measure
-Music_RivalAlternateStart::
-	ld c, BANK(Music_MeetRival)
-	ld a, MUSIC_MEET_RIVAL
-	call PlayMusic
-	ld hl, wChannelCommandPointers
-	ld de, Music_MeetRival_branch_b1a2
-	call Audio1_OverwriteChannelPointer
-	ld de, Music_MeetRival_branch_b21d
-	call Audio1_OverwriteChannelPointer
-	ld de, Music_MeetRival_branch_b2b5
+SECTION "Low Health Alarm (Audio Engine 2)", ROMX
 
-Audio1_OverwriteChannelPointer:
-	ld a, e
-	ld [hli], a
-	ld a, d
-	ld [hli], a
-	ret
-
-; an alternate tempo for MeetRival which is slightly slower
-Music_RivalAlternateTempo::
-	ld c, BANK(Music_MeetRival)
-	ld a, MUSIC_MEET_RIVAL
-	call PlayMusic
-	ld hl, wChannelCommandPointers
-	ld de, Music_MeetRival_branch_b119
-	jp Audio1_OverwriteChannelPointer
-
-; applies both the alternate start and alternate tempo
-Music_RivalAlternateStartAndTempo::
-	call Music_RivalAlternateStart
-	ld hl, wChannelCommandPointers
-	ld de, Music_MeetRival_branch_b19b
-	jp Audio1_OverwriteChannelPointer
-
-; an alternate tempo for Cities1 which is used for the Hall of Fame room
-Music_Cities1AlternateTempo::
-	ld a, 10
-	ld [wAudioFadeOutCounterReloadValue], a
-	ld [wAudioFadeOutCounter], a
-	ld a, $ff ; stop playing music after the fade-out is finished
-	ld [wAudioFadeOutControl], a
-	ld c, 100
-	call DelayFrames ; wait for the fade-out to finish
-	ld c, BANK(Music_Cities1)
-	ld a, MUSIC_CITIES1
-	call PlayMusic
-	ld hl, wChannelCommandPointers
-	ld de, Music_Cities1_branch_aa6f
-	jp Audio1_OverwriteChannelPointer
+INCLUDE "audio/low_health_alarm.asm"
 
 
-SECTION "Audio Engine 2", ROMX ; BANK $08
-
-Music_DoLowHealthAlarm::
-	ld a, [wLowHealthAlarm]
-	cp $ff
-	jr z, .disableAlarm
-
-	bit 7, a  ;alarm enabled?
-	ret z     ;nope
-
-	and $7f   ;low 7 bits are the timer.
-	jr nz, .asm_21383 ;if timer > 0, play low tone.
-
-	call .playToneHi
-	ld a, 30 ;keep this tone for 30 frames.
-	jr .asm_21395 ;reset the timer.
-
-.asm_21383
-	cp 20
-	jr nz, .asm_2138a ;if timer == 20,
-	call .playToneLo  ;actually set the sound registers.
-
-.asm_2138a
-	ld a, $86
-	ld [wChannelSoundIDs + Ch4], a ;disable sound channel?
-	ld a, [wLowHealthAlarm]
-	and $7f ;decrement alarm timer.
-	dec a
-
-.asm_21395
-	; reset the timer and enable flag.
-	set 7, a
-	ld [wLowHealthAlarm], a
-	ret
-
-.disableAlarm
-	xor a
-	ld [wLowHealthAlarm], a  ;disable alarm
-	ld [wChannelSoundIDs + Ch4], a  ;re-enable sound channel?
-	ld de, .toneDataSilence
-	jr .playTone
-
-;update the sound registers to change the frequency.
-;the tone set here stays until we change it.
-.playToneHi
-	ld de, .toneDataHi
-	jr .playTone
-
-.playToneLo
-	ld de, .toneDataLo
-
-;update sound channel 1 to play the alarm, overriding all other sounds.
-.playTone
-	ld hl, rNR10 ;channel 1 sound register
-	ld c, $5
-	xor a
-
-.copyLoop
-	ld [hli], a
-	ld a, [de]
-	inc de
-	dec c
-	jr nz, .copyLoop
-	ret
-
-;bytes to write to sound channel 1 registers for health alarm.
-;starting at FF11 (FF10 is always zeroed), so these bytes are:
-;length, envelope, freq lo, freq hi
-.toneDataHi
-	db $A0,$E2,$50,$87
-
-.toneDataLo
-	db $B0,$E2,$EE,$86
-
-;written to stop the alarm
-.toneDataSilence
-	db $00,$00,$00,$80
-
-
-INCLUDE "engine/menu/bills_pc.asm"
+SECTION "Audio Engine 2", ROMX
 
 INCLUDE "audio/engine_2.asm"
+INCLUDE "audio/poke_flute.asm"
 
 
-Music_PokeFluteInBattle::
-	; begin playing the "caught mon" sound effect
-	ld a, SFX_CAUGHT_MON
-	call PlaySoundWaitForCurrent
-	; then immediately overwrite the channel pointers
-	ld hl, wChannelCommandPointers + Ch4 * 2
-	ld de, SFX_08_PokeFlute_Ch4
-	call Audio2_OverwriteChannelPointer
-	ld de, SFX_08_PokeFlute_Ch5
-	call Audio2_OverwriteChannelPointer
-	ld de, SFX_08_PokeFlute_Ch6
+SECTION "Audio Engine 3", ROMX
 
-Audio2_OverwriteChannelPointer:
-	ld a, e
-	ld [hli], a
-	ld a, d
-	ld [hli], a
-	ret
-
-
-SECTION "Audio Engine 3", ROMX ; BANK $1f
-
-PlayPokedexRatingSfx::
-	ld a, [$ffdc]
-	ld c, $0
-	ld hl, OwnedMonValues
-.getSfxPointer
-	cp [hl]
-	jr c, .gotSfxPointer
-	inc c
-	inc hl
-	jr .getSfxPointer
-.gotSfxPointer
-	push bc
-	ld a, $ff
-	ld [wNewSoundID], a
-	call PlaySoundWaitForCurrent
-	pop bc
-	ld b, $0
-	ld hl, PokedexRatingSfxPointers
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld c, [hl]
-	call PlayMusic
-	jp PlayDefaultMusic
-
-PokedexRatingSfxPointers:
-	db SFX_DENIED,         BANK(SFX_Denied_3)
-	db SFX_POKEDEX_RATING, BANK(SFX_Pokedex_Rating_1)
-	db SFX_GET_ITEM_1,     BANK(SFX_Get_Item1_1)
-	db SFX_CAUGHT_MON,     BANK(SFX_Caught_Mon)
-	db SFX_LEVEL_UP,       BANK(SFX_Level_Up)
-	db SFX_GET_KEY_ITEM,   BANK(SFX_Get_Key_Item_1)
-	db SFX_GET_ITEM_2,     BANK(SFX_Get_Item2_1)
-
-OwnedMonValues:
-	db 10, 40, 60, 90, 120, 150, $ff
-
-
+INCLUDE "audio/pokedex_rating_sfx.asm"
 INCLUDE "audio/engine_3.asm"
 
 
-
-SECTION "Music 1", ROMX ; BANK $02
+SECTION "Music 1", ROMX
 
 INCLUDE "audio/music/pkmnhealed.asm"
 INCLUDE "audio/music/routes1.asm"
@@ -623,10 +408,10 @@ INCLUDE "audio/music/gym.asm"
 INCLUDE "audio/music/pokecenter.asm"
 
 
-SECTION "Music 2", ROMX ; BANK $08
+SECTION "Music 2", ROMX
 
-INCLUDE "audio/sfx/pokeflute_ch4_ch5.asm"
-INCLUDE "audio/sfx/unused2_2.asm"
+INCLUDE "audio/sfx/pokeflute_ch5_ch6.asm"
+INCLUDE "audio/sfx/unused_fanfare.asm"
 INCLUDE "audio/music/gymleaderbattle.asm"
 INCLUDE "audio/music/trainerbattle.asm"
 INCLUDE "audio/music/wildbattle.asm"
@@ -639,7 +424,7 @@ INCLUDE "audio/music/defeatedwildmon.asm"
 INCLUDE "audio/music/defeatedgymleader.asm"
 
 
-SECTION "Music 3", ROMX ; BANK $1f
+SECTION "Music 3", ROMX
 
 INCLUDE "audio/music/bikeriding.asm"
 INCLUDE "audio/music/dungeon1.asm"
@@ -663,4 +448,3 @@ INCLUDE "audio/music/surfing.asm"
 INCLUDE "audio/music/jigglypuffsong.asm"
 INCLUDE "audio/music/halloffame.asm"
 INCLUDE "audio/music/credits.asm"
-

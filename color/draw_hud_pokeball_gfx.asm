@@ -9,7 +9,7 @@ LoadPartyPokeballGfx:
 	CALL_INDIRECT LoadOverworldSpritePalettes
 
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	; Set the palette the pokeball sprite uses
 	ld hl,W2_SpritePaletteMap+$31
@@ -20,7 +20,7 @@ LoadPartyPokeballGfx:
 	ld [hli],a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	jp LoadPartyPokeballGfx_orig
 
@@ -42,7 +42,7 @@ EnemyHUDHAX:
 	push hl
 	ld a, [wEnemyMonSpecies2]
 	ld [wd11e], a
-	callab IndexToPokedex
+	callfar IndexToPokedex
 	ld a, [wd11e]
 	dec a
 	ld c, a

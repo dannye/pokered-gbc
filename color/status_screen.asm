@@ -9,7 +9,7 @@ IF GEN_2_GRAPHICS
 	push af
 	ld a, [wLoadedMonLevel]
 	ld [wBattleMonLevel], a
-	callba PrintEXPBar
+	farcall PrintEXPBar
 	pop af
 	ld [wBattleMonLevel], a
 ENDC

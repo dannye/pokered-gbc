@@ -1,13 +1,13 @@
 
 ; Prepare stuff to be done during vblank
 ; This is called from the lcd interrupt, at line $70
-GbcPrepareVBlank:
+GbcPrepareVBlank::
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	call RefreshWindowPalettesPreVBlank
 	call RefreshPalettesPreVBlank
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 ; Refresh palettes based on BGP and OBP registers
@@ -17,7 +17,7 @@ RefreshPalettesPreVBlank:
 	or a
 	jr nz,.updatebgp
 
-	ld a,[rBGP]
+	ldh a,[rBGP]
 	ld b,a
 	ld a,[W2_LastBGP]
 	cp b
@@ -30,7 +30,7 @@ RefreshPalettesPreVBlank:
 	ld b,$00
 	ld hl, W2_BgPaletteDataBuffer
 
-	ld a,[rBGP]
+	ldh a,[rBGP]
 	and a
 	jr nz,.bgpNotWhite
 	call SetWhiteColor
@@ -45,7 +45,7 @@ RefreshPalettesPreVBlank:
 .doNextBgPal:
 	ld e,4
 
-	ld a,[rBGP]
+	ldh a,[rBGP]
 	ld d,a
 
 .doNextBgColor:
@@ -64,12 +64,12 @@ RefreshPalettesPreVBlank:
 	ld a,[W2_ForceOBPUpdate]
 	or a
 	jr nz,.updateobjp
-	ld a,[rOBP0]
+	ldh a,[rOBP0]
 	ld b,a
 	ld a,[W2_LastOBP0]
 	cp b
 	jr nz,.updateobjp
-	ld a,[rOBP1]
+	ldh a,[rOBP1]
 	ld b,a
 	ld a,[W2_LastOBP1]
 	cp b
@@ -82,7 +82,7 @@ RefreshPalettesPreVBlank:
 	ld b,$08
 	ld hl, W2_SprPaletteDataBuffer
 
-	ld a,[rOBP0]
+	ldh a,[rOBP0]
 	and a
 	jr nz,.obpNotWhite
 	call SetWhiteColor
@@ -104,11 +104,11 @@ RefreshPalettesPreVBlank:
 	cp b
 	jr nc,.obp0
 .obp1
-	ld a,[rOBP1]
+	ldh a,[rOBP1]
 	ld d,a
 	jr .doNextSprColor
 .obp0
-	ld a,[rOBP0]
+	ldh a,[rOBP0]
 	ld d,a
 
 .doNextSprColor
@@ -124,11 +124,11 @@ RefreshPalettesPreVBlank:
 	jr z,.doNextSprPal
 
 .end
-	ld a,[rBGP]
+	ldh a,[rBGP]
 	ld [W2_LastBGP],a
-	ld a,[rOBP0]
+	ldh a,[rOBP0]
 	ld [W2_LastOBP0],a
-	ld a,[rOBP1]
+	ldh a,[rOBP1]
 	ld [W2_LastOBP1],a
 	xor a
 	ld [W2_ForceBGPUpdate],a
@@ -138,14 +138,14 @@ RefreshPalettesPreVBlank:
 
 ; Draw window palettes; this is done before vblank so it can be efficiently DMA'd.
 RefreshWindowPalettesPreVBlank:
-	ld a,[H_AUTOBGTRANSFERENABLED]
+	ldh a,[hAutoBGTransferEnabled]
 	and a
 	ret z
 
-	ld a,[rSVBK]
+	ldh a,[rSVBK]
 	ld b,a
 	ld a,$02
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	push bc ; Push last wram bank
 
 	; Check that vblank has updated the window from last frame (if not, let it catch up)
@@ -155,7 +155,7 @@ RefreshWindowPalettesPreVBlank:
 	jp nz,.palettesDone
 	ld [hl],1
 
-	ld a,[H_AUTOBGTRANSFERPORTION]
+	ldh a,[hAutoBGTransferPortion]
 	and a
 	jr z,.firstThird
 	dec a
@@ -186,7 +186,7 @@ RefreshWindowPalettesPreVBlank:
 	; If the window transfer destination changed, we'll need to rewrite everything
 	ld a,[W2_LastAutoCopyDest]
 	ld b,a
-	ld a,[H_AUTOBGTRANSFERDEST+1]
+	ldh a,[hAutoBGTransferDest+1]
 	cp b
 	jr z,.noDestChange
 	ld [W2_LastAutoCopyDest],a
@@ -261,26 +261,26 @@ ENDR
 
 .palettesDone:
 	pop af
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 
 ; This is the last vblank-timing-sensitive thing that's called
-GbcVBlankHook:
+GbcVBlankHook::
 	call UpdateMovingBgTiles ; Removed from caller to make space
 
 	; Use the hblank interrupt to get a head-start with vblank stuff
-	ld a,[rIE]
+	ldh a,[rIE]
 	or 2
-	ld [rIE],a
+	ldh [rIE],a
 	ld a,$6e
-	ld [$ff45],a
-	ld a,[rSTAT]
+	ldh [rLYC],a
+	ldh a,[rSTAT]
 	or $40
-	ld [rSTAT],a
+	ldh [rSTAT],a
 
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	; Don't try to refresh palette if a row or column was drawn this frame.
 	; This isn't really necessary, but it prevents a 1-frame artifact that occurs when
@@ -295,7 +295,7 @@ GbcVBlankHook:
 .end
 	xor a
 	ld [W2_DrewRowOrColumn],a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 ; If necessary, copy palettes which were generated in the pre-vblank routines.
@@ -314,7 +314,7 @@ RefreshPalettesVBlank:
 	jr nc,.end
 
 	ld a,$80
-	ld [rBGPI],a
+	ldh [rBGPI],a
 	ld c, rBGPD&$ff
 	ld hl, W2_BgPaletteDataBuffer
 	call .load8
@@ -332,7 +332,7 @@ RefreshPalettesVBlank:
 	jr nc,.end
 
 	ld a,$80
-	ld [rOBPI],a
+	ldh [rOBPI],a
 	ld c, rOBPD&$ff
 	ld hl, W2_SprPaletteDataBuffer
 	call .load8
@@ -355,7 +355,7 @@ endr
 
 ; Sets carry flag if there's enough time to load another 8 palettes
 .checkScanline
-	ld a,[rLY]
+	ldh a,[rLY]
 	cp $97
 	ret nc
 	cp $90

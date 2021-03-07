@@ -5,19 +5,19 @@ VBlank::
 	push de
 	push hl
 
-	ld a, [H_LOADEDROMBANK]
+	ldh a, [hLoadedROMBank]
 	ld [wVBlankSavedROMBank], a
 
-	ld a, [hSCX]
-	ld [rSCX], a
-	ld a, [hSCY]
-	ld [rSCY], a
+	ldh a, [hSCX]
+	ldh [rSCX], a
+	ldh a, [hSCY]
+	ldh [rSCY], a
 
 	ld a, [wDisableVBlankWYUpdate]
 	and a
 	jr nz, .ok
-	ld a, [hWY]
-	ld [rWY], a
+	ldh a, [hWY]
+	ldh [rWY], a
 .ok
 
 	call AutoBgMapTransfer
@@ -26,22 +26,22 @@ VBlank::
 	call VBlankCopy
 	call VBlankCopyDouble
 	;call UpdateMovingBgTiles
-	call $ff80 ; OAM DMA
+	call hDMARoutine
 	rst $10 ; HAX: VBlank hook (loads palettes)
 	nop
 	nop
 	; HAX: don't update sprites here. They're updated elsewhere to prevent wobbliness.
-	;ld a, Bank(PrepareOAMData)
+	;ld a, BANK(PrepareOAMData)
 	nop
 	nop
-	;ld [H_LOADEDROMBANK], a
+	;ldh [hLoadedROMBank], a
 	nop
 	nop
 	;ld [MBC1RomBank], a
 	nop
 	nop
 	nop
-	;call PrepareOAMData ; update OAM buffer with current sprite data
+	;call PrepareOAMData
 	nop
 	nop
 	nop
@@ -50,24 +50,24 @@ VBlank::
 
 	call Random
 
-	ld a, [H_VBLANKOCCURRED]
+	ldh a, [hVBlankOccurred]
 	and a
 	jr z, .skipZeroing
 	xor a
-	ld [H_VBLANKOCCURRED], a
+	ldh [hVBlankOccurred], a
 
 .skipZeroing
-	ld a, [H_FRAMECOUNTER]
+	ldh a, [hFrameCounter]
 	and a
 	jr z, .skipDec
 	dec a
-	ld [H_FRAMECOUNTER], a
+	ldh [hFrameCounter], a
 
 .skipDec
 	call FadeOutAudio
 
 	ld a, [wAudioROMBank] ; music ROM bank
-	ld [H_LOADEDROMBANK], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	cp BANK(Audio1_UpdateMusic)
@@ -86,14 +86,14 @@ VBlank::
 	call Audio3_UpdateMusic
 .afterMusic
 
-	callba TrackPlayTime ; keep track of time played
+	farcall TrackPlayTime ; keep track of time played
 
-	ld a, [hDisableJoypadPolling]
+	ldh a, [hDisableJoypadPolling]
 	and a
 	call z, ReadJoypad
 
 	ld a, [wVBlankSavedROMBank]
-	ld [H_LOADEDROMBANK], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	pop hl
@@ -111,11 +111,11 @@ NOT_VBLANKED EQU 1
 
 	call DelayFrameHook ; HAX
 	nop
-	;ld a,1
-	;ld [H_VBLANKOCCURRED],a
+	;ld a, NOT_VBLANKED
+	;ldh [hVBlankOccurred], a
 .halt
 	halt
-	ld a, [H_VBLANKOCCURRED]
+	ldh a, [hVBlankOccurred]
 	and a
-	jr nz,.halt
+	jr nz, .halt
 	ret

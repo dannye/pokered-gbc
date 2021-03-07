@@ -32,7 +32,7 @@ W2_SprPaletteDataModified      EQU $d785
 ; actual-vblank routines.
 W2_StaticPaletteMapChanged_vbl EQU $d786
 
-; Former value of [H_AUTOBGTRANSFERDEST+1]. Should be $98 or $9c.
+; Former value of [hAutoBGTransferDest+1]. Should be $98 or $9c.
 W2_LastAutoCopyDest            EQU $d787
 
 W2_ForceBGPUpdate              EQU $d788

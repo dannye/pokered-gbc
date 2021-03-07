@@ -23,10 +23,10 @@ SPR_PAL_ROCK    EQU 7
 SPR_PAL_RANDOM  EQU 8
 
 LoadOverworldSpritePalettes:
-	ld a,[rSVBK]
+	ldh a,[rSVBK]
 	ld b,a
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	push bc
 	; Does the map we're on use dark/night palettes?
 	; Load the matching Object Pals if so
@@ -43,17 +43,17 @@ LoadOverworldSpritePalettes:
 .gotPaletteList
 	pop bc
 	ld a, b
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	jr LoadSpritePaletteData
 
 LoadAttackSpritePalettes:
 	ld hl,AttackSpritePalettes
 
 LoadSpritePaletteData:
-	ld a,[rSVBK]
+	ldh a,[rSVBK]
 	ld b,a
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	push bc
 
 	ld de,W2_SprPaletteData
@@ -68,20 +68,20 @@ LoadSpritePaletteData:
 	ld [W2_ForceOBPUpdate],a
 
 	pop af
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 ; Set an overworld sprite's colors
 ; On entering, A contains the flags (without a color palette) and de is the destination.
 ; This is called in the middle of a loop in engine/overworld/oam.asm, once per sprite.
-ColorOverworldSprite:
+ColorOverworldSprite::
 	push af
 	push bc
 	push de
 	and $f8
 	ld b,a
 
-	ld a,[hSpriteOffset2]
+	ldh a,[hSpriteOffset2]
 	ld e,a
 	ld d,wSpriteStateData1>>8
 	ld a,[de]		; Load A with picture ID
@@ -100,7 +100,7 @@ ColorOverworldSprite:
 	jr nz,.norandomColor
 
 	; This is a (somewhat) random but consistent color
-	ld a,[hSpriteOffset2]
+	ldh a,[hSpriteOffset2]
 	swap a
 	and 3
 
@@ -123,9 +123,9 @@ ColorOverworldSprite:
 ; so this function usually won't do anything.
 ;
 ; This colorizes: attack sprites, party menu, exclamation mark, trades, perhaps more?
-ColorNonOverworldSprites:
+ColorNonOverworldSprites::
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	ld hl, wOAMBuffer
 	ld b, 40
@@ -156,11 +156,11 @@ ColorNonOverworldSprites:
 
 	; Load animation (move) being used
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ld a,[wAnimationID]
 	ld d,a
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	; If the absorb animation is playing, it's always green. (Needed for leech seed)
 	ld a,d
@@ -184,7 +184,7 @@ ColorNonOverworldSprites:
 	ld a,ELECTRIC
 	jr z,.gotType
 
-	ld a,[H_WHOSETURN]
+	ldh a,[hWhoseTurn]
 	and a
 	jr z,.playersTurn
 	ld a,[wEnemyMoveType] ; Enemy move type
@@ -215,7 +215,7 @@ ColorNonOverworldSprites:
 
 .end
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 ; Called whenever an animation plays in-battle. There are two animation tilesets, each
@@ -225,7 +225,7 @@ LoadAnimationTilesetPalettes:
 	ld a,[wWhichBattleAnimTileset] ; Animation tileset (0-2)
 	ld c,a
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	xor a
 	ld [W2_UseOBP1],a
@@ -273,7 +273,7 @@ LoadAnimationTilesetPalettes:
 	ld [W2_ForceOBPUpdate],a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	pop de
 	ret
@@ -281,10 +281,10 @@ LoadAnimationTilesetPalettes:
 
 ; Set all sprite palettes to not be colorized by "ColorNonOverworldSprites".
 ClearSpritePaletteMap:
-	ld a,[rSVBK]
+	ldh a,[rSVBK]
 	ld b,a
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	push bc
 
 	ld hl, W2_SpritePaletteMap
@@ -296,7 +296,7 @@ ClearSpritePaletteMap:
 	jr nz,.loop
 
 	pop af
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 

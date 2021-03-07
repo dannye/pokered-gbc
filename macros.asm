@@ -1,15 +1,14 @@
-INCLUDE "macros/asm_macros.asm"
-INCLUDE "macros/data_macros.asm"
-INCLUDE "macros/text_macros.asm"
-INCLUDE "macros/audio_macros.asm"
-INCLUDE "macros/event_macros.asm"
+INCLUDE "macros/const.asm"
+INCLUDE "macros/predef.asm"
+INCLUDE "macros/farcall.asm"
+INCLUDE "macros/data.asm"
+INCLUDE "macros/code.asm"
+INCLUDE "macros/gfx.asm"
+INCLUDE "macros/coords.asm"
 
+INCLUDE "macros/scripts/audio.asm"
+INCLUDE "macros/scripts/maps.asm"
+INCLUDE "macros/scripts/events.asm"
+INCLUDE "macros/scripts/text.asm"
 
-; Macros for color hack
-
-; rst $18 = bankswitch
-CALL_INDIRECT: MACRO
-	ld b, BANK(\1)
-	ld hl, \1
-	rst $18
-ENDM
+INCLUDE "macros/color.asm"

@@ -6,7 +6,7 @@ TradeCenter_DrawPartyLists_ColorHook:
 	call LoadCableClubTextPaletteAndMap
 
 	; Opcode removed for hook
-	coord hl,0,0
+	hlcoord 0,0
 	ret
 
 
@@ -15,12 +15,12 @@ CableClub_DoBattleOrTrade_ColorHook:
 	call LoadCableClubTextPaletteAndMap
 
 	; Opcode removed for hook
-	coord hl, 4, 10
+	hlcoord 4, 10
 	ret
 
 LoadCableClubTextPaletteAndMap:
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 
 	call LoadCableClubTextPalette
 
@@ -36,7 +36,7 @@ LoadCableClubTextPaletteAndMap:
 	ld [W2_StaticPaletteMapChanged],a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
 LoadCableClubTextPalette:
@@ -51,7 +51,7 @@ ENDC
 	ld e,0
 .loop:
 	push de
-	callba LoadSGBPalette
+	farcall LoadSGBPalette
 	pop de
 	inc e
 	ld a,e
@@ -64,11 +64,11 @@ ENDC
 
 
 ; Called whenever the "Waiting..." text appears
-PrintWaitingText:
+PrintWaitingText::
 	; If in-battle, we don't want to ruin the palettes
 	ld a,[wIsInBattle]
 	or a
 	jr nz,.end
 	call LoadCableClubTextPaletteAndMap
 .end
-	jpab PrintWaitingText_orig
+	jpfar PrintWaitingText_orig

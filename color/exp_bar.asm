@@ -20,11 +20,11 @@ AnimateEXPBar:
 	ret z
 	ld a, SFX_HEAL_HP
 	call PlaySoundWaitForCurrent
-	callab CalcEXPBarPixelLength
+	callfar CalcEXPBarPixelLength
 	ld hl, wEXPBarPixelLength
 	ld a, [hl]
 	ld b, a
-	ld a, [H_QUOTIENT + 3]
+	ldh a, [hQuotient + 3]
 	ld [hl], a
 	sub b
 	jr z, .done

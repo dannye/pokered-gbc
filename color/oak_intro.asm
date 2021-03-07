@@ -32,9 +32,9 @@ GotPalID:
 	ld d,a
 
 	ld a,2
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	CALL_INDIRECT LoadSGBPalette
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK],a
 	ret
 
