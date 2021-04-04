@@ -34,7 +34,7 @@ SetDefaultNames:
 OakSpeech:
 	ld a, SFX_STOP_ALL_MUSIC
 	call PlaySound
-	ld a, BANK(Music_Routes2)
+	ld a, 0 ; BANK(Music_Routes2)
 	ld c, a
 	ld a, MUSIC_ROUTES2
 	call PlayMusic
@@ -138,14 +138,15 @@ ENDC
 	call ResetPlayerSpriteData
 	ldh a, [hLoadedROMBank]
 	push af
-	ld a, BANK(Music_PalletTown)
-	ld [wAudioROMBank], a
-	ld [wAudioSavedROMBank], a
+;	ld a, 0 ; BANK(Music_PalletTown)
+;	ld [wAudioROMBank], a
+;	ld [wAudioSavedROMBank], a
+
 	ld a, 10
-	ld [wAudioFadeOutControl], a
-	ld a, SFX_STOP_ALL_MUSIC
-	ld [wNewSoundID], a
-	call PlaySound
+	ld [wMusicFade], a
+	xor a
+	ld [wMusicFadeID], a
+
 	pop af
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a

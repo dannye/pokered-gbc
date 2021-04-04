@@ -14,17 +14,17 @@ RunDmgError::
 	dec b
 	jr nz, .codeCopyLoop
 
-	xor a
-	ld [wAudioFadeOutCounterReloadValue], a
-	ld [wAudioFadeOutCounter], a
+;	xor a
+;	ld [wAudioFadeOutCounterReloadValue], a
+;	ld [wAudioFadeOutCounter], a
 
 	; Use sound engine copy in bank $31
-	ld a, $31
-	ld [wAudioSavedROMBank], a
-	ld [wAudioROMBank], a
+;	ld a, $31
+;	ld [wAudioSavedROMBank], a
+;	ld [wAudioROMBank], a
 
-	ld a, $c3
-	ld [wAudioFadeOutControl], a
+;	ld a, $c3
+;	ld [wAudioFadeOutControl], a
 
 	di
 	call DisableLCD
@@ -72,19 +72,19 @@ RunDmgError::
 
 ; Copied to RAM at $d000
 Code_d000:
-	push af
-	push bc
-	push de
-	push hl
-	call FadeOutAudio
-	ld a, [wAudioROMBank]
-	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
-	call $5177 ; Audio4_UpdateMusic
-	pop hl
-	pop de
-	pop bc
-	pop af
+;	push af
+;	push bc
+;	push de
+;	push hl
+;	call FadeOutAudio
+;	ld a, [wAudioROMBank]
+;	ldh [hLoadedROMBank], a
+;	ld [MBC1RomBank], a
+;	call $5177 ; Audio4_UpdateMusic
+;	pop hl
+;	pop de
+;	pop bc
+;	pop af
 	ld hl, rSTAT
 .frameWait
 	bit 2, [hl]

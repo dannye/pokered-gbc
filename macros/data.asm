@@ -53,7 +53,11 @@ ENDM
 ; Constant data (db, dw, dl) macros
 
 dn: MACRO ; nybbles
-	db (\1 << 4 | \2)
+rept _NARG / 2
+	db ((\1) << 4) | (\2)
+	shift
+	shift
+endr
 ENDM
 
 dbw: MACRO
