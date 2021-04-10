@@ -5,8 +5,13 @@ Music_ViridianCity:
 	channel 3, Music_ViridianCity_Ch3
 	channel 4, Music_ViridianCity_Ch4
 
+Music_ViridianCity_Ch1_AltStart::
+	tempo 232
+	sound_loop 0, Music_ViridianCity_Ch1.start
+
 Music_ViridianCity_Ch1:
 	tempo 157
+.start
 	volume 7, 7
 	stereo_panning FALSE, TRUE
 	duty_cycle 2

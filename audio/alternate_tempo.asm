@@ -47,5 +47,5 @@ Music_Cities1AlternateTempo::
 	ld a, MUSIC_CITIES1
 	call PlayMusic
 	ld hl, wChannel1MusicAddress
-	ld de, Music_Cities1_branch_aa6f
+	ld de, Music_ViridianCity_Ch1_AltStart ; Music_Cities1_branch_aa6f
 	jp Audio1_OverwriteChannelPointer
