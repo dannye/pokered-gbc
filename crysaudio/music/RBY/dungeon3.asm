@@ -1,21 +1,23 @@
-Music_Dungeon3:
-	dbw $80, Music_Dungeon3_Ch1
-	dbw $01, Music_Dungeon3_Ch2
-	dbw $02, Music_Dungeon3_Ch3
+Music_Dungeon3::
+	channel_count 4
+	channel 1, Music_Dungeon3_Ch1
+	channel 2, Music_Dungeon3_Ch2
+	channel 3, Music_Dungeon3_Ch3
+	channel 4, Music_Dungeon3_Ch4
 
-Music_Dungeon3_Ch1: ; 7e9f1 (1f:69f1)
+Music_Dungeon3_Ch1::
 	tempo 160
-	volume 119
-	dutycycle 3
-	
-	vibrato 8, 20
+	volume 7, 7
+	duty_cycle 3
+	toggle_perfect_pitch
+	vibrato 8, 1, 4
 
-Music_Dungeon3_branch_7e9fc:
-	notetype 12, 195
+Music_Dungeon3_branch_7e9fc::
+	note_type 12, 12, 3
 
-Music_Dungeon3_branch_7e9fe:
-	callchannel Music_Dungeon3_branch_7eab2
-	loopchannel 3, Music_Dungeon3_branch_7e9fe
+Music_Dungeon3_branch_7e9fe::
+	sound_call Music_Dungeon3_branch_7eab2
+	sound_loop 3, Music_Dungeon3_branch_7e9fe
 	octave 2
 	note B_, 2
 	octave 3
@@ -29,48 +31,48 @@ Music_Dungeon3_branch_7e9fe:
 	note D#, 2
 	note E_, 2
 
-Music_Dungeon3_branch_7ea11:
-	callchannel Music_Dungeon3_branch_7eac1
-	loopchannel 4, Music_Dungeon3_branch_7ea11
+Music_Dungeon3_branch_7ea11::
+	sound_call Music_Dungeon3_branch_7eac1
+	sound_loop 4, Music_Dungeon3_branch_7ea11
 
-Music_Dungeon3_branch_7ea18:
-	callchannel Music_Dungeon3_branch_7eab2
-	loopchannel 4, Music_Dungeon3_branch_7ea18
+Music_Dungeon3_branch_7ea18::
+	sound_call Music_Dungeon3_branch_7eab2
+	sound_loop 4, Music_Dungeon3_branch_7ea18
 	octave 4
 	note F_, 2
 	note F_, 2
-	note __, 2
+	rest 2
 	note F_, 2
 	note E_, 2
 	note E_, 2
 	note D#, 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
 	note D_, 2
 	note D_, 2
-	callchannel Music_Dungeon3_branch_7eafc
+	sound_call Music_Dungeon3_branch_7eafc
 	octave 4
 	note D_, 2
 	note D_, 2
-	note __, 2
+	rest 2
 	note D_, 2
 	note D#, 2
 	note D#, 2
 	note E_, 2
 	note E_, 2
-	note __, 2
+	rest 2
 	note E_, 2
 	note F_, 2
 	note F_, 2
 
-Music_Dungeon3_branch_7ea3c:
-	callchannel Music_Dungeon3_branch_7eace
-	loopchannel 4, Music_Dungeon3_branch_7ea3c
+Music_Dungeon3_branch_7ea3c::
+	sound_call Music_Dungeon3_branch_7eace
+	sound_loop 4, Music_Dungeon3_branch_7ea3c
 
-Music_Dungeon3_branch_7ea43:
-	callchannel Music_Dungeon3_branch_7eadd
-	loopchannel 3, Music_Dungeon3_branch_7ea43
+Music_Dungeon3_branch_7ea43::
+	sound_call Music_Dungeon3_branch_7eadd
+	sound_loop 3, Music_Dungeon3_branch_7ea43
 	octave 3
 	note C#, 2
 	octave 2
@@ -135,8 +137,8 @@ Music_Dungeon3_branch_7ea43:
 	note E_, 2
 	octave 4
 	note C_, 2
-	callchannel Music_Dungeon3_branch_7eaea
-	callchannel Music_Dungeon3_branch_7eaea
+	sound_call Music_Dungeon3_branch_7eaea
+	sound_call Music_Dungeon3_branch_7eaea
 	octave 3
 	note G#, 2
 	note E_, 2
@@ -150,18 +152,18 @@ Music_Dungeon3_branch_7ea43:
 	octave 3
 	note G#, 2
 	note E_, 2
-	note __, 16
-	note __, 8
-	callchannel Music_Dungeon3_branch_7eaf7
-	callchannel Music_Dungeon3_branch_7eaf7
-	callchannel Music_Dungeon3_branch_7eaf7
-	callchannel Music_Dungeon3_branch_7eaf7
+	rest 16
+	rest 8
+	sound_call Music_Dungeon3_branch_7eaf7
+	sound_call Music_Dungeon3_branch_7eaf7
+	sound_call Music_Dungeon3_branch_7eaf7
+	sound_call Music_Dungeon3_branch_7eaf7
 	note D#, 2
-	note __, 16
-	note __, 16
-	loopchannel 0, Music_Dungeon3_branch_7e9fc
+	rest 16
+	rest 16
+	sound_loop 0, Music_Dungeon3_branch_7e9fc
 
-Music_Dungeon3_branch_7eab2:
+Music_Dungeon3_branch_7eab2::
 	octave 2
 	note B_, 2
 	octave 3
@@ -176,9 +178,9 @@ Music_Dungeon3_branch_7eab2:
 	note B_, 2
 	octave 3
 	note D#, 2
-	endchannel
+	sound_ret
 
-Music_Dungeon3_branch_7eac1:
+Music_Dungeon3_branch_7eac1::
 	note E_, 2
 	note G#, 2
 	octave 4
@@ -191,9 +193,9 @@ Music_Dungeon3_branch_7eac1:
 	octave 3
 	note E_, 2
 	note G#, 2
-	endchannel
+	sound_ret
 
-Music_Dungeon3_branch_7eace:
+Music_Dungeon3_branch_7eace::
 	octave 3
 	note D#, 2
 	octave 2
@@ -208,9 +210,9 @@ Music_Dungeon3_branch_7eace:
 	note D#, 2
 	octave 2
 	note B_, 2
-	endchannel
+	sound_ret
 
-Music_Dungeon3_branch_7eadd:
+Music_Dungeon3_branch_7eadd::
 	note A_, 2
 	note F_, 2
 	octave 3
@@ -223,9 +225,9 @@ Music_Dungeon3_branch_7eadd:
 	octave 2
 	note A_, 2
 	note F_, 2
-	endchannel
+	sound_ret
 
-Music_Dungeon3_branch_7eaea:
+Music_Dungeon3_branch_7eaea::
 	octave 3
 	note G#, 2
 	note E_, 2
@@ -238,16 +240,16 @@ Music_Dungeon3_branch_7eaea:
 	note E_, 2
 	octave 4
 	note C_, 2
-	endchannel
+	sound_ret
 
-Music_Dungeon3_branch_7eaf7:
+Music_Dungeon3_branch_7eaf7::
 	note D#, 2
 	note G_, 2
 	note D#, 2
 	note C#, 6
-	endchannel
+	sound_ret
 
-Music_Dungeon3_branch_7eafc:
+Music_Dungeon3_branch_7eafc::
 	tempo 168
 	octave 1
 	note A#, 1
@@ -337,15 +339,15 @@ Music_Dungeon3_branch_7eafc:
 	octave 2
 	note C_, 1
 	tempo 160
-	endchannel
+	sound_ret
 
 
-Music_Dungeon3_Ch2: ; 7eb68 (1f:6b68)
-	vibrato 11, 21
-	dutycycle 3
+Music_Dungeon3_Ch2::
+	vibrato 11, 1, 5
+	duty_cycle 3
 
-Music_Dungeon3_branch_7eb6d:
-	notetype 12, 211
+Music_Dungeon3_branch_7eb6d::
+	note_type 12, 13, 3
 	octave 4
 	note D#, 6
 	note C#, 6
@@ -371,7 +373,7 @@ Music_Dungeon3_branch_7eb6d:
 	note B_, 6
 	octave 4
 	note C#, 8
-	note __, 2
+	rest 2
 	note G#, 6
 	note F#, 6
 	note E_, 2
@@ -419,42 +421,42 @@ Music_Dungeon3_branch_7eb6d:
 	note B_, 6
 	octave 4
 	note C#, 8
-	note __, 2
+	rest 2
 	note G#, 2
 	note G#, 2
-	note __, 2
+	rest 2
 	note G#, 2
 	note A_, 2
 	note A_, 2
 	note A#, 2
 	note A#, 2
-	note __, 2
+	rest 2
 	note A#, 2
 	note B_, 2
 	note B_, 2
-	note __, 8
-	note __, 8
-	note __, 8
-	note __, 8
-	note __, 8
-	note __, 8
-	note __, 8
-	note __, 8
+	rest 8
+	rest 8
+	rest 8
+	rest 8
+	rest 8
+	rest 8
+	rest 8
+	rest 8
 	octave 4
 	note B_, 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note B_, 2
 	note A#, 2
 	note A#, 2
 	note A_, 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note A_, 2
 	note G#, 2
 	note G#, 2
 	note C#, 8
-	note __, 2
+	rest 2
 	octave 3
 	note B_, 6
 	note A#, 2
@@ -480,7 +482,7 @@ Music_Dungeon3_branch_7eb6d:
 	note G_, 6
 	octave 3
 	note G_, 8
-	note __, 2
+	rest 2
 	note F_, 6
 	note E_, 2
 	note F_, 2
@@ -502,7 +504,7 @@ Music_Dungeon3_branch_7eb6d:
 	octave 4
 	note C#, 6
 	note G_, 8
-	note __, 2
+	rest 2
 	note F_, 6
 	note E_, 2
 	note F_, 2
@@ -523,7 +525,7 @@ Music_Dungeon3_branch_7eb6d:
 	note C#, 6
 	octave 4
 	note F#, 8
-	note __, 2
+	rest 2
 	note E_, 6
 	note D#, 2
 	note E_, 2
@@ -609,24 +611,24 @@ Music_Dungeon3_branch_7eb6d:
 	note B_, 2
 	octave 3
 	note D#, 2
-	loopchannel 0, Music_Dungeon3_branch_7eb6d
+	sound_loop 0, Music_Dungeon3_branch_7eb6d
 
 
-Music_Dungeon3_Ch3: ; 7ec7a (1f:6c7a)
-	notetype 12, 18
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 12
-	notetype 6, 16
+Music_Dungeon3_Ch3::
+	note_type 12, 1, 2
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 12
+	note_type 6, 1, 0
 	octave 3
 	note B_, 1
 	octave 4
@@ -635,16 +637,16 @@ Music_Dungeon3_Ch3: ; 7ec7a (1f:6c7a)
 	note D_, 1
 	note D#, 1
 	note E_, 1
-	note __, 2
+	rest 2
 	note C_, 1
 	note C#, 1
 	note D_, 1
 	note D#, 1
 	note E_, 1
 	note F_, 1
-	note __, 16
-	note __, 16
-	note __, 10
+	rest 16
+	rest 16
+	rest 10
 	octave 5
 	note E_, 8
 	octave 4
@@ -671,16 +673,16 @@ Music_Dungeon3_Ch3: ; 7ec7a (1f:6c7a)
 	note F_, 8
 	note A_, 8
 	note E_, 8
-	note __, 16
-	note __, 16
-	note __, 8
+	rest 16
+	rest 16
+	rest 8
 	note F_, 1
 	note E_, 1
 	note D#, 1
 	note D_, 1
 	note C#, 1
 	note C_, 1
-	note __, 2
+	rest 2
 	note E_, 1
 	note D#, 1
 	note D_, 1
@@ -688,28 +690,75 @@ Music_Dungeon3_Ch3: ; 7ec7a (1f:6c7a)
 	note C_, 1
 	octave 3
 	note B_, 1
-	note __, 10
-	note __, 16
-	notetype 12, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 16
-	note __, 10
-	loopchannel 0, Music_Dungeon3_Ch3
+	rest 10
+	rest 16
+	note_type 12, 1, 0
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 10
+	sound_loop 0, Music_Dungeon3_Ch3
+
+
+Music_Dungeon3_Ch4::
+	toggle_noise 0
+	drum_speed 12
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 16
+	rest 10
+	sound_ret

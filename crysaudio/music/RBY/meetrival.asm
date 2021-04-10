@@ -1,25 +1,22 @@
-Music_MeetRival:
-	dbw $80, Music_MeetRival_Ch1
-	dbw $01, Music_MeetRival_Ch2
-	dbw $02, Music_MeetRival_Ch3
-Music_FarewellRival:
-	dbw $80, Music_FarewellRival_Ch1
-	dbw $01, Music_FarewellRival_Ch2
-	dbw $02, Music_FarewellRival_Ch3
+Music_MeetRival::
+	channel_count 3
+	channel 1, Music_MeetRival_Ch1
+	channel 2, Music_MeetRival_Ch2
+	channel 3, Music_MeetRival_Ch3
 
-Music_MeetRival_branch_b119:
+Music_MeetRival_branch_b119::
 	tempo 100
-	loopchannel 0, Music_MeetRival_branch_b123
+	sound_loop 0, Music_MeetRival_branch_b123
 
-Music_MeetRival_Ch1: ; b120 (2:7120)
+Music_MeetRival_Ch1::
 	tempo 112
 
-Music_MeetRival_branch_b123:
-	volume 119
-	dutycycle 3
-	vibrato 6, 52
-	
-	notetype 12, 179
+Music_MeetRival_branch_b123::
+	volume 7, 7
+	duty_cycle 3
+	vibrato 6, 3, 4
+	toggle_perfect_pitch
+	note_type 12, 11, 3
 	octave 4
 	note D_, 1
 	note C#, 1
@@ -33,14 +30,14 @@ Music_MeetRival_branch_b123:
 	note F#, 1
 	note F_, 6
 	note D_, 1
-	note __, 3
+	rest 3
 	note D_, 1
-	note __, 5
+	rest 5
 	note A_, 2
 	note G_, 2
 	note A_, 2
 
-Music_MeetRival_branch_b140:
+Music_MeetRival_branch_b140::
 	note B_, 4
 	note A#, 2
 	note A_, 4
@@ -48,7 +45,7 @@ Music_MeetRival_branch_b140:
 	octave 4
 	note C_, 4
 	note D_, 2
-	note __, 4
+	rest 4
 	note D_, 4
 	note C#, 2
 	note C_, 2
@@ -63,7 +60,7 @@ Music_MeetRival_branch_b140:
 	note B_, 4
 	octave 4
 	note C_, 2
-	note __, 4
+	rest 4
 	note G_, 4
 	note G_, 2
 	note F#, 2
@@ -83,7 +80,7 @@ Music_MeetRival_branch_b140:
 	note D_, 2
 	octave 4
 	note D_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note D_, 2
 	octave 4
@@ -105,7 +102,7 @@ Music_MeetRival_branch_b140:
 	octave 3
 	note A#, 2
 	note G_, 2
-	note __, 4
+	rest 4
 	note A#, 4
 	octave 4
 	note C_, 2
@@ -113,49 +110,49 @@ Music_MeetRival_branch_b140:
 	note A#, 2
 	octave 4
 	note C_, 2
-	notetype 12, 183
+	note_type 12, 11, 7
 	octave 3
 	note G_, 4
 	note D_, 2
 	note F_, 6
 	note F#, 4
 	note D_, 2
-	note __, 4
+	rest 4
 	note D_, 4
-	notetype 12, 179
+	note_type 12, 11, 3
 	note A_, 2
 	note G_, 2
 	note A_, 2
-	loopchannel 0, Music_MeetRival_branch_b140
+	sound_loop 0, Music_MeetRival_branch_b140
 
-Music_MeetRival_branch_b19b:
+Music_MeetRival_branch_b19b::
 	tempo 100
-	loopchannel 0, Music_MeetRival_branch_b1a5
+	sound_loop 0, Music_MeetRival_branch_b1a5
 
-Music_FarewellRival_Ch1:
+Music_MeetRival_branch_b1a2::
 	tempo 112
 
-Music_MeetRival_branch_b1a5:
-	volume 119
-	dutycycle 3
-	vibrato 6, 52
-	
-	notetype 12, 179
+Music_MeetRival_branch_b1a5::
+	volume 7, 7
+	duty_cycle 3
+	vibrato 6, 3, 4
+	toggle_perfect_pitch
+	note_type 12, 11, 3
 	octave 3
 	note D_, 1
-	note __, 3
+	rest 3
 	note D_, 1
-	note __, 5
+	rest 5
 	note A_, 2
 	note G_, 2
 	note A_, 2
-	loopchannel 0, Music_MeetRival_branch_b140
+	sound_loop 0, Music_MeetRival_branch_b140
 
 
-Music_MeetRival_Ch2: ; b1bb (2:71bb)
-	dutycycle 3
-	vibrato 10, 38
-	notetype 12, 199
+Music_MeetRival_Ch2::
+	duty_cycle 3
+	vibrato 10, 2, 6
+	note_type 12, 12, 7
 	octave 4
 	note B_, 1
 	note A#, 1
@@ -169,24 +166,24 @@ Music_MeetRival_Ch2: ; b1bb (2:71bb)
 	note D_, 6
 	octave 3
 	note G_, 1
-	note __, 3
+	rest 3
 	note G_, 1
-	note __, 3
+	rest 3
 	note D_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note D_, 2
 	note F_, 2
 	note F#, 2
 
-Music_MeetRival_branch_b1d8:
-	notetype 12, 199
+Music_MeetRival_branch_b1d8::
+	note_type 12, 12, 7
 	note G_, 4
 	note D_, 2
 	note F_, 6
 	note F#, 4
 	note G_, 2
-	note __, 4
+	rest 4
 	note G_, 4
 	note G_, 2
 	note A#, 2
@@ -199,106 +196,106 @@ Music_MeetRival_branch_b1d8:
 	note B_, 4
 	octave 5
 	note C_, 2
-	note __, 4
+	rest 4
 	note C_, 4
 	note C_, 2
 	octave 4
 	note B_, 2
 	octave 5
 	note C_, 2
-	notetype 12, 176
+	note_type 12, 11, 0
 	note D_, 16
-	notetype 12, 181
+	note_type 12, 11, 5
 	note D_, 6
-	notetype 12, 199
+	note_type 12, 12, 7
 	note F_, 4
 	note D_, 2
 	note C_, 2
 	note D_, 2
-	notetype 12, 176
+	note_type 12, 11, 0
 	note C_, 8
-	notetype 12, 199
+	note_type 12, 12, 7
 	note C_, 8
 	octave 4
 	note C_, 2
-	note __, 4
+	rest 4
 	note A#, 4
 	note G_, 2
 	note F_, 2
-	notetype 12, 176
+	note_type 12, 11, 0
 	note G_, 16
-	notetype 12, 179
+	note_type 12, 11, 3
 	note G_, 2
 	octave 3
 	note G_, 2
-	note __, 4
+	rest 4
 	note G_, 4
 	octave 4
 	note D_, 2
 	note F_, 2
 	note F#, 2
-	loopchannel 0, Music_MeetRival_branch_b1d8
+	sound_loop 0, Music_MeetRival_branch_b1d8
 
-Music_FarewellRival_Ch2:
-	dutycycle 3
-	vibrato 10, 38
-	notetype 12, 199
+Music_MeetRival_branch_b21d::
+	duty_cycle 3
+	vibrato 10, 2, 6
+	note_type 12, 12, 7
 	octave 3
 	note G_, 1
-	note __, 3
+	rest 3
 	note G_, 1
-	note __, 3
+	rest 3
 	note D_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note D_, 2
 	note F_, 2
 	note F#, 2
-	loopchannel 0, Music_MeetRival_branch_b1d8
+	sound_loop 0, Music_MeetRival_branch_b1d8
 
 
-Music_MeetRival_Ch3: ; b233 (2:7233)
-	notetype 12, 20
+Music_MeetRival_Ch3::
+	note_type 12, 1, 4
 	octave 5
 	note D_, 2
-	note __, 2
+	rest 2
 	note C#, 2
-	note __, 2
+	rest 2
 	note C_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note B_, 2
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 3
+	rest 3
 	note G_, 1
-	note __, 3
+	rest 3
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 
-Music_MeetRival_branch_b24b:
+Music_MeetRival_branch_b24b::
 	note G_, 2
 	octave 5
 	note D_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 5
 	note D_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 5
 	note D_, 2
 	octave 4
 	note G_, 2
-	note __, 4
+	rest 4
 	octave 5
 	note D_, 4
 	octave 4
@@ -310,16 +307,16 @@ Music_MeetRival_branch_b24b:
 	note C_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 5
 	note C_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	note B_, 2
 	octave 5
 	note C_, 2
-	note __, 4
+	rest 4
 	note C_, 4
 	note C_, 2
 	octave 4
@@ -327,15 +324,15 @@ Music_MeetRival_branch_b24b:
 	note A_, 2
 	note F#, 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note F#, 2
 	note A_, 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note A_, 2
 	note F#, 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note F#, 2
 	note A_, 2
 	note F#, 2
@@ -346,7 +343,7 @@ Music_MeetRival_branch_b24b:
 	note E_, 2
 	octave 5
 	note C_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note E_, 2
 	octave 5
@@ -356,7 +353,7 @@ Music_MeetRival_branch_b24b:
 	note F_, 2
 	note G_, 2
 	note E_, 2
-	note __, 4
+	rest 4
 	note E_, 2
 	octave 5
 	note C_, 2
@@ -366,41 +363,40 @@ Music_MeetRival_branch_b24b:
 	note A_, 2
 	note G_, 2
 	note A#, 2
-	note __, 2
+	rest 2
 	note G_, 2
 	note A#, 2
 	note G_, 2
-	note __, 2
+	rest 2
 	note A#, 2
 	note G_, 2
 	octave 5
 	note D_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 5
 	note D_, 2
 	octave 4
 	note G_, 2
-	note __, 2
+	rest 2
 	octave 5
 	note D_, 2
-	loopchannel 0, Music_MeetRival_branch_b24b
+	sound_loop 0, Music_MeetRival_branch_b24b
 
-Music_FarewellRival_Ch3:
-	notetype 12, 20
+Music_MeetRival_branch_b2b5::
+	note_type 12, 1, 4
 	octave 4
 	note G_, 1
-	note __, 3
+	rest 3
 	note G_, 1
-	note __, 3
+	rest 3
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
-	loopchannel 0, Music_MeetRival_branch_b24b
-; 0xb2c8
+	rest 1
+	sound_loop 0, Music_MeetRival_branch_b24b

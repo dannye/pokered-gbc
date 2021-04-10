@@ -1,22 +1,23 @@
-Music_Pokecenter:
-	dbw $80, Music_Pokecenter_Ch1
-	dbw $01, Music_Pokecenter_Ch2
-	dbw $02, Music_Pokecenter_Ch3
+Music_Pokecenter::
+	channel_count 3
+	channel 1, Music_Pokecenter_Ch1
+	channel 2, Music_Pokecenter_Ch2
+	channel 3, Music_Pokecenter_Ch3
 
-Music_Pokecenter_Ch1: ; be56 (2:7e56)
+Music_Pokecenter_Ch1::
 	tempo 144
-	volume 119
-	dutycycle 3
-	vibrato 10, 34
-	
+	volume 7, 7
+	duty_cycle 3
+	vibrato 10, 2, 2
+	toggle_perfect_pitch
 
-Music_Pokecenter_branch_be61:
-	notetype 12, 163
+Music_Pokecenter_branch_be61::
+	note_type 12, 10, 3
 	octave 3
 	note F#, 2
 	note F_, 2
 	note F#, 2
-	notetype 12, 181
+	note_type 12, 11, 5
 	octave 4
 	note D_, 4
 	note C#, 2
@@ -31,11 +32,11 @@ Music_Pokecenter_branch_be61:
 	note F#, 2
 	note G_, 2
 	note A_, 2
-	notetype 12, 163
+	note_type 12, 10, 3
 	note A_, 2
 	note E_, 2
 	note A_, 2
-	notetype 12, 181
+	note_type 12, 11, 5
 	octave 4
 	note C#, 4
 	octave 3
@@ -52,11 +53,11 @@ Music_Pokecenter_branch_be61:
 	octave 3
 	note B_, 2
 	note A_, 2
-	notetype 12, 163
+	note_type 12, 10, 3
 	note F#, 2
 	note F_, 2
 	note F#, 2
-	notetype 12, 181
+	note_type 12, 11, 5
 	octave 4
 	note D_, 4
 	note C#, 2
@@ -71,11 +72,11 @@ Music_Pokecenter_branch_be61:
 	note F#, 2
 	note G_, 2
 	note A_, 2
-	notetype 12, 163
+	note_type 12, 10, 3
 	note A_, 2
 	note E_, 2
 	note A_, 2
-	notetype 12, 181
+	note_type 12, 11, 5
 	octave 4
 	note C#, 4
 	octave 3
@@ -151,42 +152,42 @@ Music_Pokecenter_branch_be61:
 	note E_, 2
 	note F#, 2
 	note G_, 2
-	loopchannel 0, Music_Pokecenter_branch_be61
+	sound_loop 0, Music_Pokecenter_branch_be61
 
 
-Music_Pokecenter_Ch2: ; bef9 (2:7ef9)
-	vibrato 8, 37
+Music_Pokecenter_Ch2::
+	vibrato 8, 2, 5
 
-Music_Pokecenter_branch_befc:
-	callchannel Music_Pokecenter_branch_bf4e
-	dutycycle 3
-	notetype 12, 165
+Music_Pokecenter_branch_befc::
+	sound_call Music_Pokecenter_branch_bf4e
+	duty_cycle 3
+	note_type 12, 10, 5
 	octave 3
 	note A_, 4
 	note E_, 4
-	callchannel Music_Pokecenter_branch_bf60
+	sound_call Music_Pokecenter_branch_bf60
 	note D_, 2
 	note F#, 6
-	dutycycle 3
-	notetype 12, 165
+	duty_cycle 3
+	note_type 12, 10, 5
 	octave 3
 	note A_, 4
 	note E_, 4
-	callchannel Music_Pokecenter_branch_bf4e
-	dutycycle 3
-	notetype 12, 165
+	sound_call Music_Pokecenter_branch_bf4e
+	duty_cycle 3
+	note_type 12, 10, 5
 	octave 3
 	note A_, 4
 	note E_, 4
-	callchannel Music_Pokecenter_branch_bf60
+	sound_call Music_Pokecenter_branch_bf60
 	note D_, 8
-	dutycycle 3
-	notetype 12, 165
+	duty_cycle 3
+	note_type 12, 10, 5
 	octave 3
 	note D_, 4
 	note E_, 4
-	dutycycle 2
-	notetype 12, 198
+	duty_cycle 2
+	note_type 12, 12, 6
 	octave 4
 	note F#, 8
 	note A_, 8
@@ -218,45 +219,45 @@ Music_Pokecenter_branch_befc:
 	note F#, 2
 	note E_, 2
 	note D_, 8
-	loopchannel 0, Music_Pokecenter_branch_befc
+	sound_loop 0, Music_Pokecenter_branch_befc
 
-Music_Pokecenter_branch_bf4e:
-	dutycycle 2
-	notetype 12, 194
+Music_Pokecenter_branch_bf4e::
+	duty_cycle 2
+	note_type 12, 12, 2
 	octave 4
 	note D_, 2
 	octave 3
 	note A_, 2
 	octave 4
 	note D_, 2
-	notetype 12, 195
+	note_type 12, 12, 3
 	note A_, 4
 	note G_, 4
 	note F#, 2
 	note E_, 2
 	note C#, 6
-	endchannel
+	sound_ret
 
-Music_Pokecenter_branch_bf60:
-	dutycycle 2
-	notetype 12, 194
+Music_Pokecenter_branch_bf60::
+	duty_cycle 2
+	note_type 12, 12, 2
 	octave 4
 	note C#, 2
 	octave 3
 	note A_, 2
 	octave 4
 	note C#, 2
-	notetype 12, 195
+	note_type 12, 12, 3
 	note F#, 4
 	note E_, 4
 	note C#, 2
-	endchannel
+	sound_ret
 
 
-Music_Pokecenter_Ch3: ; bf70 (2:7f70)
-	notetype 12, 16
+Music_Pokecenter_Ch3::
+	note_type 12, 1, 0
 
-Music_Pokecenter_branch_bf72:
+Music_Pokecenter_branch_bf72::
 	octave 4
 	note D_, 2
 	note F#, 2
@@ -266,8 +267,8 @@ Music_Pokecenter_branch_bf72:
 	note F#, 2
 	note G_, 2
 	note F#, 2
-	callchannel Music_Pokecenter_branch_bfd9
-	callchannel Music_Pokecenter_branch_bfe2
+	sound_call Music_Pokecenter_branch_bfd9
+	sound_call Music_Pokecenter_branch_bfe2
 	note F#, 2
 	note A_, 2
 	note F#, 2
@@ -284,8 +285,8 @@ Music_Pokecenter_branch_bf72:
 	note F#, 2
 	note G_, 2
 	note F#, 2
-	callchannel Music_Pokecenter_branch_bfd9
-	callchannel Music_Pokecenter_branch_bfe2
+	sound_call Music_Pokecenter_branch_bfd9
+	sound_call Music_Pokecenter_branch_bfe2
 	note D_, 2
 	note F#, 2
 	note D_, 2
@@ -294,7 +295,7 @@ Music_Pokecenter_branch_bf72:
 	note B_, 2
 	note A_, 2
 	note G_, 2
-	callchannel Music_Pokecenter_branch_bfeb
+	sound_call Music_Pokecenter_branch_bfeb
 	note G_, 2
 	note B_, 2
 	note G_, 2
@@ -319,7 +320,7 @@ Music_Pokecenter_branch_bf72:
 	note A_, 2
 	note G#, 2
 	note A_, 2
-	callchannel Music_Pokecenter_branch_bfeb
+	sound_call Music_Pokecenter_branch_bfeb
 	note G_, 2
 	note B_, 2
 	note G_, 2
@@ -344,9 +345,9 @@ Music_Pokecenter_branch_bf72:
 	note G_, 2
 	note F#, 2
 	note E_, 2
-	loopchannel 0, Music_Pokecenter_branch_bf72
+	sound_loop 0, Music_Pokecenter_branch_bf72
 
-Music_Pokecenter_branch_bfd9:
+Music_Pokecenter_branch_bfd9::
 	note E_, 2
 	note A_, 2
 	note E_, 2
@@ -355,9 +356,9 @@ Music_Pokecenter_branch_bfd9:
 	note A_, 2
 	note E_, 2
 	note A_, 2
-	endchannel
+	sound_ret
 
-Music_Pokecenter_branch_bfe2:
+Music_Pokecenter_branch_bfe2::
 	note E_, 2
 	note A_, 2
 	note E_, 2
@@ -366,9 +367,9 @@ Music_Pokecenter_branch_bfe2:
 	note A_, 2
 	note G_, 2
 	note A_, 2
-	endchannel
+	sound_ret
 
-Music_Pokecenter_branch_bfeb:
+Music_Pokecenter_branch_bfeb::
 	note F#, 2
 	note A_, 2
 	note F#, 2
@@ -377,5 +378,4 @@ Music_Pokecenter_branch_bfeb:
 	note A_, 2
 	note F#, 2
 	note A_, 2
-	endchannel
-; 0xbff4
+	sound_ret

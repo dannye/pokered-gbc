@@ -8,19 +8,19 @@
 LoadPartyPokeballGfx:
 	CALL_INDIRECT LoadOverworldSpritePalettes
 
-	ld a,2
-	ld [rSVBK],a
+	ld a, 2
+	ldh [rSVBK], a
 
 	; Set the palette the pokeball sprite uses
-	ld hl,W2_SpritePaletteMap+$31
+	ld hl, W2_SpritePaletteMap + $31
 	xor a ; SPR_PAL_ORANGE
-	ld [hli],a
-	ld [hli],a
-	ld [hli],a
-	ld [hli],a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK], a
 
 	jp LoadPartyPokeballGfx_orig
 
@@ -30,7 +30,7 @@ IF GEN_2_GRAPHICS
 PlayerHUDHAX:
 	ld hl, PlayerHUDTileMap
 	jp PlayerHUDUpdateDone
-	
+
 PlayerHUDTileMap:
 	db $73, $75, $6F
 
@@ -42,7 +42,7 @@ EnemyHUDHAX:
 	push hl
 	ld a, [wEnemyMonSpecies2]
 	ld [wd11e], a
-	callab IndexToPokedex
+	callfar IndexToPokedex
 	ld a, [wd11e]
 	dec a
 	ld c, a
@@ -52,7 +52,7 @@ EnemyHUDHAX:
 	ld a, c
 	and a
 	jr z, .notOwned
-	coord hl, 1, 1
+	hlcoord 1, 1
 	ld [hl], $E9
 .notOwned
 	pop hl

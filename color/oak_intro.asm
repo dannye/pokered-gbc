@@ -28,13 +28,13 @@ ENDC
 	jr GotPalID
 
 GotPalID:
-	ld e,0
-	ld d,a
+	ld e, 0
+	ld d, a
 
-	ld a,2
-	ld [rSVBK],a
+	ld a, 2
+	ldh [rSVBK], a
 	CALL_INDIRECT LoadSGBPalette
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK], a
 	ret
 

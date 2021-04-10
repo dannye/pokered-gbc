@@ -1,48 +1,11 @@
-; HW sound channel register base addresses
-HW_CH1_BASE EQU (rNR10 % $100)
-HW_CH2_BASE EQU ((rNR21 % $100) - 1)
-HW_CH3_BASE EQU (rNR30 % $100)
-HW_CH4_BASE EQU ((rNR41 % $100) - 1)
-
-; HW sound channel enable bit masks
-HW_CH1_ENABLE_MASK EQU %00010001
-HW_CH2_ENABLE_MASK EQU %00100010
-HW_CH3_ENABLE_MASK EQU %01000100
-HW_CH4_ENABLE_MASK EQU %10001000
-
-; HW sound channel disable bit masks
-HW_CH1_DISABLE_MASK EQU (~HW_CH1_ENABLE_MASK & $ff)
-HW_CH2_DISABLE_MASK EQU (~HW_CH2_ENABLE_MASK & $ff)
-HW_CH3_DISABLE_MASK EQU (~HW_CH3_ENABLE_MASK & $ff)
-HW_CH4_DISABLE_MASK EQU (~HW_CH4_ENABLE_MASK & $ff)
-
-REG_DUTY_SOUND_LEN  EQU 1
-REG_VOLUME_ENVELOPE EQU 2
-REG_FREQUENCY_LO    EQU 3
-
-MAX_SFX_ID EQU $B9
-
-CRY_SFX_START EQU $14
-CRY_SFX_END   EQU $86
-
-; wChannelFlags1 constants
-BIT_PERFECT_PITCH         EQU 0 ; controlled by toggleperfectpitch command
-BIT_CHANNEL_CALL          EQU 1 ; if in channel call
-BIT_NOISE_OR_SFX          EQU 2 ; if channel is the music noise channel or an SFX channel
-BIT_VIBRATO_DIRECTION     EQU 3 ; if the pitch is above or below normal (cycles)
-BIT_PITCH_BEND_ON         EQU 4 ; if pitch bend is active
-BIT_PITCH_BEND_DECREASING EQU 5 ; if the pitch bend frequency is decreasing (instead of increasing)
-BIT_ROTATE_DUTY           EQU 6 ; if rotating duty
-
-; wChannelFlags2 constant (only has one flag)
-BIT_EXECUTE_MUSIC EQU 0 ; if in execute music
-
 ; Song ids are calculated by address to save space.
+; SFX_Headers_(1|2|3) indexes (see audio/headers/*.asm)
 
 ;music_const: MACRO
-;\1 EQUS "RB(\2)"
+;\1 EQUS "((\2 - SFX_Headers_1) / 3)"
 ;ENDM
-const_value = 1
+
+	const_def 1
 
 	const MUSIC_PALLET_TOWN
 	const MUSIC_POKECENTER
@@ -94,8 +57,49 @@ const_value = 1
 
 	const NUM_SONGS
 
+	const_def
 
-const_value = 1
+	const SFX_CRY_00
+	const SFX_CRY_01
+	const SFX_CRY_02
+	const SFX_CRY_03
+	const SFX_CRY_04
+	const SFX_CRY_05
+	const SFX_CRY_06
+	const SFX_CRY_07
+	const SFX_CRY_08
+	const SFX_CRY_09
+	const SFX_CRY_0A
+	const SFX_CRY_0B
+	const SFX_CRY_0C
+	const SFX_CRY_0D
+	const SFX_CRY_0E
+	const SFX_CRY_0F
+	const SFX_CRY_10
+	const SFX_CRY_11
+	const SFX_CRY_12
+	const SFX_CRY_13
+	const SFX_CRY_14
+	const SFX_CRY_15
+	const SFX_CRY_16
+	const SFX_CRY_17
+	const SFX_CRY_18
+	const SFX_CRY_19
+	const SFX_CRY_1A
+	const SFX_CRY_1B
+	const SFX_CRY_1C
+	const SFX_CRY_1D
+	const SFX_CRY_1E
+	const SFX_CRY_1F
+	const SFX_CRY_20
+	const SFX_CRY_21
+	const SFX_CRY_22
+	const SFX_CRY_23
+	const SFX_CRY_24
+	const SFX_CRY_25
+
+	const_def 1
+
 	; AUDIO_1 AUDIO_3
 	const SFX_GET_ITEM_1
 
@@ -213,6 +217,6 @@ const_value = 1
 	const SFX_SLOTS_NEW_SPIN
 	const SFX_SHOOTING_STAR
 
-	const GSSFX_NOT_VERY_EFFECTIVE
-	const GSSFX_DAMAGE
-	const GSSFX_SUPER_EFFECTIVE
+	const SFX_POKEFLUTE_IN_BATTLE
+
+SFX_STOP_ALL_MUSIC EQU $ff

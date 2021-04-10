@@ -1,17 +1,18 @@
-Music_Routes2:
-	dbw $C0, Music_Routes2_Ch1
-	dbw $01, Music_Routes2_Ch2
-	dbw $02, Music_Routes2_Ch3
-	dbw $03, Music_Routes2_Ch4
+Music_Routes2::
+	channel_count 4
+	channel 1, Music_Routes2_Ch1
+	channel 2, Music_Routes2_Ch2
+	channel 3, Music_Routes2_Ch3
+	channel 4, Music_Routes2_Ch4
 
-Music_Routes2_Ch1: ; 9db9 (2:5db9)
+Music_Routes2_Ch1::
 	tempo 152
-	volume 119
-	vibrato 9, 37
-	dutycycle 1
+	volume 7, 7
+	vibrato 9, 2, 5
+	duty_cycle 1
 
-Music_Routes2_branch_9dc3:
-	notetype 12, 178
+Music_Routes2_branch_9dc3::
+	note_type 12, 11, 2
 	octave 2
 	note B_, 4
 	octave 3
@@ -44,7 +45,7 @@ Music_Routes2_branch_9dc3:
 	note A_, 2
 	note G#, 4
 	note B_, 4
-	notetype 8, 178
+	note_type 8, 11, 2
 	octave 4
 	note E_, 2
 	octave 3
@@ -144,16 +145,16 @@ Music_Routes2_branch_9dc3:
 	note B_, 2
 	octave 4
 	note E_, 2
-	loopchannel 0, Music_Routes2_branch_9dc3
-	endchannel
+	sound_loop 0, Music_Routes2_branch_9dc3
+	sound_ret
 
 
-Music_Routes2_Ch2: ; 9e4f (2:5e4f)
-	vibrato 8, 38
-	dutycycle 3
+Music_Routes2_Ch2::
+	vibrato 8, 2, 6
+	duty_cycle 3
 
-Music_Routes2_branch_9e54:
-	notetype 12, 212
+Music_Routes2_branch_9e54::
+	note_type 12, 13, 4
 	octave 4
 	note E_, 6
 	octave 3
@@ -217,19 +218,19 @@ Music_Routes2_branch_9e54:
 	note B_, 3
 	note A_, 1
 	note G#, 8
-	note __, 4
-	loopchannel 0, Music_Routes2_branch_9e54
-	endchannel
+	rest 4
+	sound_loop 0, Music_Routes2_branch_9e54
+	sound_ret
 
 
-Music_Routes2_Ch3: ; 9e9b (2:5e9b)
-	vibrato 9, 40
+Music_Routes2_Ch3::
+	vibrato 9, 2, 8
 
-Music_Routes2_branch_9e9e:
-	notetype 12, 17
+Music_Routes2_branch_9e9e::
+	note_type 12, 1, 1
 	octave 3
 	note E_, 2
-	note __, 2
+	rest 2
 	octave 2
 	note B_, 6
 	octave 3
@@ -238,7 +239,7 @@ Music_Routes2_branch_9e9e:
 	note D_, 2
 	note D#, 2
 	note E_, 2
-	note __, 2
+	rest 2
 	octave 2
 	note B_, 6
 	octave 3
@@ -249,7 +250,7 @@ Music_Routes2_branch_9e9e:
 	octave 3
 	note C#, 2
 	note E_, 2
-	note __, 2
+	rest 2
 	octave 2
 	note B_, 6
 	octave 3
@@ -258,7 +259,7 @@ Music_Routes2_branch_9e9e:
 	note D_, 2
 	note D#, 2
 	note E_, 2
-	note __, 2
+	rest 2
 	octave 2
 	note B_, 4
 	octave 3
@@ -269,166 +270,165 @@ Music_Routes2_branch_9e9e:
 	note D_, 2
 	note F#, 2
 	note E_, 2
-	note __, 2
+	rest 2
 	octave 2
 	note A_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 2
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 3
 	note C#, 2
-	note __, 2
+	rest 2
 	octave 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note E_, 2
 	note G#, 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note A_, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 	note F#, 2
-	note __, 2
+	rest 2
 	note A_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note C#, 2
-	note __, 2
+	rest 2
 	octave 2
 	note A_, 2
 	octave 3
 	note C#, 2
 	octave 2
 	note B_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note E_, 2
-	note __, 2
+	rest 2
 	note G#, 2
-	note __, 2
+	rest 2
 	note E_, 2
-	note __, 2
-	loopchannel 0, Music_Routes2_branch_9e9e
-	endchannel
+	rest 2
+	sound_loop 0, Music_Routes2_branch_9e9e
+	sound_ret
 
 
-Music_Routes2_Ch4: ; 9f08 (2:5f08)
-	togglenoise 0
-Music_Routes2_Loop4:
-	notetype 12
-	note D_, 2
-	note __, 2
-	note D_, 1
-	note __, 5
-	note D_, 1
-	note D_, 1
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note __, 2
-	notetype 8
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 3
-	note D_, 3
-	notetype 12
-	note D_, 1
-	note __, 3
-	note D_, 2
-	note __, 2
-	note D_, 2
-	note __, 4
-	note D_, 1
-	note D_, 1
-	note D_, 2
-	note __, 2
-	note D_, 2
-	note __, 2
-	notetype 8
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 3
-	note D_, 3
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 3
-	note __, 3
-	notetype 12
-	note D_, 1
-	note __, 5
-	note D_, 1
-	note D_, 1
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note __, 2
-	notetype 8
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 3
-	note __, 3
-	notetype 12
-	note D_, 1
-	note __, 3
-	note D_, 2
-	note __, 2
-	note D_, 2
-	note __, 4
-	note D_, 1
-	note D_, 1
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note __, 2
-	notetype 8
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 3
-	note __, 3
-	note D_, 3
-	note D_, 3
-	note D_, 3
-	note __, 3
-	notetype 12
-	note D_, 1
-	note __, 5
-	note D_, 1
-	note D_, 1
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note __, 2
-	notetype 8
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 3
-	note __, 3
-	note D_, 3
-	note __, 3
-	loopchannel 0, Music_Routes2_Loop4
-	endchannel
-; 0x9fad
+Music_Routes2_Ch4::
+	toggle_noise 0
+Music_Routes2_Ch4_MainLoop::
+	drum_speed 12
+	drum_note 3, 2
+	rest 2
+	drum_note 3, 1
+	rest 5
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	rest 2
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 3
+	drum_note 3, 3
+	drum_speed 12
+	drum_note 3, 1
+	rest 3
+	drum_note 3, 2
+	rest 2
+	drum_note 3, 2
+	rest 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	rest 2
+	drum_note 3, 2
+	rest 2
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 3
+	drum_note 3, 3
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 3
+	rest 3
+	drum_speed 12
+	drum_note 3, 1
+	rest 5
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	rest 2
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 3
+	rest 3
+	drum_speed 12
+	drum_note 3, 1
+	rest 3
+	drum_note 3, 2
+	rest 2
+	drum_note 3, 2
+	rest 4
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	rest 2
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 3
+	rest 3
+	drum_note 3, 3
+	drum_note 3, 3
+	drum_note 3, 3
+	rest 3
+	drum_speed 12
+	drum_note 3, 1
+	rest 5
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	rest 2
+	drum_speed 8
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 3
+	rest 3
+	drum_note 3, 3
+	rest 3
+	sound_loop 0, Music_Routes2_Ch4_MainLoop
+	sound_ret

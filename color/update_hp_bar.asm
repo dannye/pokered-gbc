@@ -4,7 +4,7 @@
 ; d: length of bar (tiles)
 ; e: # pixels to fill
 ; hl: where to draw
-DrawHPBarWithColor
+DrawHPBarWithColor:
 	call DrawHPBar
 	push bc
 	push de
@@ -14,10 +14,10 @@ DrawHPBarWithColor
 	ld a, [wHPBarType]
 	or a
 	ld hl, wEnemyHPBarColor
-	jr z,.gotHPBarColorVar
+	jr z, .gotHPBarColorVar
 	dec a
 	ld hl, wPlayerHPBarColor
-	jr z,.gotHPBarColorVar
+	jr z, .gotHPBarColorVar
 
 	; Party menu
 	ld hl, wPartyMenuHPBarColors
@@ -29,52 +29,52 @@ DrawHPBarWithColor
 .gotHPBarColorVar
 	call GetHealthBarColor ; Reads value of 'e' (bar length) to determine color
 
-	ld a,2
-	ld [rSVBK],a
+	ld a, 2
+	ldh [rSVBK], a
 
 	; wHPBarType = 0 for enemy hp bar, 1 for player hp bar, 2 for pokemon menu.
-	ld a,[wHPBarType]
-	ld c,a
+	ld a, [wHPBarType]
+	ld c, a
 
 	cp 2
-	jr nz,.inBattle
+	jr nz, .inBattle
 
 .inMenu
 	ld a, [hl]
 	push af
 	ld hl, W2_TilesetPaletteMap
-	ld bc, SCREEN_WIDTH*2 ; 2 rows for each pokemon in the menu
+	ld bc, SCREEN_WIDTH * 2 ; 2 rows for each pokemon in the menu
 	ld a, [wCurrentMenuItem]
 	call AddNTimes
 
-	ld bc, SCREEN_WIDTH*2
+	ld bc, SCREEN_WIDTH * 2
 	pop af ; Get palette #
 	inc a
 	call FillMemory
 
-	ld a,3
-	ld [W2_StaticPaletteMapChanged],a
+	ld a, 3
+	ld [W2_StaticPaletteMapChanged], a
 	jr .done
 
 .inBattle
-	ld a,[hl] ; Palette # was stored to here
+	ld a, [hl] ; Palette # was stored to here
 	add PAL_GREENBAR
-	ld d,a
+	ld d, a
 
-	ld a,c
+	ld a, c
 	and a ; Check: enemy or player
-	ld e,2
-	jr nz,.loadPalette
+	ld e, 2
+	jr nz, .loadPalette
 	inc e
 .loadPalette
 	CALL_INDIRECT LoadSGBPalette
 
 .done
-	ld a,1
-	ld [W2_ForceBGPUpdate],a
+	ld a, 1
+	ld [W2_ForceBGPUpdate], a
 
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK], a
 
 	pop hl
 	pop de

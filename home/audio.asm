@@ -32,26 +32,26 @@ PlayDefaultMusicCommon::
 
 .next
 	ld b, a
-	ld a, d
-	and a ; should current music be faded out first?
-	ld a, 0 ; BANK(Music_BikeRiding)
-	jr nz, .next2
+;	ld a, d
+;	and a ; should current music be faded out first?
+;	ld a, 0 ; BANK(Music_BikeRiding)
+;	jr nz, .next2
 
 ; Only change the audio ROM bank if the current music isn't going to be faded
 ; out before the default music begins.
-	ld [wAudioROMBank], a
+;	ld [wAudioROMBank], a
 
-.next2
+;.next2
 ; [wAudioSavedROMBank] will be copied to [wAudioROMBank] after fading out the
 ; current music (if the current music is faded out).
-	ld [wAudioSavedROMBank], a
+;	ld [wAudioSavedROMBank], a
 	jr .next3
 
 .walking
 	ld a, [wMapMusicSoundID]
 	ld b, a
 ;	call CompareMapMusicBankWithCurrentBank
-	jr c, .next4
+;	jr c, .next4
 
 .next3
 	ld a, [wLastMusicSoundID]
@@ -60,15 +60,19 @@ PlayDefaultMusicCommon::
 
 .next4
 	ld a, c
-	ld [wAudioFadeOutControl], a
+	ld [wMusicFade], a
 	ld a, b
 	ld [wLastMusicSoundID], a
-	ld [wNewSoundID], a
-
 	ld [wMusicFadeID], a
-	ld a, 8
-	ld [wMusicFade], a
-	;call FadeMusic ; called in updatemusic
+
+; if no fade, play immediately
+	ld a, [wMusicFade]
+	and a
+	jr nz, .next5
+	ld a, b
+	call PlayMusic
+.next5
+
 	ret
 
 ;UpdateMusic6Times::
@@ -92,32 +96,22 @@ PlaySound::
 	pop de
 	ret
 
-OpenSRAMForSound::
-	ld a, SRAM_ENABLE
-	ld [MBC1SRamEnable], a
-	xor a
-	ld [MBC1SRamBankingMode], a
-	ld [MBC1SRamBank], a
-	ret
-
-;MapSetup_Sound_Off::
+;InitSound::
 ;	push hl
 ;	push de
 ;	push bc
 ;	push af
 ;
-;	call OpenSRAMForSound
-;
-;	ldh a, [hROMBank]
+;	ldh a, [hLoadedROMBank]
 ;	push af
-;	ld a, BANK(_MapSetup_Sound_Off)
-;	ldh [hROMBank], a
+;	ld a, BANK(_InitSound)
+;	ldh [hLoadedROMBank], a
 ;	ld [MBC1RomBank], a
 ;
-;	call _MapSetup_Sound_Off
+;	call _InitSound
 ;
 ;	pop af
-;	ldh [hROMBank], a
+;	ldh [hLoadedROMBank], a
 ;	ld [MBC1RomBank], a
 ;
 ;	pop af
@@ -132,20 +126,16 @@ UpdateSound::
 ;	push bc
 ;	push af
 
-	ld a, [wHaltAudio]
-	and a
-	ret nz
-
-	ldh a, [hROMBank]
+	ldh a, [hLoadedROMBank]
 	push af
 	ld a, BANK(_UpdateSound)
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	call _UpdateSound
 
 	pop af
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 ;	pop af
@@ -155,15 +145,15 @@ UpdateSound::
 	ret
 
 _LoadMusicByte::
-; wCurMusicByte = [a:de]
-	ldh [hROMBank], a
+; [wCurMusicByte] = [a:de]
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	ld a, [de]
 	ld [wCurMusicByte], a
 	ld a, BANK(LoadMusicByte)
 
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	ret
 
@@ -178,10 +168,10 @@ PlayMusic::
 	push bc
 	push af
 
-	ldh a, [hROMBank]
+	ldh a, [hLoadedROMBank]
 	push af
-	ld a, BANK(_PlayMusic) ; aka BANK(_MapSetup_Sound_Off)
-	ldh [hROMBank], a
+	ld a, BANK(_PlayMusic) ; aka BANK(_InitSound)
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	ld a, e
@@ -192,11 +182,11 @@ PlayMusic::
 	jr .end
 
 .nomusic
-	call _MapSetup_Sound_Off
+	call _InitSound
 
 .end
 	pop af
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	pop af
 	pop bc
@@ -215,10 +205,10 @@ PlayMusic::
 ;	push bc
 ;	push af
 ;
-;	ldh a, [hROMBank]
+;	ldh a, [hLoadedROMBank]
 ;	push af
 ;	ld a, BANK(_PlayMusic)
-;	ldh [hROMBank], a
+;	ldh [hLoadedROMBank], a
 ;	ld [MBC1RomBank], a
 ;
 ;	push de
@@ -229,7 +219,7 @@ PlayMusic::
 ;	call _PlayMusic
 ;
 ;	pop af
-;	ldh [hROMBank], a
+;	ldh [hLoadedROMBank], a
 ;	ld [MBC1RomBank], a
 ;
 ;	pop af
@@ -253,12 +243,12 @@ PlayCry::
 	ld e, a
 	ld d, 0
 
-	ldh a, [hROMBank]
+	ldh a, [hLoadedROMBank]
 	push af
 
 	; Cries are stuck in one bank.
 	ld a, BANK(PokemonCries)
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	ld hl, PokemonCries
@@ -281,13 +271,13 @@ endr
 	ld [wCryLength + 1], a
 
 	ld a, BANK(_PlayCry)
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	call _PlayCry
 
 	pop af
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	
 	call WaitForSoundToFinish
@@ -298,9 +288,51 @@ endr
 	pop hl
 	ret
 
+PlayBattleSound::
+	push hl
+	push de
+	push bc
+	push af
+
+	push af
+	ld a, c
+	ld [wCryPitch], a
+	ld a, b
+	ld [wCryPitch + 1], a
+	ld a, e
+	ld [wCryLength], a
+	ld a, d
+	ld [wCryLength + 1], a
+	pop af
+
+	ld e, a
+	xor a
+	ld d, a
+
+	ldh a, [hLoadedROMBank]
+	push af
+
+	ld a, BANK(_PlayBattleSound)
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+
+	ld a, e
+	ld [wCurSFX], a
+	call _PlayBattleSound
+
+	pop af
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+
+	pop af
+	pop bc
+	pop de
+	pop hl
+	ret
+
 PlaySFX::
 ; Play sound effect de.
-; Sound effects are ordered by priority (lowest to highest)
+; Sound effects are ordered by priority (highest to lowest)
 
 	push hl
 	push de
@@ -317,10 +349,10 @@ PlaySFX::
 ;	jr c, .done
 
 .play
-	ldh a, [hROMBank]
+	ldh a, [hLoadedROMBank]
 	push af
 	ld a, BANK(_PlaySFX)
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 	ld a, e
@@ -328,7 +360,7 @@ PlaySFX::
 	call _PlaySFX
 
 	pop af
-	ldh [hROMBank], a
+	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 
 .done
@@ -348,7 +380,7 @@ WaitPlaySFX::
 ; Wait for sound to finish playing
 WaitForSoundToFinish::
 WaitSFX::
-	ld a, [wDanger]
+	ld a, [wLowHealthAlarm]
 	and a
 	ret nz
 	ld a, [wSFXDontWait]

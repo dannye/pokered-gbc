@@ -1,35 +1,36 @@
-Music_Routes4:
-	dbw $C0, Music_Routes4_Ch1
-	dbw $01, Music_Routes4_Ch2
-	dbw $02, Music_Routes4_Ch3
-	dbw $03, Music_Routes4_Ch4
+Music_Routes4::
+	channel_count 4
+	channel 1, Music_Routes4_Ch1
+	channel 2, Music_Routes4_Ch2
+	channel 3, Music_Routes4_Ch3
+	channel 4, Music_Routes4_Ch4
 
-Music_Routes4_Ch1: ; a26a (2:626a)
+Music_Routes4_Ch1::
 	tempo 148
-	volume 119
-	dutycycle 3
-	vibrato 10, 52
-	
-	notetype 12, 162
+	volume 7, 7
+	duty_cycle 3
+	vibrato 10, 3, 4
+	toggle_perfect_pitch
+	note_type 12, 10, 2
 	octave 2
 	note G#, 4
 	note G#, 4
 	note G#, 4
-	notetype 12, 127
+	note_type 12, 7, -7
 	note G#, 4
-	notetype 12, 162
+	note_type 12, 10, 2
 	note G#, 4
 	note G#, 4
 	note G#, 4
-	notetype 12, 183
+	note_type 12, 11, 7
 	note B_, 1
 	octave 3
 	note E_, 1
 	note F#, 1
 	note B_, 1
 
-Music_Routes4_branch_a28a:
-	notetype 12, 183
+Music_Routes4_branch_a28a::
+	note_type 12, 11, 7
 	note B_, 6
 	note E_, 2
 	note E_, 4
@@ -40,9 +41,9 @@ Music_Routes4_branch_a28a:
 	octave 3
 	note B_, 4
 	note A_, 4
-	notetype 12, 177
+	note_type 12, 11, 1
 	note G#, 3
-	notetype 12, 183
+	note_type 12, 11, 7
 	note E_, 1
 	note F#, 12
 	note E_, 8
@@ -59,9 +60,9 @@ Music_Routes4_branch_a28a:
 	note B_, 4
 	octave 4
 	note C#, 4
-	notetype 12, 177
+	note_type 12, 11, 1
 	note E_, 3
-	notetype 12, 183
+	note_type 12, 11, 7
 	note D#, 1
 	note E_, 12
 	octave 3
@@ -107,7 +108,7 @@ Music_Routes4_branch_a28a:
 	note F#, 2
 	note G#, 2
 	note B_, 2
-	notetype 8, 181
+	note_type 8, 11, 5
 	note A_, 4
 	note G#, 4
 	note F#, 4
@@ -141,28 +142,28 @@ Music_Routes4_branch_a28a:
 	note F#, 3
 	note G#, 3
 	note A_, 3
-	loopchannel 0, Music_Routes4_branch_a28a
+	sound_loop 0, Music_Routes4_branch_a28a
 
 
-Music_Routes4_Ch2: ; a304 (2:6304)
-	vibrato 12, 36
-	dutycycle 1
-	notetype 12, 146
+Music_Routes4_Ch2::
+	vibrato 12, 2, 4
+	duty_cycle 1
+	note_type 12, 9, 2
 	octave 3
 	note E_, 3
 	note F#, 1
-	notetype 12, 144
+	note_type 12, 9, 0
 	note E_, 12
-	notetype 12, 146
+	note_type 12, 9, 2
 	octave 2
 	note B_, 3
 	octave 3
 	note C_, 1
-	notetype 12, 144
+	note_type 12, 9, 0
 	octave 2
 	note B_, 8
-	dutycycle 3
-	notetype 12, 199
+	duty_cycle 3
+	note_type 12, 12, 7
 	octave 3
 	note E_, 1
 	note F#, 1
@@ -170,8 +171,8 @@ Music_Routes4_Ch2: ; a304 (2:6304)
 	octave 4
 	note D#, 1
 
-Music_Routes4_branch_a325:
-	notetype 12, 199
+Music_Routes4_branch_a325::
+	note_type 12, 12, 7
 	note E_, 6
 	octave 3
 	note B_, 2
@@ -185,24 +186,24 @@ Music_Routes4_branch_a325:
 	note A_, 1
 	note G#, 1
 	note F#, 1
-	notetype 12, 194
+	note_type 12, 12, 2
 	note G#, 3
 	note E_, 1
-	notetype 12, 160
+	note_type 12, 10, 0
 	octave 3
 	note B_, 12
-	dutycycle 0
-	notetype 12, 194
+	duty_cycle 0
+	note_type 12, 12, 2
 	octave 2
 	note B_, 3
-	notetype 12, 199
+	note_type 12, 12, 7
 	octave 3
 	note C_, 1
 	octave 2
 	note B_, 8
 	octave 3
 	note D#, 4
-	dutycycle 3
+	duty_cycle 3
 	octave 4
 	note E_, 6
 	octave 3
@@ -219,471 +220,470 @@ Music_Routes4_branch_a325:
 	octave 4
 	note B_, 1
 	note A_, 1
-	notetype 12, 194
+	note_type 12, 12, 2
 	note B_, 3
-	notetype 12, 199
+	note_type 12, 12, 7
 	note A_, 1
-	notetype 12, 176
+	note_type 12, 11, 0
 	note G#, 6
-	notetype 12, 144
+	note_type 12, 9, 0
 	note G#, 6
-	notetype 12, 112
+	note_type 12, 7, 0
 	note G#, 6
-	notetype 12, 111
+	note_type 12, 6, -7
 	note G#, 6
-	notetype 12, 199
+	note_type 12, 12, 7
 	note G#, 4
-	notetype 8, 195
+	note_type 8, 12, 3
 	note A_, 4
 	note G#, 4
 	note F#, 4
-	notetype 8, 144
+	note_type 8, 9, 0
 	note F#, 6
-	notetype 8, 127
+	note_type 8, 7, -7
 	note F#, 6
-	dutycycle 0
-	notetype 8, 144
+	duty_cycle 0
+	note_type 8, 9, 0
 	octave 3
 	note F#, 4
 	note E_, 4
 	note F#, 4
 	note A_, 6
-	dutycycle 3
-	notetype 8, 199
+	duty_cycle 3
+	note_type 8, 12, 7
 	octave 4
 	note F#, 6
 	note G#, 4
 	note F#, 4
-	notetype 8, 196
+	note_type 8, 12, 4
 	note E_, 4
-	notetype 8, 160
+	note_type 8, 10, 0
 	note E_, 12
-	dutycycle 0
-	notetype 8, 144
+	duty_cycle 0
+	note_type 8, 9, 0
 	octave 3
 	note E_, 4
 	note D#, 4
 	note E_, 4
 	note G#, 6
-	dutycycle 3
-	notetype 8, 199
+	duty_cycle 3
+	note_type 8, 12, 7
 	octave 4
 	note E_, 6
 	note F#, 4
 	note D#, 4
 	octave 3
 	note B_, 4
-	notetype 8, 160
+	note_type 8, 10, 0
 	octave 4
 	note B_, 16
-	notetype 8, 167
+	note_type 8, 10, 7
 	note B_, 8
-	notetype 8, 176
+	note_type 8, 11, 0
 	note A_, 6
-	notetype 8, 183
+	note_type 8, 11, 7
 	note A_, 6
-	notetype 12, 167
+	note_type 12, 10, 7
 	note G#, 1
 	note F#, 1
-	notetype 12, 176
+	note_type 12, 11, 0
 	note E_, 12
-	notetype 12, 160
+	note_type 12, 10, 0
 	note E_, 8
-	notetype 12, 167
+	note_type 12, 10, 7
 	note E_, 10
-	loopchannel 0, Music_Routes4_branch_a325
+	sound_loop 0, Music_Routes4_branch_a325
 
 
-Music_Routes4_Ch3: ; a3c4 (2:63c4)
-	notetype 12, 16
+Music_Routes4_Ch3::
+	note_type 12, 1, 0
 	octave 4
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 3
+	rest 3
 	note D#, 1
-	note __, 3
+	rest 3
 
-Music_Routes4_branch_a3d7:
+Music_Routes4_branch_a3d7::
 	note E_, 1
-	note __, 3
-	note E_, 1
-	note E_, 1
+	rest 3
 	note E_, 1
 	note E_, 1
 	note E_, 1
-	note __, 1
 	note E_, 1
-	note __, 3
 	note E_, 1
-	note __, 1
+	rest 1
+	note E_, 1
+	rest 3
+	note E_, 1
+	rest 1
 	note F#, 1
-	note __, 3
-	note F#, 1
-	note F#, 1
+	rest 3
 	note F#, 1
 	note F#, 1
 	note F#, 1
-	note __, 1
 	note F#, 1
-	note __, 3
+	note F#, 1
+	rest 1
+	note F#, 1
+	rest 3
 	note A_, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 3
-	note G#, 1
-	note G#, 1
-	note G#, 1
-	note G#, 1
-	note G#, 1
-	note __, 1
-	note G#, 1
-	note __, 3
-	note G#, 1
-	note __, 1
-	note G#, 1
-	note __, 3
+	rest 3
 	note G#, 1
 	note G#, 1
 	note G#, 1
 	note G#, 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 3
+	rest 3
 	note G#, 1
-	note __, 1
+	rest 1
+	note G#, 1
+	rest 3
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	note G#, 1
+	rest 1
+	note G#, 1
+	rest 3
+	note G#, 1
+	rest 1
 	note E_, 1
-	note __, 3
-	note E_, 1
-	note E_, 1
+	rest 3
 	note E_, 1
 	note E_, 1
 	note E_, 1
-	note __, 1
 	note E_, 1
-	note __, 3
 	note E_, 1
-	note __, 1
+	rest 1
+	note E_, 1
+	rest 3
+	note E_, 1
+	rest 1
 	note F#, 1
-	note __, 3
-	note F#, 1
-	note F#, 1
+	rest 3
 	note F#, 1
 	note F#, 1
 	note F#, 1
-	note __, 1
 	note F#, 1
-	note __, 3
+	note F#, 1
+	rest 1
+	note F#, 1
+	rest 3
 	note A_, 1
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 3
-	note B_, 1
-	note B_, 1
+	rest 3
 	note B_, 1
 	note B_, 1
 	note B_, 1
-	note __, 1
 	note B_, 1
-	note __, 3
 	note B_, 1
-	note __, 1
+	rest 1
+	note B_, 1
+	rest 3
+	note B_, 1
+	rest 1
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
 	note E_, 1
 	note E_, 1
 	note E_, 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note A_, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 3
-	note F#, 1
-	note F#, 1
+	rest 3
 	note F#, 1
 	note F#, 1
 	note F#, 1
-	note __, 1
 	note F#, 1
-	note __, 3
 	note F#, 1
-	note __, 1
+	rest 1
+	note F#, 1
+	rest 3
+	note F#, 1
+	rest 1
 	note D_, 1
-	note __, 3
-	note D_, 1
-	note D_, 1
+	rest 3
 	note D_, 1
 	note D_, 1
 	note D_, 1
-	note __, 1
 	note D_, 1
-	note __, 3
 	note D_, 1
-	note __, 1
+	rest 1
+	note D_, 1
+	rest 3
+	note D_, 1
+	rest 1
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
 	note E_, 1
 	note E_, 1
 	note E_, 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 3
+	rest 3
 	note E_, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 3
-	note G#, 1
-	note G#, 1
+	rest 3
 	note G#, 1
 	note G#, 1
 	note G#, 1
-	note __, 1
 	note G#, 1
-	note __, 3
 	note G#, 1
-	note __, 1
+	rest 1
+	note G#, 1
+	rest 3
+	note G#, 1
+	rest 1
 	note F#, 1
-	note __, 3
+	rest 3
 	note F#, 1
 	note F#, 1
 	note F#, 1
 	note F#, 1
 	note F#, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 3
+	rest 3
 	note F#, 1
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 3
-	note B_, 1
-	note B_, 1
+	rest 3
 	note B_, 1
 	note B_, 1
 	note B_, 1
-	note __, 1
 	note B_, 1
-	note __, 3
 	note B_, 1
-	note __, 1
+	rest 1
+	note B_, 1
+	rest 3
+	note B_, 1
+	rest 1
 	note G#, 1
-	note __, 3
+	rest 3
 	note G#, 1
 	note G#, 1
 	note G#, 1
 	note G#, 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 3
+	rest 3
 	note G#, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 3
-	note E_, 1
-	note E_, 1
+	rest 3
 	note E_, 1
 	note E_, 1
 	note E_, 1
-	note __, 1
 	note E_, 1
-	note __, 3
+	note E_, 1
+	rest 1
+	note E_, 1
+	rest 3
 	note D#, 1
-	note __, 1
-	loopchannel 0, Music_Routes4_branch_a3d7
+	rest 1
+	sound_loop 0, Music_Routes4_branch_a3d7
 
 
-Music_Routes4_Ch4: ; a49d (2:649d)
-	notetype 12
-	togglenoise 1
-	note __, 16
-	note __, 12
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
+Music_Routes4_Ch4::
+	toggle_noise 1
+	drum_speed 12
+	rest 16
+	rest 12
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
 
-Music_Routes4_branch_a4a8:
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A#, 2
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note A_, 2
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note A#, 1
-	note A#, 1
-	note B_, 1
-	note B_, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note A_, 2
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note A_, 2
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A#, 1
-	note A_, 4
-	note A_, 2
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	note B_, 1
-	note A#, 1
-	note A_, 4
-	note B_, 1
-	note B_, 1
-	note A#, 1
-	note A#, 1
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	note A_, 2
-	loopchannel 0, Music_Routes4_branch_a4a8
-; 0xa5f0
+Music_Routes4_branch_a4a8::
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 11, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 10, 2
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 10, 4
+	drum_note 12, 1
+	drum_note 12, 1
+	drum_note 11, 1
+	drum_note 11, 1
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 10, 2
+	drum_note 10, 2
+	sound_loop 0, Music_Routes4_branch_a4a8

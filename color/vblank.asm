@@ -1,173 +1,173 @@
 
 ; Prepare stuff to be done during vblank
 ; This is called from the lcd interrupt, at line $70
-GbcPrepareVBlank:
-	ld a,2
-	ld [rSVBK],a
+GbcPrepareVBlank::
+	ld a, 2
+	ldh [rSVBK], a
 	call RefreshWindowPalettesPreVBlank
 	call RefreshPalettesPreVBlank
 	xor a
-	ld [rSVBK],a
+	ldh [rSVBK], a
 	ret
 
 ; Refresh palettes based on BGP and OBP registers
 ; Assumes wram bank 2 is loaded
 RefreshPalettesPreVBlank:
-	ld a,[W2_ForceBGPUpdate]
+	ld a, [W2_ForceBGPUpdate]
 	or a
-	jr nz,.updatebgp
+	jr nz, .updatebgp
 
-	ld a,[rBGP]
-	ld b,a
-	ld a,[W2_LastBGP]
+	ldh a, [rBGP]
+	ld b, a
+	ld a, [W2_LastBGP]
 	cp b
-	jr z,.checkSprPalettes
+	jr z, .checkSprPalettes
 
 .updatebgp:
-	ld a,1
-	ld [W2_BgPaletteDataModified],a
+	ld a, 1
+	ld [W2_BgPaletteDataModified], a
 
-	ld b,$00
+	ld b, $00
 	ld hl, W2_BgPaletteDataBuffer
 
-	ld a,[rBGP]
+	ldh a, [rBGP]
 	and a
-	jr nz,.bgpNotWhite
+	jr nz, .bgpNotWhite
 	call SetWhiteColor
 	jr .checkSprPalettes
 .bgpNotWhite
 	cp $ff
-	jr nz,.bgpNotBlack
+	jr nz, .bgpNotBlack
 	call SetBlackColor
 	jr .checkSprPalettes
 .bgpNotBlack
 
 .doNextBgPal:
-	ld e,4
+	ld e, 4
 
-	ld a,[rBGP]
-	ld d,a
+	ldh a, [rBGP]
+	ld d, a
 
 .doNextBgColor:
-	ld a,d
+	ld a, d
 	call SetColor
 	srl d
 	srl d
 
 	dec e
-	jr nz,.doNextBgColor
+	jr nz, .doNextBgColor
 	inc b
-	bit 3,b ; b >= 8?
-	jr z,.doNextBgPal
+	bit 3, b ; b >= 8?
+	jr z, .doNextBgPal
 
 .checkSprPalettes
-	ld a,[W2_ForceOBPUpdate]
+	ld a, [W2_ForceOBPUpdate]
 	or a
-	jr nz,.updateobjp
-	ld a,[rOBP0]
-	ld b,a
-	ld a,[W2_LastOBP0]
+	jr nz, .updateobjp
+	ldh a, [rOBP0]
+	ld b, a
+	ld a, [W2_LastOBP0]
 	cp b
-	jr nz,.updateobjp
-	ld a,[rOBP1]
-	ld b,a
-	ld a,[W2_LastOBP1]
+	jr nz, .updateobjp
+	ldh a, [rOBP1]
+	ld b, a
+	ld a, [W2_LastOBP1]
 	cp b
-	jr z,.end
+	jr z, .end
 
 .updateobjp
-	ld a,1
-	ld [W2_SprPaletteDataModified],a
+	ld a, 1
+	ld [W2_SprPaletteDataModified], a
 
-	ld b,$08
+	ld b, $08
 	ld hl, W2_SprPaletteDataBuffer
 
-	ld a,[rOBP0]
+	ldh a, [rOBP0]
 	and a
-	jr nz,.obpNotWhite
+	jr nz, .obpNotWhite
 	call SetWhiteColor
 	jr .end
 .obpNotWhite
 	cp $ff
-	jr nz,.obpNotBlack
+	jr nz, .obpNotBlack
 	call SetBlackColor
 	jr .end
 .obpNotBlack
 
 .doNextSprPal
-	ld e,4
+	ld e, 4
 
-	ld a,[W2_UseOBP1]
+	ld a, [W2_UseOBP1]
 	and a
-	jr z,.obp0
-	ld a,11
+	jr z, .obp0
+	ld a, 11
 	cp b
-	jr nc,.obp0
+	jr nc, .obp0
 .obp1
-	ld a,[rOBP1]
-	ld d,a
+	ldh a, [rOBP1]
+	ld d, a
 	jr .doNextSprColor
 .obp0
-	ld a,[rOBP0]
-	ld d,a
+	ldh a, [rOBP0]
+	ld d, a
 
 .doNextSprColor
-	ld a,d
+	ld a, d
 	call SetColor
 	srl d
 	srl d
 	dec e
-	jr nz,.doNextSprColor
+	jr nz, .doNextSprColor
 
 	inc b
-	bit 4,b ; b >= 16?
-	jr z,.doNextSprPal
+	bit 4, b ; b >= 16?
+	jr z, .doNextSprPal
 
 .end
-	ld a,[rBGP]
-	ld [W2_LastBGP],a
-	ld a,[rOBP0]
-	ld [W2_LastOBP0],a
-	ld a,[rOBP1]
-	ld [W2_LastOBP1],a
+	ldh a, [rBGP]
+	ld [W2_LastBGP], a
+	ldh a, [rOBP0]
+	ld [W2_LastOBP0], a
+	ldh a, [rOBP1]
+	ld [W2_LastOBP1], a
 	xor a
-	ld [W2_ForceBGPUpdate],a
-	ld [W2_ForceOBPUpdate],a
+	ld [W2_ForceBGPUpdate], a
+	ld [W2_ForceOBPUpdate], a
 	ret
 
 
 ; Draw window palettes; this is done before vblank so it can be efficiently DMA'd.
 RefreshWindowPalettesPreVBlank:
-	ld a,[H_AUTOBGTRANSFERENABLED]
+	ldh a, [hAutoBGTransferEnabled]
 	and a
 	ret z
 
-	ld a,[rSVBK]
-	ld b,a
-	ld a,$02
-	ld [rSVBK],a
+	ldh a, [rSVBK]
+	ld b, a
+	ld a, $02
+	ldh [rSVBK], a
 	push bc ; Push last wram bank
 
 	; Check that vblank has updated the window from last frame (if not, let it catch up)
 	ld hl, W2_UpdatedWindowPortion
-	ld a,[hl]
+	ld a, [hl]
 	and a
-	jp nz,.palettesDone
-	ld [hl],1
+	jp nz, .palettesDone
+	ld [hl], 1
 
-	ld a,[H_AUTOBGTRANSFERPORTION]
+	ldh a, [hAutoBGTransferPortion]
 	and a
-	jr z,.firstThird
+	jr z, .firstThird
 	dec a
-	jr z,.secondThird
+	jr z, .secondThird
 .thirdThird
-	ld de,wTileMap+6*20*2
+	ld de, wTileMap + 6 * 20 * 2
 	jr .startCopy
 .firstThird:
-	ld de,wTileMap
+	ld de, wTileMap
 	jr .startCopy
 .secondThird:
-	ld de,wTileMap+6*20
+	ld de, wTileMap + 6 * 20
 
 ; de now points to map data in wram
 .startCopy:
@@ -176,126 +176,126 @@ RefreshWindowPalettesPreVBlank:
 
 	ld hl, W2_ScreenPalettesBuffer
 
-	ld b,6
+	ld b, 6
 
-	ld a,[W2_TileBasedPalettes]
+	ld a, [W2_TileBasedPalettes]
 	and a
-	jr nz,.tileBasedPalettes
+	jr nz, .tileBasedPalettes
 
-.staticMapPalettes:	; Palettes are loaded from a 20x18 grid of palettes
+.staticMapPalettes: ; Palettes are loaded from a 20x18 grid of palettes
 	; If the window transfer destination changed, we'll need to rewrite everything
-	ld a,[W2_LastAutoCopyDest]
-	ld b,a
-	ld a,[H_AUTOBGTRANSFERDEST+1]
+	ld a, [W2_LastAutoCopyDest]
+	ld b, a
+	ldh a, [hAutoBGTransferDest + 1]
 	cp b
-	jr z,.noDestChange
-	ld [W2_LastAutoCopyDest],a
-	ld a,3
-	ld [W2_StaticPaletteMapChanged],a
+	jr z, .noDestChange
+	ld [W2_LastAutoCopyDest], a
+	ld a, 3
+	ld [W2_StaticPaletteMapChanged], a
 .noDestChange
 
-	ld a,[W2_StaticPaletteMapChanged]
+	ld a, [W2_StaticPaletteMapChanged]
 	and a
 	jp z, .palettesDone
 
-	ld [W2_StaticPaletteMapChanged_vbl],a ; Only this will signal vblank to refresh the window palettes
+	ld [W2_StaticPaletteMapChanged_vbl], a ; Only this will signal vblank to refresh the window palettes
 
 	dec a
-	ld [W2_StaticPaletteMapChanged],a
+	ld [W2_StaticPaletteMapChanged], a
 
 	push hl
-	ld h,d
-	ld l,e
-	ld de,W2_TilesetPaletteMap - wTileMap
-	add hl,de
-	ld d,h
-	ld e,l ; de now points to the appropriate location in the palette grid @ W2_TilesetPaletteMap
+	ld h, d
+	ld l, e
+	ld de, W2_TilesetPaletteMap - wTileMap
+	add hl, de
+	ld d, h
+	ld e, l ; de now points to the appropriate location in the palette grid @ W2_TilesetPaletteMap
 	pop hl
-	
-	ld b,6
-.drawRow_Pal
-	ld c,20
-.palLoop
-	ld a,[de]
-	inc de
-	ld [hli],a
-	dec c
-	jr nz,.palLoop
 
-	ld a,32-20
+	ld b, 6
+.drawRow_Pal
+	ld c, 20
+.palLoop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .palLoop
+
+	ld a, 32 - 20
 	add l
-	ld l,a
-	jr nc,.noCarry
+	ld l, a
+	jr nc, .noCarry
 	inc h
 .noCarry
 	dec b
-	jr nz,.drawRow_Pal
+	jr nz, .drawRow_Pal
 
 	jr .palettesDone
 
-.tileBasedPalettes:	; Palettes are loaded based on the tile at that location
+.tileBasedPalettes: ; Palettes are loaded based on the tile at that location
 	push hl
-	ld h,d
-	ld l,e
+	ld h, d
+	ld l, e
 	pop de
 .drawRow
 	push bc
-	ld b,W2_TilesetPaletteMap>>8
+	ld b, W2_TilesetPaletteMap >> 8
 REPT 20
-	ld a,[hli]
-	ld c,a
-	ld a,[bc]
-	ld [de],a
+	ld a, [hli]
+	ld c, a
+	ld a, [bc]
+	ld [de], a
 	inc e
 ENDR
 
-	ld a,32-20
+	ld a, 32 - 20
 	add e
-	ld e,a
-	jr nc,.noCarry2
+	ld e, a
+	jr nc, .noCarry2
 	inc d
 .noCarry2
 	pop bc
 	dec b
-	jr nz,.drawRow
+	jr nz, .drawRow
 
 .palettesDone:
 	pop af
-	ld [rSVBK],a
+	ldh [rSVBK], a
 	ret
 
 
 ; This is the last vblank-timing-sensitive thing that's called
-GbcVBlankHook:
+GbcVBlankHook::
 	call UpdateMovingBgTiles ; Removed from caller to make space
 
 	; Use the hblank interrupt to get a head-start with vblank stuff
-	ld a,[rIE]
+	ldh a, [rIE]
 	or 2
-	ld [rIE],a
-	ld a,$6e
-	ld [$ff45],a
-	ld a,[rSTAT]
+	ldh [rIE], a
+	ld a, $6e
+	ldh [rLYC], a
+	ldh a, [rSTAT]
 	or $40
-	ld [rSTAT],a
+	ldh [rSTAT], a
 
-	ld a,2
-	ld [rSVBK],a
+	ld a, 2
+	ldh [rSVBK], a
 
 	; Don't try to refresh palette if a row or column was drawn this frame.
 	; This isn't really necessary, but it prevents a 1-frame artifact that occurs when
 	; transitioning between screens, where all sprites are white.
-	ld hl,W2_DrewRowOrColumn
-	ld a,[hl]
+	ld hl, W2_DrewRowOrColumn
+	ld a, [hl]
 	and a
-	jr nz,.end
+	jr nz, .end
 
 	call RefreshPalettesVBlank
 
 .end
 	xor a
-	ld [W2_DrewRowOrColumn],a
-	ld [rSVBK],a
+	ld [W2_DrewRowOrColumn], a
+	ldh [rSVBK], a
 	ret
 
 ; If necessary, copy palettes which were generated in the pre-vblank routines.
@@ -305,40 +305,40 @@ GbcVBlankHook:
 RefreshPalettesVBlank:
 
 .checkBgPalettes
-	ld a,[W2_BgPaletteDataModified]
+	ld a, [W2_BgPaletteDataModified]
 	and a
 	jr z, .checkSpritePalettes
 
 	; Check there's enough time in vblank
 	call .checkScanline
-	jr nc,.end
+	jr nc, .end
 
-	ld a,$80
-	ld [rBGPI],a
-	ld c, rBGPD&$ff
+	ld a, $80
+	ldh [rBGPI], a
+	ld c, rBGPD & $ff
 	ld hl, W2_BgPaletteDataBuffer
 	call .load8
 
 	xor a
-	ld [W2_BgPaletteDataModified],a
+	ld [W2_BgPaletteDataModified], a
 
 .checkSpritePalettes
-	ld a,[W2_SprPaletteDataModified]
+	ld a, [W2_SprPaletteDataModified]
 	and a
 	jr z, .end
 
 	; Check there's enough time in vblank
 	call .checkScanline
-	jr nc,.end
+	jr nc, .end
 
-	ld a,$80
-	ld [rOBPI],a
-	ld c, rOBPD&$ff
+	ld a, $80
+	ldh [rOBPI], a
+	ld c, rOBPD & $ff
 	ld hl, W2_SprPaletteDataBuffer
 	call .load8
 
 	xor a
-	ld [W2_SprPaletteDataModified],a
+	ld [W2_SprPaletteDataModified], a
 
 .end
 	ret
@@ -348,14 +348,14 @@ RefreshPalettesVBlank:
 ; hl = source
 .load8:
 rept 64
-	ld a,[hli]
-	ld [$ff00+c],a
+	ld a, [hli]
+	ld [$ff00+c], a
 endr
 	ret
 
 ; Sets carry flag if there's enough time to load another 8 palettes
 .checkScanline
-	ld a,[rLY]
+	ldh a, [rLY]
 	cp $97
 	ret nc
 	cp $90
@@ -369,38 +369,38 @@ SetColor:
 	push de
 	and 3
 	add a
-	ld d,a
-	ld a,b
+	ld d, a
+	ld a, b
 	add a
 	add a
 	add a
 	add d
-	ld d,W2_BgPaletteData>>8
-	ld e,a		; de points to W2_BgPaletteData (or SprPaletteData)
+	ld d, W2_BgPaletteData >> 8
+	ld e, a ; de points to W2_BgPaletteData (or SprPaletteData)
 
-	ld a,[de]
+	ld a, [de]
 	inc de
-	ld [hli],a
-	ld a,[de]
-	ld [hli],a
+	ld [hli], a
+	ld a, [de]
+	ld [hli], a
 
 	pop de
 	ret
 
 SetBlackColor:
 	xor a
-	ld c,8*8
+	ld c, 8 * 8
 .loop
-	ld [hli],a
+	ld [hli], a
 	dec c
-	jr nz,.loop
+	jr nz, .loop
 	ret
 
 SetWhiteColor:
-	ld a,$ff
-	ld c,8*8
+	ld a, $ff
+	ld c, 8 * 8
 .loop
-	ld [hli],a
+	ld [hli], a
 	dec c
-	jr nz,.loop
+	jr nz, .loop
 	ret

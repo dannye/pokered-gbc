@@ -1,59 +1,59 @@
 ; Note: after calling this, you may need to set W2_ForceBGPUpdate/ForceOBPUpdate to nonzero.
 ; d = palette to load (see constants/palette_constants.), e = palette index
 LoadSGBPalette:
-	ld a,[rSVBK]
-	ld b,a
-	ld a,2
-	ld [rSVBK],a
+	ldh a, [rSVBK]
+	ld b, a
+	ld a, 2
+	ldh [rSVBK], a
 	push bc
 
-	ld a,e
-	ld l,d
-	ld h,0
+	ld a, e
+	ld l, d
+	ld h, 0
 	add hl
 	add hl
 	add hl
-	ld de,SuperPalettes
-	add hl,de
+	ld de, SuperPalettes
+	add hl, de
 
-	ld de,W2_BgPaletteData
+	ld de, W2_BgPaletteData
 	jr startPaletteTransfer
 
 LoadSGBPalette_Sprite:
-	ld a,[rSVBK]
-	ld b,a
-	ld a,2
-	ld [rSVBK],a
+	ldh a, [rSVBK]
+	ld b, a
+	ld a, 2
+	ldh [rSVBK], a
 	push bc
 
-	ld a,e
-	ld l,d
-	ld h,0
+	ld a, e
+	ld l, d
+	ld h, 0
 	add hl
 	add hl
 	add hl
-	ld de,SuperPalettes
-	add hl,de
+	ld de, SuperPalettes
+	add hl, de
 
-	ld de,W2_BgPaletteData + $40
+	ld de, W2_BgPaletteData + $40
 
 startPaletteTransfer:
 	add a
 	add a
 	add a
 	add e
-	ld e,a
-	ld b,8
-	
+	ld e, a
+	ld b, 8
+
 .palLoop
-	ld a,[hli]
-	ld [de],a
+	ld a, [hli]
+	ld [de], a
 	inc de
 	dec b
-	jr nz,.palLoop
+	jr nz, .palLoop
 
 	pop af
-	ld [rSVBK],a
+	ldh [rSVBK], a
 	ret
 
-INCLUDE "data/super_palettes.asm"
+INCLUDE "data/sgb/sgb_palettes.asm"

@@ -1,16 +1,16 @@
 ; This file only included if GEN_2_GRAPHICS is set
 
-LoadHPBarAndEXPBar:
-	ld de,HpBarAndStatusGraphics
-	ld hl,vChars2 + $620
-	ld bc,(BANK(HpBarAndStatusGraphics) << 8 | $1e)
+LoadHPBarAndEXPBar::
+	ld de, HpBarAndStatusGraphics
+	ld hl, vChars2 tile $62
+	lb bc, BANK(HpBarAndStatusGraphics), (HpBarAndStatusGraphicsEnd - HpBarAndStatusGraphics) / $10
 	call GoodCopyVideoData
-	ld de,EXPBarGraphics
-	ld hl,vChars1 + $400
-	ld bc,(BANK(EXPBarGraphics) << 8 | $9)
+	ld de, EXPBarGraphics
+	ld hl, vChars1 tile $40
+	lb bc, BANK(EXPBarGraphics), (EXPBarGraphicsEnd - EXPBarGraphics) / $10
 GoodCopyVideoData:
-	ld a,[rLCDC]
-	bit 7,a ; is the LCD enabled?
+	ldh a, [rLCDC]
+	bit 7, a ; is the LCD enabled?
 	jp nz, CopyVideoData ; if LCD is on, transfer during V-blank
 	ld a, b
 	push hl
