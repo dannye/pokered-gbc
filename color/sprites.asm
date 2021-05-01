@@ -99,6 +99,12 @@ ColorOverworldSprite::
 	cp SPR_PAL_RANDOM
 	jr nz, .norandomColor
 
+	; Bill is always brown
+	ld a, [wCurMap]
+	cp BILLS_HOUSE
+	ld a, SPR_PAL_BROWN
+	jr z, .norandomColor
+
 	; This is a (somewhat) random but consistent color
 	ldh a, [hSpriteOffset2]
 	swap a
