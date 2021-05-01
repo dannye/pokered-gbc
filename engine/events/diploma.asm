@@ -4,7 +4,7 @@ DisplayDiploma::
 	call SaveScreenTilesToBuffer2
 	call GBPalWhiteOutWithDelay3
 	call ClearScreen
-	xor a
+	ld a, $ff
 	ld [wUpdateSpritesEnabled], a
 	ld hl, wd730
 	set 6, [hl]
