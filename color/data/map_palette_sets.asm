@@ -128,7 +128,7 @@ MapPaletteSets:
 	db INDOOR_YELLOW
 	db INDOOR_BROWN
 	db INDOOR_LIGHT_BLUE
-	db CRYS_TEXTBOX
+	db ALT_TEXTBOX_PAL ; Uses variant of textbox palette for Articuno binoculars
 
 ; SHIP
 	db INDOOR_GRAY
