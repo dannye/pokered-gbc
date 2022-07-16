@@ -76,7 +76,7 @@ Code_d000:
 	push bc
 	push de
 	push hl
-	call FadeOutAudio
+	farcall FadeOutAudio
 	ld a, [wAudioROMBank]
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
