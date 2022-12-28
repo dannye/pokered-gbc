@@ -44,7 +44,7 @@ DontAbandonLearning:
 	push de
 	dec a
 	ld hl, Moves
-	ld bc, MoveEnd - Moves
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, wBuffer
 	ld a, BANK(Moves)
@@ -155,7 +155,7 @@ TryingToLearn:
 	call LoadScreenTilesFromBuffer1
 	pop af
 	pop hl
-	bit 1, a ; pressed b
+	bit BIT_B_BUTTON, a
 	jr nz, .cancel
 	push hl
 	ld a, [wCurrentMenuItem]

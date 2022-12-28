@@ -124,19 +124,22 @@ CableClub_DoBattleOrTradeAgain:
 	ldh [rIE], a
 	ld hl, wSerialRandomNumberListBlock
 	ld de, wSerialOtherGameboyRandomNumberListBlock
-	ld bc, $11
+	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
+	vc_hook Wireless_ExchangeBytes_RNG_state_unknown_Type5
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wSerialPlayerDataBlock
 	ld de, wSerialEnemyDataBlock
-	ld bc, $1a8
+	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
+	vc_hook Wireless_ExchangeBytes_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
 	ld hl, wSerialPartyMonsPatchList
 	ld de, wSerialEnemyMonsPatchList
-	ld bc, $c8
+	ld bc, 200
+	vc_hook Wireless_ExchangeBytes_patch_lists
 	call Serial_ExchangeBytes
 	ld a, (1 << SERIAL) | (1 << TIMER) | (1 << VBLANK)
 	ldh [rIE], a
@@ -346,7 +349,7 @@ TradeCenter_SelectMon:
 	res 1, [hl]
 	and a
 	jp z, .getNewInput
-	bit 0, a ; A button pressed?
+	bit BIT_A_BUTTON, a
 	jr z, .enemyMonMenu_ANotPressed
 ; if A button pressed
 	ld a, [wMaxMenuItem]
@@ -365,7 +368,7 @@ TradeCenter_SelectMon:
 	call TradeCenter_DisplayStats
 	jp .getNewInput
 .enemyMonMenu_ANotPressed
-	bit 5, a ; Left pressed?
+	bit BIT_D_LEFT, a
 	jr z, .enemyMonMenu_LeftNotPressed
 ; if Left pressed, switch back to the player mon menu
 	xor a ; player mon menu
@@ -385,7 +388,7 @@ TradeCenter_SelectMon:
 	ld [wCurrentMenuItem], a
 	jr .playerMonMenu
 .enemyMonMenu_LeftNotPressed
-	bit 7, a ; Down pressed?
+	bit BIT_D_DOWN, a
 	jp z, .getNewInput
 	jp .selectedCancelMenuItem ; jump if Down pressed
 .playerMonMenu
@@ -413,7 +416,7 @@ TradeCenter_SelectMon:
 	jr nz, .playerMonMenu_SomethingPressed
 	jp .getNewInput
 .playerMonMenu_SomethingPressed
-	bit 0, a ; A button pressed?
+	bit BIT_A_BUTTON, a
 	jr z, .playerMonMenu_ANotPressed
 	jp .chosePlayerMon ; jump if A button pressed
 ; unreachable code
@@ -423,7 +426,7 @@ TradeCenter_SelectMon:
 	call TradeCenter_DisplayStats
 	jp .getNewInput
 .playerMonMenu_ANotPressed
-	bit 4, a ; Right pressed?
+	bit BIT_D_RIGHT, a
 	jr z, .playerMonMenu_RightNotPressed
 ; if Right pressed, switch to the enemy mon menu
 	ld a, $1 ; enemy mon menu
@@ -445,7 +448,7 @@ TradeCenter_SelectMon:
 .notPastLastEnemyMon
 	jp .enemyMonMenu
 .playerMonMenu_RightNotPressed
-	bit 7, a ; Down pressed?
+	bit BIT_D_DOWN, a
 	jr z, .getNewInput
 	jp .selectedCancelMenuItem ; jump if Down pressed
 .getNewInput
@@ -489,7 +492,7 @@ TradeCenter_SelectMon:
 	call HandleMenuInput
 	bit 4, a ; Right pressed?
 	jr nz, .selectTradeMenuItem
-	bit 1, a ; B button pressed?
+	bit BIT_B_BUTTON, a
 	jr z, .displayPlayerMonStats
 .cancelPlayerMonChoice
 	pop af
@@ -504,9 +507,9 @@ TradeCenter_SelectMon:
 	ld a, 11
 	ld [wTopMenuItemX], a
 	call HandleMenuInput
-	bit 5, a ; Left pressed?
+	bit BIT_D_LEFT, a
 	jr nz, .selectStatsMenuItem
-	bit 1, a ; B button pressed?
+	bit BIT_B_BUTTON, a
 	jr nz, .cancelPlayerMonChoice
 	jr .choseTrade
 .displayPlayerMonStats
@@ -555,9 +558,9 @@ TradeCenter_SelectMon:
 	ldh a, [hJoy5]
 	and a ; pressed anything?
 	jr z, .cancelMenuItem_JoypadLoop
-	bit 0, a ; A button pressed?
+	bit BIT_A_BUTTON, a
 	jr nz, .cancelMenuItem_APressed
-	bit 6, a ; Up pressed?
+	bit BIT_D_UP, a
 	jr z, .cancelMenuItem_JoypadLoop
 ; if Up pressed
 	ld a, " "
@@ -649,7 +652,7 @@ TradeCenter_DrawPartyLists:
 	ld de, wPartySpecies
 	call TradeCenter_PrintPartyListNames
 	hlcoord 2, 9
-	ld de, wEnemyPartyMons
+	ld de, wEnemyPartySpecies
 	; fall through
 
 TradeCenter_PrintPartyListNames:
@@ -702,7 +705,7 @@ TradeCenter_Trade:
 	ld bc, NAME_LENGTH
 	call CopyData
 	ld a, [wTradingWhichEnemyMon]
-	ld hl, wEnemyPartyMons
+	ld hl, wEnemyPartySpecies
 	ld c, a
 	ld b, 0
 	add hl, bc
@@ -799,7 +802,7 @@ TradeCenter_Trade:
 	ld a, [wTradingWhichEnemyMon]
 	ld c, a
 	ld [wWhichPokemon], a
-	ld hl, wEnemyPartyMons
+	ld hl, wEnemyPartySpecies
 	ld d, 0
 	ld e, a
 	add hl, de
@@ -819,7 +822,7 @@ TradeCenter_Trade:
 	ld a, $1
 	ld [wForceEvolution], a
 	ld a, [wTradingWhichEnemyMon]
-	ld hl, wEnemyPartyMons
+	ld hl, wEnemyPartySpecies
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -860,6 +863,7 @@ TradeCenter_Trade:
 	ld de, TradeCompleted
 	call PlaceString
 	predef SaveSAVtoSRAM2
+	vc_hook Trade_save_game_end
 	ld c, 50
 	call DelayFrames
 	xor a

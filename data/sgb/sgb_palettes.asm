@@ -3,6 +3,7 @@
 
 SuperPalettes:
 ; entries correspond to PAL_* constants
+	table_width 2 * 4, SuperPalettes
 	RGB 25,18,00, 15,08,00, 00,00,00, 00,00,00 ; PAL_TOWNMAP2 (second palette used on the town map)
 	RGB 31,31,31, 17,01,02, 26,00,00, 00,00,00 ; PAL_SLOTS5
 	RGB 31,31,31, 19,31,00, 11,23,31, 00,00,00 ; PAL_VIRIDIAN
@@ -250,3 +251,4 @@ IF GEN_2_GRAPHICS
 	RGB 31,31,31, 29,19,15, 21,09,05, 00,00,00 ; PAL_LANCE
 	RGB 31,31,31, 28,18,17, 22,07,08, 00,00,00 ; PAL_HERO
 ENDC
+	assert_table_length NUM_SGB_PALS

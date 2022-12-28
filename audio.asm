@@ -1,6 +1,3 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Sound Effect Headers 1", ROMX
 INCLUDE "audio/headers/sfxheaders1.asm"
 
@@ -44,7 +41,7 @@ INCLUDE "audio/sfx/noise_instrument18_1.asm"
 INCLUDE "audio/sfx/noise_instrument19_1.asm"
 
 Audio1_WavePointers:
-INCLUDE "audio/wave_instruments.asm"
+INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/sfx/start_menu_1.asm"
 INCLUDE "audio/sfx/pokeflute.asm"
@@ -80,7 +77,7 @@ INCLUDE "audio/sfx/push_boulder_1.asm"
 INCLUDE "audio/sfx/ss_anne_horn_1.asm"
 INCLUDE "audio/sfx/withdraw_deposit_1.asm"
 INCLUDE "audio/sfx/safari_zone_pa.asm"
-INCLUDE "audio/sfx/unused_1.asm"
+INCLUDE "audio/sfx/unused_cry_1.asm"
 INCLUDE "audio/sfx/cry09_1.asm"
 INCLUDE "audio/sfx/cry23_1.asm"
 INCLUDE "audio/sfx/cry24_1.asm"
@@ -144,7 +141,7 @@ INCLUDE "audio/sfx/noise_instrument18_2.asm"
 INCLUDE "audio/sfx/noise_instrument19_2.asm"
 
 Audio2_WavePointers:
-INCLUDE "audio/wave_instruments.asm"
+INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/sfx/press_ab_2.asm"
 INCLUDE "audio/sfx/start_menu_2.asm"
@@ -206,7 +203,7 @@ INCLUDE "audio/sfx/battle_33.asm"
 INCLUDE "audio/sfx/battle_34.asm"
 INCLUDE "audio/sfx/battle_35.asm"
 INCLUDE "audio/sfx/battle_36.asm"
-INCLUDE "audio/sfx/unused_2.asm"
+INCLUDE "audio/sfx/unused_cry_2.asm"
 INCLUDE "audio/sfx/cry09_2.asm"
 INCLUDE "audio/sfx/cry23_2.asm"
 INCLUDE "audio/sfx/cry24_2.asm"
@@ -270,7 +267,7 @@ INCLUDE "audio/sfx/noise_instrument18_3.asm"
 INCLUDE "audio/sfx/noise_instrument19_3.asm"
 
 Audio3_WavePointers:
-INCLUDE "audio/wave_instruments.asm"
+INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/sfx/start_menu_3.asm"
 INCLUDE "audio/sfx/cut_3.asm"
@@ -314,7 +311,7 @@ INCLUDE "audio/sfx/slots_stop_wheel.asm"
 INCLUDE "audio/sfx/slots_reward.asm"
 INCLUDE "audio/sfx/slots_new_spin.asm"
 INCLUDE "audio/sfx/shooting_star.asm"
-INCLUDE "audio/sfx/unused_3.asm"
+INCLUDE "audio/sfx/unused_cry_3.asm"
 INCLUDE "audio/sfx/cry09_3.asm"
 INCLUDE "audio/sfx/cry23_3.asm"
 INCLUDE "audio/sfx/cry24_3.asm"

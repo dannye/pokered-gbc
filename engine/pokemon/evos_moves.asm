@@ -114,7 +114,7 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicks
 	call GetPartyMonName
-	call CopyStringToCF4B
+	call CopyToStringBuffer
 	ld hl, IsEvolvingText
 	call PrintText
 	ld c, 50
@@ -161,7 +161,7 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld a, [wd11e]
 	dec a
 	ld hl, BaseStats
-	ld bc, MonBaseStatsEnd - MonBaseStats
+	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	ld de, wMonHeader
 	call CopyData
@@ -268,7 +268,7 @@ RenameEvolvedMon:
 	pop af
 	ld [wd0b5], a
 	ld hl, wcd6d
-	ld de, wcf4b
+	ld de, wStringBuffer
 .compareNamesLoop
 	ld a, [de]
 	inc de
@@ -368,7 +368,7 @@ LearnMoveFromLevelUp:
 	ld [wMoveNum], a
 	ld [wd11e], a
 	call GetMoveName
-	call CopyStringToCF4B
+	call CopyToStringBuffer
 	predef LearnMove
 .done
 	ld a, [wcf91]
@@ -479,7 +479,7 @@ WriteMonMoves:
 	push hl
 	dec a
 	ld hl, Moves
-	ld bc, MoveEnd - Moves
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, wBuffer
 	ld a, BANK(Moves)

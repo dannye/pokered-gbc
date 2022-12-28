@@ -99,7 +99,7 @@ InitCutAnimOAM:
 	ld hl, vChars1 tile $7f
 	call LoadCutGrassAnimationTilePattern
 	call WriteCutAnimationOAMBlock
-	ld hl, wOAMBuffer + $93
+	ld hl, wShadowOAMSprite36Attributes
 	ld de, 4
 	ld a, $36 ; Overwrite attributes (use palette 6, green)
 	ld c, e
@@ -112,8 +112,8 @@ InitCutAnimOAM:
 	ret
 
 LoadCutGrassAnimationTilePattern:
-	ld de, AnimationTileset2 tile 6 ; tile depicting a leaf
-	lb bc, BANK(AnimationTileset2), 1
+	ld de, MoveAnimationTiles1 tile 6 ; tile depicting a leaf
+	lb bc, BANK(MoveAnimationTiles1), 1
 	jp CopyVideoData
 
 ; HAX: this used to be called "WriteCutOrBoulderDustAnimationOAMBlock", but the boulder
