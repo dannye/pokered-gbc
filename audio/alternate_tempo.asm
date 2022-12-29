@@ -4,13 +4,13 @@ Music_RivalAlternateStart::
 	ld a, MUSIC_MEET_RIVAL
 	call PlayMusic
 	ld hl, wChannel1MusicAddress
-	ld de, Music_MeetRival_branch_b1a2
+	ld de, Music_MeetRival_Ch1_AlternateStart
 	call Audio1_OverwriteChannelPointer
 	ld hl, wChannel2MusicAddress
-	ld de, Music_MeetRival_branch_b21d
+	ld de, Music_MeetRival_Ch2_AlternateStart
 	call Audio1_OverwriteChannelPointer
 	ld hl, wChannel3MusicAddress
-	ld de, Music_MeetRival_branch_b2b5
+	ld de, Music_MeetRival_Ch3_AlternateStart
 
 Audio1_OverwriteChannelPointer:
 	ld a, e
@@ -25,14 +25,14 @@ Music_RivalAlternateTempo::
 	ld a, MUSIC_MEET_RIVAL
 	call PlayMusic
 	ld hl, wChannel1MusicAddress
-	ld de, Music_MeetRival_branch_b119
+	ld de, Music_MeetRival_Ch1_AlternateTempo
 	jp Audio1_OverwriteChannelPointer
 
 ; applies both the alternate start and alternate tempo
 Music_RivalAlternateStartAndTempo::
 	call Music_RivalAlternateStart
 	ld hl, wChannel1MusicAddress
-	ld de, Music_MeetRival_branch_b19b
+	ld de, Music_MeetRival_Ch1_AlternateStartAndTempo
 	jp Audio1_OverwriteChannelPointer
 
 ; an alternate tempo for Cities1 which is used for the Hall of Fame room
@@ -50,6 +50,6 @@ Music_Cities1AlternateTempo::
 IF GEN_2_MUSIC
 	ld de, Music_ViridianCity_Ch1_AltStart
 ELSE
-	ld de, Music_Cities1_branch_aa6f
+	ld de, Music_Cities1_Ch1_AlternateTempo
 ENDC
 	jp Audio1_OverwriteChannelPointer

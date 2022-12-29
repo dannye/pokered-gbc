@@ -65,7 +65,7 @@ RefreshWindow::
 	ld a, h
 	ldh [hSPTemp], a
 	ld a, l
-	ldh [hSPTemp + 1], a ; Store stack pointer
+	ldh [hSPTemp + 1], a ; save stack pointer
 	ldh a, [hAutoBGTransferPortion]
 	and a
 	jr z, .transferTopThird
@@ -104,13 +104,13 @@ RefreshWindow::
 
 ; sp now points to map data in wram, hl points to vram destination.
 .doTransfer
-	ldh [hAutoBGTransferPortion], a
+	ldh [hAutoBGTransferPortion], a ; store next portion
 	ld b, 6
 
 .drawRow:
 ; unrolled loop and using pop for speed
 
-REPT 20 / 2 - 1
+REPT SCREEN_WIDTH / 2 - 1
 	pop de
 	ld [hl], e
 	inc l
@@ -210,13 +210,13 @@ WindowTransferBgRowsAndColors::
 .nextRow
 	ld c, l
 ; Copy tilemap
-rept 20 / 2 - 1
+REPT SCREEN_WIDTH / 2 - 1
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-endr
+ENDR
 	pop de
 	ld [hl], e
 	inc l
@@ -224,14 +224,14 @@ endr
 
 	; Go back to start of row to do palettes
 	ld l, c
-	add sp, -20
+	add sp, -SCREEN_WIDTH
 	ld a, $01
 	ldh [rVBK], a
 	ld a, $02
 	ldh [rSVBK], a
 
 	ld d, W2_TilesetPaletteMap >> 8
-rept 20 / 2
+REPT SCREEN_WIDTH / 2
 	pop bc
 	ld e, c
 	ld a, [de]
@@ -239,7 +239,7 @@ rept 20 / 2
 	ld e, b
 	ld a, [de]
 	ld [hli], a
-endr
+ENDR
 
 	; Advance through "unused" tiles
 	ld a, $0c
@@ -388,7 +388,7 @@ DrawMapColumn::
 .noCarry
 ; the following 4 lines wrap us from bottom to top if necessary
 	ld a, d
-	and $03
+	and $3
 	or $98
 	ld d, a
 	dec c

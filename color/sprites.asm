@@ -133,7 +133,7 @@ ColorNonOverworldSprites::
 	ld a, 2
 	ldh [rSVBK], a
 
-	ld hl, wOAMBuffer
+	ld hl, wShadowOAM
 	ld b, 40
 
 .spriteLoop

@@ -23,7 +23,7 @@ ClearBgMap::
 	jr .next
 	ld a, l
 .next
-	ld de, $400 ; size of VRAM background map
+	ld de, BG_MAP_WIDTH * BG_MAP_HEIGHT
 	ld l, e
 .loop
 	ld [hli], a
@@ -62,7 +62,7 @@ RedrawRowOrColumn::
 ; on when talking to sprites, battling, using menus, etc. This is because
 ; the above function, RedrawRowOrColumn, is used when walking to
 ; improve efficiency.
-AutoBgMapTransfer: ; HAXED function
+AutoBgMapTransfer:: ; HAXED function
 	ld a, BANK(RefreshWindow)
 	ld [MBC1RomBank], a
 	call RefreshWindow
@@ -156,7 +156,7 @@ VBlankCopyDouble::
 	ldh [hVBlankCopyDoubleSize], a
 
 .loop
-	REPT 3
+REPT LEN_2BPP_TILE / 4 - 1
 	pop de
 	ld [hl], e
 	inc l
@@ -166,8 +166,7 @@ VBlankCopyDouble::
 	inc l
 	ld [hl], d
 	inc l
-	ENDR
-
+ENDR
 	pop de
 	ld [hl], e
 	inc l
@@ -234,14 +233,13 @@ VBlankCopy::
 	ldh [hVBlankCopySize], a
 
 .loop
-	REPT 7
+REPT LEN_2BPP_TILE / 2 - 1
 	pop de
 	ld [hl], e
 	inc l
 	ld [hl], d
 	inc l
-	ENDR
-
+ENDR
 	pop de
 	ld [hl], e
 	inc l
@@ -276,7 +274,7 @@ UpdateMovingBgTiles::
 
 	ldh a, [hTileAnimations]
 	and a
-	ret z ; no animations if indoors (or if a menu set this to 0)
+	ret z
 
 	ldh a, [hMovingBGTilesCounter1]
 	inc a
@@ -315,7 +313,7 @@ UpdateMovingBgTiles::
 	ldh a, [hTileAnimations]
 	rrca
 	ret nc
-; if in a cave, no flower animations
+
 	xor a
 	ldh [hMovingBGTilesCounter1], a
 	ret

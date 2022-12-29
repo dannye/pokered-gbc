@@ -1517,7 +1517,7 @@ MusicF5:
 	ret
 
 MusicF6:
-;notetype0
+;speed
 	call GetMusicByte
 	ld hl, CHANNEL_NOTE_LENGTH
 	add hl, bc
@@ -1525,7 +1525,7 @@ MusicF6:
 	ret
 
 MusicF7:
-;notetype1
+;channel_volume
 	call GetMusicByte
 	ld hl, CHANNEL_VOLUME_ENVELOPE
 	add hl, bc
@@ -1544,7 +1544,7 @@ MusicF7:
 	ret
 
 MusicF8:
-;notetype2
+;fade_wave
 	call GetMusicByte
 	ld hl, CHANNEL_VOLUME_ENVELOPE
 	add hl, bc
@@ -2442,8 +2442,6 @@ SetLRTracks:
 	ret
 
 _PlayMusic::
-	cp NUM_SONGS
-	ret nc ; sfx
 ; load music
 	call MusicOff
 	ld hl, wMusicID

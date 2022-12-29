@@ -1,5 +1,3 @@
-INCLUDE "constants.asm"
-
 SECTION "Pics 1", ROMX
 
 IF GEN_2_GRAPHICS

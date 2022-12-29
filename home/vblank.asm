@@ -108,7 +108,7 @@ DelayFrame::
 ; Wait for the next vblank interrupt.
 ; As a bonus, this saves battery.
 
-NOT_VBLANKED EQU 1
+DEF NOT_VBLANKED EQU 1
 
 	call DelayFrameHook ; HAX
 	nop

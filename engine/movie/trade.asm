@@ -56,12 +56,12 @@ TradeAnimCommon:
 	ld [wOptions], a
 	ret
 
-addtradefunc: MACRO
+MACRO addtradefunc
 \1TradeFunc::
 	dw \1
 ENDM
 
-tradefunc: MACRO
+MACRO tradefunc
 	db (\1TradeFunc - TradeFuncPointerTable) / 2
 ENDM
 
@@ -189,7 +189,7 @@ LoadTradingGFXAndMonNames:
 	ld [wd11e], a
 	call GetMonName
 	ld hl, wcd6d
-	ld de, wcf4b
+	ld de, wStringBuffer
 	ld bc, NAME_LENGTH
 	call CopyData
 	ld a, [wTradedEnemyMonSpecies]
@@ -321,7 +321,7 @@ Trade_AnimateBallEnteringLinkCable:
 	xor $1
 	ld [wLinkCableAnimBulgeToggle], a
 	add $7e
-	ld hl, wOAMBuffer + $02
+	ld hl, wShadowOAMSprite00TileID
 	ld de, 4
 	ld c, e
 .cycleLinkCableBulgeTile
@@ -605,7 +605,7 @@ Trade_AnimCircledMon:
 	ldh a, [rBGP]
 	xor $3c ; make link cable flash
 	ldh [rBGP], a
-	ld hl, wOAMBuffer + $02
+	ld hl, wShadowOAMSprite00TileID
 	ld de, $4
 	ld c, $14
 .loop
@@ -625,7 +625,7 @@ Trade_WriteCircledMonOAM:
 	call Trade_WriteCircleOAM
 
 Trade_AddOffsetsToOAMCoords:
-	ld hl, wOAMBuffer
+	ld hl, wShadowOAM
 	ld c, $14
 .loop
 	ld a, [wBaseCoordY]
@@ -703,7 +703,7 @@ Trade_WriteCircleOAM:
 	jr nz, .loop
 	ret
 
-trade_circle_oam: MACRO
+MACRO trade_circle_oam
 	dw \1
 	db \2, \3
 ENDM

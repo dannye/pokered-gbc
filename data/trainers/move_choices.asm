@@ -1,13 +1,14 @@
-move_choices: MACRO
-REPT _NARG
-	db \1
-	shift
-ENDR
+MACRO move_choices
+	IF _NARG
+		db \# ; all args
+	ENDC
 	db 0 ; end
+	DEF list_index += 1
 ENDM
 
 ; move choice modification methods that are applied for each trainer class
 TrainerClassMoveChoiceModifications:
+	list_start TrainerClassMoveChoiceModifications
 	move_choices         ; YOUNGSTER
 	move_choices 1       ; BUG CATCHER
 	move_choices 1       ; LASS
@@ -55,3 +56,4 @@ TrainerClassMoveChoiceModifications:
 	move_choices 1       ; CHANNELER
 	move_choices 1       ; AGATHA
 	move_choices 1, 3    ; LANCE
+	assert_list_length NUM_TRAINERS

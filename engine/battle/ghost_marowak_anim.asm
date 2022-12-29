@@ -58,7 +58,7 @@ CopyMonPicFromBGToSpriteVRAM_orig: ; Name changed so color hack can hijack this
 	ld [wBaseCoordY], a
 	ld a, $70
 	ld [wBaseCoordX], a
-	ld hl, wOAMBuffer
+	ld hl, wShadowOAM
 	lb bc, 6, 6
 	ld d, $8
 .oamLoop

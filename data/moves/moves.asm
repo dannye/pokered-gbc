@@ -1,17 +1,17 @@
-Moves:
-; Characteristics of each move.
-
-move: MACRO
+MACRO move
 	db \1 ; animation (interchangeable with move id)
 	db \2 ; effect
 	db \3 ; power
 	db \4 ; type
 	db \5 percent ; accuracy
 	db \6 ; pp
+	assert \6 <= 40, "PP must be 40 or less"
 ENDM
 
+Moves:
+; Characteristics of each move.
+	table_width MOVE_LENGTH, Moves
 	move POUND,        NO_ADDITIONAL_EFFECT,        40, NORMAL,       100, 35
-MoveEnd:
 	move KARATE_CHOP,  NO_ADDITIONAL_EFFECT,        50, NORMAL,       100, 25
 	move DOUBLESLAP,   TWO_TO_FIVE_ATTACKS_EFFECT,  15, NORMAL,        85, 10
 	move COMET_PUNCH,  TWO_TO_FIVE_ATTACKS_EFFECT,  18, NORMAL,        85, 15
@@ -176,3 +176,4 @@ MoveEnd:
 	move SLASH,        NO_ADDITIONAL_EFFECT,        70, NORMAL,       100, 20
 	move SUBSTITUTE,   SUBSTITUTE_EFFECT,            0, NORMAL,       100, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
+	assert_table_length NUM_ATTACKS

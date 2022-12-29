@@ -1,4 +1,5 @@
 WarpTileIDPointers:
+	table_width 2, WarpTileIDPointers
 	dw .OverworldWarpTileIDs
 	dw .RedsHouse1WarpTileIDs
 	dw .MartWarpTileIDs
@@ -23,12 +24,12 @@ WarpTileIDPointers:
 	dw .ClubWarpTileIDs
 	dw .FacilityWarpTileIDs
 	dw .PlateauWarpTileIDs
+	assert_table_length NUM_TILESETS
 
-warp_tiles: MACRO
-REPT _NARG
-	db \1
-	shift
-ENDR
+MACRO warp_tiles
+	IF _NARG
+		db \# ; all args
+	ENDC
 	db -1 ; end
 ENDM
 

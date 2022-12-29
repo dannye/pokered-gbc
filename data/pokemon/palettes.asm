@@ -1,4 +1,5 @@
 MonsterPalettes:
+	table_width 1, MonsterPalettes
 IF GEN_2_GRAPHICS
 	db PAL_MEWMON    ; MISSINGNO
 	db PAL_BULBASAUR
@@ -201,6 +202,7 @@ TrainerPalettes: ; Gen II trainer sprites are given their own palettes
 	db PAL_CHANNELER
 	db PAL_AGATHA
 	db PAL_LANCE
+	assert_table_length NUM_POKEMON + 1 + NUM_TRAINERS + 1
 ELSE
 	db PAL_MEWMON    ; MISSINGNO
 	db PAL_GREENMON  ; BULBASAUR
@@ -354,5 +356,6 @@ ELSE
 	db PAL_BROWNMON  ; DRAGONITE
 	db PAL_MEWMON    ; MEWTWO
 	db PAL_MEWMON    ; MEW
+	assert_table_length NUM_POKEMON + 1
 ; Trainers use index 0 of MonsterPalettes
 ENDC
