@@ -1,8 +1,6 @@
 GEN_2_GRAPHICS EQU 1
 GEN_2_MUSIC    EQU 1
 
-INCLUDE "charmap.asm"
-
 INCLUDE "macros/asserts.asm"
 INCLUDE "macros/const.asm"
 INCLUDE "macros/predef.asm"
@@ -20,6 +18,7 @@ INCLUDE "macros/scripts/text.asm"
 
 INCLUDE "macros/color.asm"
 
+INCLUDE "constants/charmap.asm"
 INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/oam_constants.asm"
 INCLUDE "constants/misc_constants.asm"
@@ -29,6 +28,7 @@ INCLUDE "constants/serial_constants.asm"
 INCLUDE "constants/script_constants.asm"
 INCLUDE "constants/type_constants.asm"
 INCLUDE "constants/battle_constants.asm"
+INCLUDE "constants/battle_anim_constants.asm"
 INCLUDE "constants/move_constants.asm"
 INCLUDE "constants/move_animation_constants.asm"
 INCLUDE "constants/move_effect_constants.asm"

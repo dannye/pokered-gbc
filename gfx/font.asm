@@ -31,8 +31,8 @@ ENDC
 
 NintendoCopyrightLogoGraphics: INCBIN "gfx/splash/copyright.2bpp"
 
-GamefreakLogoGraphics: INCBIN "gfx/title/gamefreak_inc.2bpp"
-GamefreakLogoGraphicsEnd:
+GameFreakLogoGraphics: INCBIN "gfx/title/gamefreak_inc.2bpp"
+GameFreakLogoGraphicsEnd:
 
 IF GEN_2_GRAPHICS
 TextBoxGraphics:: INCBIN "gfx/gs/text_box.2bpp"

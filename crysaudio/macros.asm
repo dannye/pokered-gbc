@@ -1,7 +1,3 @@
-MACRO bigdw ; big-endian word
-	db HIGH(\1), LOW(\1)
-ENDM
-
 MACRO maskbits
 ; masks just enough bits to cover values 0 to \1 - 1
 ; \2 is an optional shift amount
