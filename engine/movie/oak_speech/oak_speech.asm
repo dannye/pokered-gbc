@@ -1,8 +1,13 @@
-SetDefaultNames:
+PrepareOakSpeech:
 	ld a, [wLetterPrintingDelayFlags]
 	push af
 	ld a, [wOptions]
 	push af
+	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug.
+	; BUG: StartNewGame carries over bit 5 from previous save files,
+	; which causes CheckForceBikeOrSurf to not return.
+	; To fix this in debug builds, reset bit 5 here or in StartNewGame.
+	; In non-debug builds, the instructions can be removed.
 	ld a, [wd732]
 	push af
 	ld hl, wPlayerName
@@ -22,11 +27,14 @@ SetDefaultNames:
 	ld a, [wOptionsInitialized]
 	and a
 	call z, InitOptions
-	ld hl, NintenText
+	; These debug names are used for StartNewGameDebug.
+	; TestBattle uses the debug names from DebugMenu.
+	; A variant of this process is performed in PrepareTitleScreen.
+	ld hl, DebugNewGamePlayerName
 	ld de, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyData
-	ld hl, SonyText
+	ld hl, DebugNewGameRivalName
 	ld de, wRivalName
 	ld bc, NAME_LENGTH
 	jp CopyData
@@ -40,22 +48,22 @@ OakSpeech:
 	call PlayMusic
 	call ClearScreen
 	call LoadTextBoxTilePatterns
-	call SetDefaultNames
+	call PrepareOakSpeech
 	predef InitPlayerData2
 	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wcf91], a
 	ld a, 1
 	ld [wItemQuantity], a
-	call AddItemToInventory  ; give one potion
+	call AddItemToInventory
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
-	call SpecialWarpIn
+	call PrepareForSpecialWarp
 	xor a
 	ldh [hTileAnimations], a
 	ld a, [wd732]
-	bit 1, a ; possibly a debug mode bit
-	jp nz, .skipChoosingNames
+	bit BIT_DEBUG_MODE, a
+	jp nz, .skipSpeech
 	ld de, ProfOakPic
 	lb bc, BANK(ProfOakPic), $00
 	call IntroDisplayPicCenteredOrUpperRight
@@ -91,7 +99,7 @@ OakSpeech:
 	ld hl, IntroduceRivalText
 	call PrintText
 	call ChooseRivalName
-.skipChoosingNames
+.skipSpeech
 	call GBFadeOutToWhite
 	call ClearScreen
 	ld de, RedPicFront
@@ -158,6 +166,7 @@ OakSpeechText1:
 	text_end
 OakSpeechText2:
 	text_far _OakSpeechText2A
+	; BUG: The cry played does not match the sprite displayed.
 	sound_cry_nidorina
 	text_far _OakSpeechText2B
 	text_end
@@ -184,12 +193,12 @@ FadeInIntroPic:
 	ret
 
 IntroFadePalettes:
-	db %01010100
-	db %10101000
-	db %11111100
-	db %11111000
-	db %11110100
-	db %11100100
+	dc 1, 1, 1, 0
+	dc 2, 2, 2, 0
+	dc 3, 3, 3, 0
+	dc 3, 3, 2, 0
+	dc 3, 3, 1, 0
+	dc 3, 2, 1, 0
 
 MovePicLeft:
 	ld a, 119
