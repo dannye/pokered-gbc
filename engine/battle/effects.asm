@@ -118,17 +118,17 @@ PoisonEffect:
 	ret nc
 .inflictPoison
 	dec hl
-	set 3, [hl] ; mon is now poisoned
+	set PSN, [hl]
 	push de
 	dec de
 	ldh a, [hWhoseTurn]
 	and a
-	ld b, ANIM_C7
+	ld b, SHAKE_SCREEN_ANIM
 	ld hl, wPlayerBattleStatus3
 	ld a, [de]
 	ld de, wPlayerToxicCounter
 	jr nz, .ok
-	ld b, ANIM_A9
+	ld b, ENEMY_HUD_SHAKE_ANIM
 	ld hl, wEnemyBattleStatus3
 	ld de, wEnemyToxicCounter
 .ok
@@ -232,14 +232,14 @@ FreezeBurnParalyzeEffect:
 	ld a, 1 << PAR
 	ld [wEnemyMonStatus], a
 	call QuarterSpeedDueToParalysis ; quarter speed of affected mon
-	ld a, ANIM_A9
+	ld a, ENEMY_HUD_SHAKE_ANIM
 	call PlayBattleAnimation
 	jp PrintMayNotAttackText ; print paralysis text
 .burn1
 	ld a, 1 << BRN
 	ld [wEnemyMonStatus], a
 	call HalveAttackDueToBurn ; halve attack of affected mon
-	ld a, ANIM_A9
+	ld a, ENEMY_HUD_SHAKE_ANIM
 	call PlayBattleAnimation
 	ld hl, BurnedText
 	jp PrintText
@@ -247,7 +247,7 @@ FreezeBurnParalyzeEffect:
 	call ClearHyperBeam ; resets hyper beam (recharge) condition from target
 	ld a, 1 << FRZ
 	ld [wEnemyMonStatus], a
-	ld a, ANIM_A9
+	ld a, ENEMY_HUD_SHAKE_ANIM
 	call PlayBattleAnimation
 	ld hl, FrozenText
 	jp PrintText
@@ -802,7 +802,7 @@ ThrashPetalDanceEffect:
 	inc a
 	ld [de], a ; set thrash/petal dance counter to 2 or 3 at random
 	ldh a, [hWhoseTurn]
-	add ANIM_B0
+	add SHRINKING_SQUARE_ANIM
 	jp PlayBattleAnimation2
 
 SwitchAndTeleportEffect:
@@ -1002,7 +1002,7 @@ ChargeEffect:
 	jr z, .chargeEffect
 	ld hl, wEnemyBattleStatus1
 	ld de, wEnemyMoveEffect
-	ld b, ANIM_AF
+	ld b, XSTATITEM_DUPLICATE_ANIM
 .chargeEffect
 	set CHARGING_UP, [hl]
 	ld a, [de]
@@ -1016,7 +1016,7 @@ ChargeEffect:
 	cp DIG
 	jr nz, .notDigOrFly
 	set INVULNERABLE, [hl] ; mon is now invulnerable to typical attacks (fly/dig)
-	ld b, ANIM_C0
+	ld b, SLIDE_DOWN_ANIM
 .notDigOrFly
 	xor a
 	ld [wAnimationType], a
@@ -1460,9 +1460,9 @@ PlayBattleAnimation2:
 	ld [wAnimationID], a
 	ldh a, [hWhoseTurn]
 	and a
-	ld a, $6
+	ld a, ANIMATIONTYPE_SHAKE_SCREEN_HORIZONTALLY_SLOW_2
 	jr z, .storeAnimationType
-	ld a, $3
+	ld a, ANIMATIONTYPE_SHAKE_SCREEN_HORIZONTALLY_SLOW
 .storeAnimationType
 	ld [wAnimationType], a
 	jp PlayBattleAnimationGotID

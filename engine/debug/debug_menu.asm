@@ -2,12 +2,14 @@ DebugMenu:
 IF DEF(_DEBUG)
 	call ClearScreen
 
-	ld hl, DebugPlayerName
+	; These debug names are used for TestBattle.
+	; StartNewGameDebug uses the debug names from PrepareOakSpeech.
+	ld hl, DebugBattlePlayerName
 	ld de, wPlayerName
 	ld bc, NAME_LENGTH
 	call CopyData
 
-	ld hl, DebugRivalName
+	ld hl, DebugBattleRivalName
 	ld de, wRivalName
 	ld bc, NAME_LENGTH
 	call CopyData
@@ -54,13 +56,13 @@ IF DEF(_DEBUG)
 
 	; DEBUG
 	ld hl, wd732
-	set 1, [hl]
+	set BIT_DEBUG_MODE, [hl]
 	jp StartNewGameDebug
 
-DebugPlayerName:
+DebugBattlePlayerName:
 	db "Tom@"
 
-DebugRivalName:
+DebugBattleRivalName:
 	db "Juerry@"
 
 DebugMenuOptions:
@@ -70,17 +72,22 @@ ELSE
 	ret
 ENDC
 
-TestBattle:
+TestBattle: ; unreferenced except in _DEBUG
 .loop
 	call GBPalNormal
 
-	; Don't mess around
-	; with obedience.
+	; Don't mess around with obedience.
 	ld a, 1 << BIT_EARTHBADGE
 	ld [wObtainedBadges], a
 
 	ld hl, wFlags_D733
 	set BIT_TEST_BATTLE, [hl]
+
+	; wNumBagItems and wBagItems are not initialized here,
+	; and their garbage values happen to act as if EXP_ALL
+	; is in the bag at the end of the test battle.
+	; pokeyellow fixes this by initializing them with a
+	; list of items.
 
 	; Reset the party.
 	ld hl, wPartyCount
@@ -89,8 +96,7 @@ TestBattle:
 	dec a
 	ld [hl], a
 
-	; Give the player a
-	; level 20 Rhydon.
+	; Give the player a level 20 Rhydon.
 	ld a, RHYDON
 	ld [wcf91], a
 	ld a, 20
@@ -100,15 +106,14 @@ TestBattle:
 	ld [wCurMap], a
 	call AddPartyMon
 
-	; Fight against a
-	; level 20 Rhydon.
+	; Fight against a level 20 Rhydon.
 	ld a, RHYDON
 	ld [wCurOpponent], a
 
 	predef InitOpponent
 
-	; When the battle ends,
-	; do it all again.
+	; When the battle ends, do it all again.
+	; There are some graphical quirks in SGB mode.
 	ld a, 1
 	ld [wUpdateSpritesEnabled], a
 	ldh [hAutoBGTransferEnabled], a
