@@ -1,5 +1,7 @@
 ; 8 bytes per tileset for 8 palettes, which are taken from MapPalettes.
 MapPaletteSets:
+	table_width 8, MapPaletteSets
+
 ; OVERWORLD
 	db OUTDOOR_GRAY
 	db OUTDOOR_RED
@@ -239,3 +241,5 @@ MapPaletteSets:
 	db OUTDOOR_BROWN
 	db OUTDOOR_ROOF
 	db CRYS_TEXTBOX
+
+	assert_table_length NUM_TILESETS

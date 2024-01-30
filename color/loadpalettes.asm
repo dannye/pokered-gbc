@@ -3,6 +3,8 @@ INCLUDE "color/data/map_palette_sets.asm"
 INCLUDE "color/data/map_palette_assignments.asm"
 INCLUDE "color/data/roofpalettes.asm"
 
+DEF TILESET_SIZE EQU $60
+
 ; Load colors for new map and tile placement
 LoadTilesetPalette:
 	push bc
@@ -64,37 +66,33 @@ LoadTilesetPalette:
 	jr nz, .nextPalette
 
 	; Start copying palette assignments
-	pop af ; Retrieve wCurMapTileset
-	ld hl, $0000
-	cp $00
-	jr z, .doneMultiplication
-	ld c, a
-	ld de, $0060 ; Each palette assignment takes $60 bytes
-.addLoop
-	add hl, de
-	dec c
-	jr nz, .addLoop
-.doneMultiplication:
-	ld bc, MapPaletteAssignments
-	add hl, bc
-	push hl
-	pop de ; de points to MapPaletteAssignments
+	; start by filling the buffer with the textbox palette
 	ld hl, W2_TilesetPaletteMap
-	ld b, $60
+	ld b, $ff
+	ld a, 7
+.fillLoop
+	ld [hli], a
+	dec b
+	jr nz, .fillLoop
+	; fill in the tileset's tile assignments
+	pop af ; Retrieve wCurMapTileset
+	ld hl, MapPaletteAssignments
+	ld b, 0
+	ld c, a
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld d, a
+	ld hl, W2_TilesetPaletteMap
+	ld b, TILESET_SIZE
 .copyLoop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
 	jr nz, .copyLoop
-
-	; Set the remaining values to 7 for text
-	ld b, $a0
-	ld a, 7
-.fillLoop
-	ld [hli], a
-	dec b
-	jr nz, .fillLoop
 
 	; There used to be special-case code for tile $78 here (pokeball in pc), but now
 	; it uses palette 7 as well. Those areas still need to load the variant of the
