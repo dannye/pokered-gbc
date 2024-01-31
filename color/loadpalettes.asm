@@ -66,15 +66,6 @@ LoadTilesetPalette:
 	jr nz, .nextPalette
 
 	; Start copying palette assignments
-	; start by filling the buffer with the textbox palette
-	ld hl, W2_TilesetPaletteMap
-	ld b, $ff
-	ld a, 7
-.fillLoop
-	ld [hli], a
-	dec b
-	jr nz, .fillLoop
-	; fill in the tileset's tile assignments
 	pop af ; Retrieve wCurMapTileset
 	ld hl, MapPaletteAssignments
 	ld b, 0
@@ -93,6 +84,14 @@ LoadTilesetPalette:
 	ld [hli], a
 	dec b
 	jr nz, .copyLoop
+
+	; Set the remaining values to 7 for text
+	ld b, $100 - TILESET_SIZE
+	ld a, 7
+.fillLoop
+	ld [hli], a
+	dec b
+	jr nz, .fillLoop
 
 	; There used to be special-case code for tile $78 here (pokeball in pc), but now
 	; it uses palette 7 as well. Those areas still need to load the variant of the
