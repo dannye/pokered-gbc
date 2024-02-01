@@ -25,15 +25,15 @@ LoadTilesetPalette:
 
 	ld a, b ; Get wCurMapTileset
 	push af
-	ld d, 0
-	ld e, a
-	sla e
-	sla e
-	sla e
 	ld hl, MapPaletteSets
-	add hl, de
-	ld d, h
-	ld e, l
+	ld b, 0
+	ld c, a
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld d, a
 	ld hl, W2_BgPaletteData ; palette data to be copied to wram at hl
 	ld b, $08
 .nextPalette
