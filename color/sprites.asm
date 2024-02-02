@@ -307,6 +307,7 @@ ClearSpritePaletteMap:
 
 
 SpritePaletteAssignments: ; Characters on the overworld
+	table_width 1, SpritePaletteAssignments
 	; 0x01: SPRITE_RED
 	db SPR_PAL_ORANGE
 
@@ -523,6 +524,8 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
 
+	assert_table_length NUM_SPRITES
+
 
 AnimationTileset1Palettes:
 	INCBIN "color/data/animtileset1palettes.bin"
@@ -531,6 +534,7 @@ AnimationTileset2Palettes:
 	INCBIN "color/data/animtileset2palettes.bin"
 
 TypeColorTable: ; Used for a select few sprites to be colorized based on attack type
+	table_width 1, TypeColorTable
 	db 0 ; NORMAL EQU $00
 	db 0 ; FIGHTING EQU $01
 	db 0 ; FLYING EQU $02
@@ -558,5 +562,6 @@ TypeColorTable: ; Used for a select few sprites to be colorized based on attack 
 	db 7 ; PSYCHIC EQU $18
 	db 6 ; ICE EQU $19
 	db 1 ; DRAGON EQU $1A
+	assert_table_length NUM_TYPES
 
 INCLUDE "color/data/spritepalettes.asm"
