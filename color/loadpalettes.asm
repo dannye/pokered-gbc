@@ -3,6 +3,8 @@ INCLUDE "color/data/map_palette_sets.asm"
 INCLUDE "color/data/map_palette_assignments.asm"
 INCLUDE "color/data/roofpalettes.asm"
 
+DEF TILESET_SIZE EQU $60
+
 ; Load colors for new map and tile placement
 LoadTilesetPalette:
 	push bc
@@ -23,15 +25,15 @@ LoadTilesetPalette:
 
 	ld a, b ; Get wCurMapTileset
 	push af
-	ld d, 0
-	ld e, a
-	sla e
-	sla e
-	sla e
 	ld hl, MapPaletteSets
-	add hl, de
-	ld d, h
-	ld e, l
+	ld b, 0
+	ld c, a
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld d, a
 	ld hl, W2_BgPaletteData ; palette data to be copied to wram at hl
 	ld b, $08
 .nextPalette
@@ -65,22 +67,17 @@ LoadTilesetPalette:
 
 	; Start copying palette assignments
 	pop af ; Retrieve wCurMapTileset
-	ld hl, $0000
-	cp $00
-	jr z, .doneMultiplication
+	ld hl, MapPaletteAssignments
+	ld b, 0
 	ld c, a
-	ld de, $0060 ; Each palette assignment takes $60 bytes
-.addLoop
-	add hl, de
-	dec c
-	jr nz, .addLoop
-.doneMultiplication:
-	ld bc, MapPaletteAssignments
 	add hl, bc
-	push hl
-	pop de ; de points to MapPaletteAssignments
+	add hl, bc
+	ld a, [hli]
+	ld e, a
+	ld a, [hl]
+	ld d, a
 	ld hl, W2_TilesetPaletteMap
-	ld b, $60
+	ld b, TILESET_SIZE
 .copyLoop
 	ld a, [de]
 	inc de
@@ -89,7 +86,7 @@ LoadTilesetPalette:
 	jr nz, .copyLoop
 
 	; Set the remaining values to 7 for text
-	ld b, $a0
+	ld b, $100 - TILESET_SIZE
 	ld a, 7
 .fillLoop
 	ld [hli], a
