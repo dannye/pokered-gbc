@@ -7,7 +7,11 @@
 	db 225 ; catch rate
 	db 115 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/krabby.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/krabby.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw KrabbyPicFront, KrabbyPicBack
 
 	db BUBBLE, LEER, NO_MOVE, NO_MOVE ; level 1 learnset

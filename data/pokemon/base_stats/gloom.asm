@@ -7,7 +7,11 @@
 	db 120 ; catch rate
 	db 132 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/gloom.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/gloom.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw GloomPicFront, GloomPicBack
 
 	db ABSORB, POISONPOWDER, STUN_SPORE, NO_MOVE ; level 1 learnset

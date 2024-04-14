@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 191 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/victreebel.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/victreebel.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw VictreebelPicFront, VictreebelPicBack
 
 	db SLEEP_POWDER, STUN_SPORE, ACID, RAZOR_LEAF ; level 1 learnset

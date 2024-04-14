@@ -7,7 +7,11 @@
 	db 255 ; catch rate
 	db 53 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/caterpie.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/caterpie.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw CaterpiePicFront, CaterpiePicBack
 
 	db TACKLE, STRING_SHOT, NO_MOVE, NO_MOVE ; level 1 learnset

@@ -7,7 +7,11 @@
 	db 90 ; catch rate
 	db 148 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/persian.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/persian.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw PersianPicFront, PersianPicBack
 
 	db SCRATCH, GROWL, BITE, SCREECH ; level 1 learnset

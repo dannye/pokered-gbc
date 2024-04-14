@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 214 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/gyarados.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/gyarados.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw GyaradosPicFront, GyaradosPicBack
 
 	db BITE, DRAGON_RAGE, LEER, HYDRO_PUMP ; level 1 learnset

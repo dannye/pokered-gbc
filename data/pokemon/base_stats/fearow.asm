@@ -7,7 +7,11 @@
 	db 90 ; catch rate
 	db 162 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/fearow.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/fearow.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw FearowPicFront, FearowPicBack
 
 	db PECK, GROWL, LEER, NO_MOVE ; level 1 learnset
