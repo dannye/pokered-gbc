@@ -506,8 +506,13 @@ ShowPokedexDataInternal:
 	call GetMonHeader ; load pokemon picture location
 	hlcoord 1, 1
 	call LoadFlippedFrontSpriteByMonIndex ; draw pokemon picture
+
+	ld a, [wd11e]
+	push af
 	ld a, [wcf91]
 	call PlayCry ; play pokemon cry
+	pop af
+	ld [wd11e], a
 
 	pop hl
 	pop de
