@@ -7,7 +7,11 @@
 	db 60 ; catch rate
 	db 204 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/rhydon.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/rhydon.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw RhydonPicFront, RhydonPicBack
 
 	db HORN_ATTACK, STOMP, TAIL_WHIP, FURY_ATTACK ; level 1 learnset

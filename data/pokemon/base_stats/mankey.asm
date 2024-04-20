@@ -7,7 +7,11 @@
 	db 190 ; catch rate
 	db 74 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/mankey.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/mankey.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw MankeyPicFront, MankeyPicBack
 
 	db SCRATCH, LEER, NO_MOVE, NO_MOVE ; level 1 learnset

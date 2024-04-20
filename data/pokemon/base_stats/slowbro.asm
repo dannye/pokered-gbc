@@ -7,7 +7,11 @@
 	db 75 ; catch rate
 	db 164 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/slowbro.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/slowbro.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw SlowbroPicFront, SlowbroPicBack
 
 	db CONFUSION, DISABLE, HEADBUTT, NO_MOVE ; level 1 learnset

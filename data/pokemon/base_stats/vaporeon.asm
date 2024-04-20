@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 196 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/vaporeon.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/vaporeon.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw VaporeonPicFront, VaporeonPicBack
 
 	db TACKLE, SAND_ATTACK, QUICK_ATTACK, WATER_GUN ; level 1 learnset

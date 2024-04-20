@@ -7,7 +7,11 @@
 	db 90 ; catch rate
 	db 116 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/raticate.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/raticate.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw RaticatePicFront, RaticatePicBack
 
 	db TACKLE, TAIL_WHIP, QUICK_ATTACK, NO_MOVE ; level 1 learnset

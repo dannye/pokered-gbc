@@ -7,7 +7,11 @@
 	db 3 ; catch rate
 	db 216 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/zapdos.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/zapdos.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw ZapdosPicFront, ZapdosPicBack
 
 	db THUNDERSHOCK, DRILL_PECK, NO_MOVE, NO_MOVE ; level 1 learnset

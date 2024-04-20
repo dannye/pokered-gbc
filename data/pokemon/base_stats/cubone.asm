@@ -7,7 +7,11 @@
 	db 190 ; catch rate
 	db 87 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/cubone.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/cubone.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw CubonePicFront, CubonePicBack
 
 	db BONE_CLUB, GROWL, NO_MOVE, NO_MOVE ; level 1 learnset

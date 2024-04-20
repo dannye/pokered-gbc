@@ -7,7 +7,11 @@
 	db 3 ; catch rate
 	db 217 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/moltres.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/moltres.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw MoltresPicFront, MoltresPicBack
 
 	db PECK, FIRE_SPIN, NO_MOVE, NO_MOVE ; level 1 learnset

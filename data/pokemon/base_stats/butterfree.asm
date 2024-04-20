@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 160 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/butterfree.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/butterfree.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw ButterfreePicFront, ButterfreePicBack
 
 	db CONFUSION, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset

@@ -7,7 +7,11 @@
 	db 190 ; catch rate
 	db 152 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/ponyta.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/ponyta.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw PonytaPicFront, PonytaPicBack
 
 	db EMBER, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset

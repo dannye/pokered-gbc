@@ -7,7 +7,11 @@
 	db 225 ; catch rate
 	db 83 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/horsea.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/horsea.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw HorseaPicFront, HorseaPicBack
 
 	db BUBBLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset

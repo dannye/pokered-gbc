@@ -7,7 +7,11 @@
 	db 120 ; catch rate
 	db 113 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/pidgeotto.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/pidgeotto.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw PidgeottoPicFront, PidgeottoPicBack
 
 	db GUST, SAND_ATTACK, NO_MOVE, NO_MOVE ; level 1 learnset
