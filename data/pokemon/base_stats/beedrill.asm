@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 159 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/beedrill.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/beedrill.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw BeedrillPicFront, BeedrillPicBack
 
 	db FURY_ATTACK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset

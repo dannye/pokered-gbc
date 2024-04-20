@@ -22,7 +22,7 @@ DrawHPBarWithColor:
 	; Party menu
 	ld hl, wPartyMenuHPBarColors
 	ld b, 0
-	ld a, [wCurrentMenuItem]
+	ld a, [wLastMenuItem]
 	ld c, a
 	add hl, bc
 
@@ -44,7 +44,7 @@ DrawHPBarWithColor:
 	push af
 	ld hl, W2_TilesetPaletteMap
 	ld bc, SCREEN_WIDTH * 2 ; 2 rows for each pokemon in the menu
-	ld a, [wCurrentMenuItem]
+	ld a, [wLastMenuItem]
 	call AddNTimes
 
 	ld bc, SCREEN_WIDTH * 2

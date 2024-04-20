@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 141 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/ivysaur.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/ivysaur.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw IvysaurPicFront, IvysaurPicBack
 
 	db TACKLE, GROWL, LEECH_SEED, NO_MOVE ; level 1 learnset

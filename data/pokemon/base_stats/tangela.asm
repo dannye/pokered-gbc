@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 166 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/tangela.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/tangela.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw TangelaPicFront, TangelaPicBack
 
 	db CONSTRICT, BIND, NO_MOVE, NO_MOVE ; level 1 learnset

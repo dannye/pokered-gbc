@@ -7,7 +7,11 @@
 	db 45 ; catch rate
 	db 200 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/pinsir.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/pinsir.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw PinsirPicFront, PinsirPicBack
 
 	db VICEGRIP, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset

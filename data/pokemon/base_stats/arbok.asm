@@ -7,7 +7,11 @@
 	db 90 ; catch rate
 	db 147 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/arbok.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/arbok.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw ArbokPicFront, ArbokPicBack
 
 	db WRAP, LEER, POISON_STING, NO_MOVE ; level 1 learnset

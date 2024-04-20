@@ -7,7 +7,11 @@
 	db 60 ; catch rate
 	db 203 ; base exp
 
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/cloyster.pic", 0, 1 ; sprite dimensions
+ELSE
 	INCBIN "gfx/pokemon/front/cloyster.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw CloysterPicFront, CloysterPicBack
 
 	db WITHDRAW, SUPERSONIC, CLAMP, AURORA_BEAM ; level 1 learnset

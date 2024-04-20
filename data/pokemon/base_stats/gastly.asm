@@ -7,11 +7,11 @@
 	db 190 ; catch rate
 	db 95 ; base exp
 
-	IF GEN_2_GRAPHICS
-		INCBIN "gfx/pokemon/gsfront/gastly.pic", 0, 1 ; sprite dimensions
-	ELSE
-		INCBIN "gfx/pokemon/front/gastly.pic", 0, 1 ; sprite dimensions
-	ENDC
+IF GEN_2_GRAPHICS
+	INCBIN "gfx/pokemon/gsfront/gastly.pic", 0, 1 ; sprite dimensions
+ELSE
+	INCBIN "gfx/pokemon/front/gastly.pic", 0, 1 ; sprite dimensions
+ENDC
 	dw GastlyPicFront, GastlyPicBack
 
 	db LICK, CONFUSE_RAY, NIGHT_SHADE, NO_MOVE ; level 1 learnset
