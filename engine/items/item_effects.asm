@@ -1917,6 +1917,7 @@ ItemUseItemfinder:
 	and a
 	jp nz, ItemUseNotTime
 	call ItemUseReloadOverworldData
+	call DelayFrame
 	farcall HiddenItemNear ; check for hidden items
 	ld hl, ItemfinderFoundNothingText
 	jr nc, .printText ; if no hidden items
