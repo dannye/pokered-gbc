@@ -93,11 +93,14 @@ endif
 
 # Run `make` run with `GFX=#` to choose GFX
 # GFX=2: Gen 2 Graphics
-# Default: Gen 1 Graphics
+# GFX=1: Gen 1 Graphics
+# Default: Gen 2 Graphics
 ifeq ($(GFX),2)
 RGBASMFLAGS += -D _GEN_2_GRAPHICS
-else
+else ifeq ($(GFX),1)
 RGBASMFLAGS +=
+else
+RGBASMFLAGS += -D _GEN_2_GRAPHICS
 endif
 
 $(pokered_obj):        RGBASMFLAGS += -D _RED
