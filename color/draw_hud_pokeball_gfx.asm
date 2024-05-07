@@ -25,7 +25,7 @@ LoadPartyPokeballGfx:
 	jp LoadPartyPokeballGfx_orig
 
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 
 PlayerHUDHAX:
 	ld hl, PlayerHUDTileMap

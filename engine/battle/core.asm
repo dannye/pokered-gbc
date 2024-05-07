@@ -1828,7 +1828,7 @@ DrawPlayerHUDAndHPBar:
 	ld [hl], $73
 	ld de, wBattleMonNick
 	hlcoord 10, 7
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	call PlaceString ; Note: "CenterMonName" not called to be consistent with gen 2
 	call PrintEXPBarAt1711
 ELSE
@@ -1894,7 +1894,7 @@ DrawEnemyHUDAndHPBar:
 	hlcoord 1, 0
 	call CenterMonName
 	call PlaceString
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	hlcoord 6, 1
 ELSE
 	hlcoord 4, 1
@@ -6351,7 +6351,7 @@ LoadPlayerBackPic:
 	ASSERT BANK(RedPicBack) == BANK(OldManPicBack)
 	call UncompressSpriteFromDE
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	call LoadMonBackSpriteHook ; No pixelated backsprites
 	nop
 	nop
@@ -6391,7 +6391,7 @@ ENDC
 	ld e, a
 	dec b
 	jr nz, .loop
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	REPT 6
 	nop
 	ENDR
@@ -7071,7 +7071,7 @@ LoadMonBackPic:
 	call UncompressMonSprite
 	predef_id ScaleSpriteByTwo
 
-	IF GEN_2_GRAPHICS
+	IF DEF(_GEN_2_GRAPHICS)
 		call LoadMonBackSpriteHook
 		nop
 		nop
@@ -7097,7 +7097,7 @@ INCLUDE "engine/battle/effects.asm"
 ; HAX: Following are hooks for pokered_color. This is the end of the bank so it won't
 ; cause data shifting.
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 
 LoadMonBackSpriteHook:
 	ld a, $66

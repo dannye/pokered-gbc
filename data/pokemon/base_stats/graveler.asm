@@ -7,7 +7,7 @@
 	db 120 ; catch rate
 	db 134 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/graveler.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/graveler.pic", 0, 1 ; sprite dimensions

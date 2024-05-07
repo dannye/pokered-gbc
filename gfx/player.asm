@@ -1,4 +1,4 @@
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 RedPicFront:: INCBIN "gfx/gstrainers/red.pic"
 rept 11 ; Padding
 	db 0

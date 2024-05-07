@@ -74,7 +74,7 @@ DeterminePaletteID:
 	and a
 	jr nz, .skipDexNumConversion ; Check if trainer?
 
-IF GEN_2_GRAPHICS ; Trainers are given individualized palettes
+IF DEF(_GEN_2_GRAPHICS) ; Trainers are given individualized palettes
 	; In link battle, don't rely in wTrainerClass (for some reason it's set to
 	; OPP_GARY, so ignore it)
 	ld a, [wLinkState]
@@ -117,7 +117,7 @@ DetermineBackSpritePaletteID:
 	and a
 	jr nz, .getPaletteID ; Check if trainer?
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld a, PAL_HERO
 ELSE
 	ld a, PAL_REDMON

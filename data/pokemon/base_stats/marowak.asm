@@ -7,7 +7,7 @@
 	db 75 ; catch rate
 	db 124 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/marowak.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/marowak.pic", 0, 1 ; sprite dimensions

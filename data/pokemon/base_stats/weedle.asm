@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 52 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/weedle.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/weedle.pic", 0, 1 ; sprite dimensions

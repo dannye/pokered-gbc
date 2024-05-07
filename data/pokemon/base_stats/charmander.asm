@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 65 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/charmander.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/charmander.pic", 0, 1 ; sprite dimensions

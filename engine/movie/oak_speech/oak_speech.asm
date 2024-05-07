@@ -61,7 +61,7 @@ OakSpeech:
 	call PrepareForSpecialWarp
 	xor a
 	ldh [hTileAnimations], a
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld a, PAL_OAK
 ELSE
 	ld a, PAL_BROWNMON

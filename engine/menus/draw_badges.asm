@@ -116,7 +116,7 @@ DrawBadges:
 	db $20, $28, $30, $38, $40, $48, $50, $58
 
 GymLeaderFaceAndBadgeTileGraphics:
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/gs/badges.2bpp"
 ELSE
 	INCBIN "gfx/trainer_card/badges.2bpp"

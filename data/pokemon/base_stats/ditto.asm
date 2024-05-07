@@ -7,7 +7,7 @@
 	db 35 ; catch rate
 	db 61 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/ditto.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/ditto.pic", 0, 1 ; sprite dimensions

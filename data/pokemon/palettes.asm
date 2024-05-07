@@ -1,6 +1,6 @@
 MonsterPalettes:
 	table_width 1, MonsterPalettes
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	db PAL_MEWMON    ; MISSINGNO
 	db PAL_BULBASAUR
 	db PAL_IVYSAUR

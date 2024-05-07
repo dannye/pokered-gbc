@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 195 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/nidoking.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/nidoking.pic", 0, 1 ; sprite dimensions

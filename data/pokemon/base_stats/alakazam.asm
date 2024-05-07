@@ -7,7 +7,7 @@
 	db 50 ; catch rate
 	db 186 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/alakazam.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/alakazam.pic", 0, 1 ; sprite dimensions

@@ -2314,7 +2314,7 @@ wBoxMonNicksEnd::
 
 wBoxDataEnd::
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 wEXPBarPixelLength::  ds 1
 wEXPBarBaseEXP::      ds 3
 wEXPBarCurEXP::       ds 3

@@ -134,7 +134,7 @@ SetPal_Battle_Common:
 	ld e, 3
 	farcall LoadSGBPalette
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	; Player exp bar
 	ld d, PAL_EXP
 ELSE
@@ -154,7 +154,7 @@ ENDC
 	ld c, 11
 	call FillBox
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	; Bottom half; player lifebar
 	ld hl, W2_TilesetPaletteMap + 7 * 20 + 9
 	ld a, 2
@@ -170,7 +170,7 @@ IF GEN_2_GRAPHICS
 	call FillBox
 ENDC
 
-IF !GEN_2_GRAPHICS
+IF !DEF(_GEN_2_GRAPHICS)
 	; Bottom half; player lifebar
 	ld hl, W2_TilesetPaletteMap + 7 * 20 + 9
 	ld a, 2
@@ -288,7 +288,7 @@ SetPal_StatusScreen:
 	ld e, 1
 	farcall LoadSGBPalette
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld d, PAL_EXP
 	ld e, 4
 	farcall LoadSGBPalette
@@ -334,7 +334,7 @@ ENDC
 	dec b
 	jr nz, .drawRow
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	; Player exp bar
 	ld hl, W2_TilesetPaletteMap + 11 + 5 * SCREEN_WIDTH
 	ld b, 8
@@ -479,7 +479,7 @@ SetPal_TitleScreen:
 	ld e, 3
 	farcall LoadSGBPalette
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld d, PAL_HERO
 ELSE
 	ld d, PAL_REDMON
@@ -555,7 +555,7 @@ SetPal_NidorinoIntro:
 	ld a, 2
 	ldh [rSVBK], a
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld d, PAL_NIDORINO
 ELSE
 	ld d, PAL_PURPLEMON
@@ -848,7 +848,7 @@ SetPal_TrainerCard:
 	farcall LoadSGBPalette
 
 	; Red's palette
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld d, PAL_HERO
 ELSE
 	ld d, PAL_REDMON

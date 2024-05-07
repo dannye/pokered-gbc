@@ -91,8 +91,17 @@ ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
 endif
 
+# Run `make` run with `GFX=#` to choose GFX
+# GFX=2: Gen 2 Graphics
+# Default: Gen 1 Graphics
+ifeq ($(GFX),2)
+RGBASMFLAGS += -D _GEN_2_GRAPHICS
+else
+RGBASMFLAGS +=
+endif
+
 $(pokered_obj):        RGBASMFLAGS += -D _RED
-$(pokeblue_obj):       RGBASMFLAGS += -D _BLUE
+$(pokeblue_obj):       RGBASMFLAGS += -D _BLUE 
 $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC

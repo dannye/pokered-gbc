@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 190 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/gengar.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/gengar.pic", 0, 1 ; sprite dimensions

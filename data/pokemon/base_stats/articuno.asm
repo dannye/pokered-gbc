@@ -7,7 +7,7 @@
 	db 3 ; catch rate
 	db 215 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/articuno.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/articuno.pic", 0, 1 ; sprite dimensions

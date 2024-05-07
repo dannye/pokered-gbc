@@ -7,7 +7,7 @@
 	db 255 ; catch rate
 	db 57 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/rattata.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/rattata.pic", 0, 1 ; sprite dimensions

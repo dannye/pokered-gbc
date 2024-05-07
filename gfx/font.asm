@@ -1,5 +1,5 @@
 PokemonLogoGraphics: INCBIN "gfx/gs/new_pokemon_logo.2bpp"
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 FontGraphics:: INCBIN "gfx/gs/font.1bpp"
 FontGraphicsEnd::
 ELSE
@@ -9,7 +9,7 @@ ENDC
 
 ABTiles: INCBIN "gfx/font/AB.2bpp"
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 HpBarAndStatusGraphics:: INCBIN "gfx/gs/gen2_hp_bar_and_status.2bpp"
 HpBarAndStatusGraphicsEnd::
 
@@ -34,7 +34,7 @@ NintendoCopyrightLogoGraphics: INCBIN "gfx/splash/copyright.2bpp"
 GameFreakLogoGraphics: INCBIN "gfx/title/gamefreak_inc.2bpp"
 GameFreakLogoGraphicsEnd:
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 TextBoxGraphics:: INCBIN "gfx/gs/text_box.2bpp"
 TextBoxGraphicsEnd::
 ELSE

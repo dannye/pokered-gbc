@@ -7,7 +7,7 @@
 	db 25 ; catch rate
 	db 154 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/snorlax.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/snorlax.pic", 0, 1 ; sprite dimensions

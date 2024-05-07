@@ -7,7 +7,7 @@
 	db 225 ; catch rate
 	db 111 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/goldeen.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/goldeen.pic", 0, 1 ; sprite dimensions

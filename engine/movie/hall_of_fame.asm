@@ -196,7 +196,7 @@ HoFLoadPlayerPics:
 	ld a, BANK(RedPicBack)
 	call UncompressSpriteFromDE
 
-IF GEN_2_GRAPHICS ; Use uncompressed red sprite
+IF DEF(_GEN_2_GRAPHICS) ; Use uncompressed red sprite
 	ld a, $66
 	ld c, a
 	ld de, vBackPic

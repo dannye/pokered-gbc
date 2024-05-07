@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 108 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/onix.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/onix.pic", 0, 1 ; sprite dimensions

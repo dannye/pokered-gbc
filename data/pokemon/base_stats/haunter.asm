@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 126 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/haunter.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/haunter.pic", 0, 1 ; sprite dimensions

@@ -7,7 +7,7 @@
 	db 90 ; catch rate
 	db 116 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/raticate.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/raticate.pic", 0, 1 ; sprite dimensions

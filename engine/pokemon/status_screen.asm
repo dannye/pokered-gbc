@@ -105,7 +105,7 @@ StatusScreen:
 	push af
 	xor a
 	ldh [hTileAnimations], a
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	hlcoord 19, 3
 	lb bc, 2, 8
 ELSE
@@ -317,7 +317,7 @@ StatusScreen2:
 	hlcoord 9, 2
 	lb bc, 5, 10
 	call ClearScreenArea ; Clear under name
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	call StatusScreen2Hook
 	nop
 	nop

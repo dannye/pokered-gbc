@@ -2,7 +2,7 @@
 
 GetNidorinoPalID:
 	call ClearScreen
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld a, PAL_NIDORINO
 ELSE
 	ld a, PAL_PURPLEMON
@@ -11,7 +11,7 @@ ENDC
 
 GetRedPalID:
 	call ClearScreen
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld a, PAL_HERO
 ELSE
 	ld a, PAL_REDMON
@@ -20,7 +20,7 @@ ENDC
 
 GetRivalPalID:
 	call ClearScreen
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	ld a, PAL_GARY1
 ELSE
 	ld a, PAL_MEWMON

@@ -7,7 +7,7 @@
 	db 45 ; catch rate
 	db 160 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/butterfree.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/butterfree.pic", 0, 1 ; sprite dimensions

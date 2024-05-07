@@ -7,7 +7,7 @@
 	db 190 ; catch rate
 	db 100 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/seel.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/seel.pic", 0, 1 ; sprite dimensions

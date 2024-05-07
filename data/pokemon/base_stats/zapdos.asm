@@ -7,7 +7,7 @@
 	db 3 ; catch rate
 	db 216 ; base exp
 
-IF GEN_2_GRAPHICS
+IF DEF(_GEN_2_GRAPHICS)
 	INCBIN "gfx/pokemon/gsfront/zapdos.pic", 0, 1 ; sprite dimensions
 ELSE
 	INCBIN "gfx/pokemon/front/zapdos.pic", 0, 1 ; sprite dimensions
