@@ -1,5 +1,5 @@
-GEN_2_GRAPHICS EQU 1
-GEN_2_MUSIC    EQU 1
+DEF GEN_2_GRAPHICS EQU 1
+DEF GEN_2_MUSIC    EQU 1
 
 INCLUDE "macros/asserts.asm"
 INCLUDE "macros/const.asm"
