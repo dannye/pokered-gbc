@@ -1,4 +1,4 @@
-const_value = 0
+	const_def
 	const INTRO_GRAY        ; 00: used only when booting up the game
 	const OUTDOOR_GRAY      ; 01
 	const OUTDOOR_RED       ; 02
@@ -67,7 +67,7 @@ const_value = 0
 	const MAP_PALETTE_3F    ; 3F
 
 ; Named to make tileset palette assignments consistent with Pokecrystal
-const_value = 0
+	const_def
 	const PAL_BG_GRAY      ; 00
 	const PAL_BG_RED       ; 01
 	const PAL_BG_GREEN     ; 02
@@ -78,7 +78,7 @@ const_value = 0
 	const PAL_BG_TEXT      ; 07
 
 ; Used when you want a tile to display above the Player and NPCs
-const_value = $80
+	const_def $80
 	const PAL_BG_PRIORITY_GRAY   ; 80
 	const PAL_BG_PRIORITY_RED    ; 81
 	const PAL_BG_PRIORITY_GREEN  ; 82
