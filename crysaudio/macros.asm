@@ -147,7 +147,7 @@ ENDM
 MACRO toggle_sfx
 	db toggle_sfx_cmd
 ENDM
-execute_music EQUS "toggle_sfx"
+DEF execute_music EQUS "toggle_sfx"
 
 	const pitch_slide_cmd ; $e0
 MACRO pitch_slide
@@ -202,7 +202,7 @@ MACRO pitch_offset
 	db pitch_offset_cmd
 	bigdw \1 ; pitch offset
 ENDM
-toggle_perfect_pitch EQUS "pitch_offset 1"
+DEF toggle_perfect_pitch EQUS "pitch_offset 1"
 
 	const unknownmusic0xe7_cmd ; $e7
 MACRO unknownmusic0xe7
