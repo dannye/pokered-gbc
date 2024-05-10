@@ -2042,9 +2042,9 @@ wGameProgressFlagsEnd::
 
 	ds 56
 
-wObtainedHiddenItemsFlags:: flag_array 112
+wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
-wObtainedHiddenCoinsFlags:: flag_array 16
+wObtainedHiddenCoinsFlags:: flag_array MAX_HIDDEN_COINS
 
 ; $00 = walking
 ; $01 = biking
@@ -2328,3 +2328,5 @@ SECTION "Stack", WRAM0
 ; the stack grows downward
 	ds $100 - 1
 wStack:: db
+
+ENDSECTION
