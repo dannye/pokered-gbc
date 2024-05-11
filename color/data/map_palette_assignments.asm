@@ -1,31 +1,95 @@
-; $60 bytes for each tileset. Each byte is the palette number for a tile.
-; Remaining $a0 tiles aren't part of the tileset and are set to 7 (text palette).
+; One byte for each tile in the tileset, up to $60 tiles max.
+; Remaining tiles not reserved for the tileset ($a0 bytes) are set to 7 (text palette).
 ; Refer to MapPaletteSets for clarification on specific colors
 ; These use the pokecrystal macro for tileset palettes
 ; Also, this repo can use Polished Map's "Priority Colors" already
 ; In the event of Duplicate tilesets, the asm files are named to match the png files
 MapPaletteAssignments:
-	INCLUDE "color/tilesets/overworld.asm"   ; OVERWORLD
-	INCLUDE "color/tilesets/reds_house.asm"  ; REDS_HOUSE_1  (Duplicate of REDS_HOUSE_2)
-	INCLUDE "color/tilesets/pokecenter.asm"  ; MART          (Duplicate of POKECENTER)
-	INCLUDE "color/tilesets/forest.asm"      ; FOREST
-	INCLUDE "color/tilesets/reds_house.asm"  ; REDS_HOUSE_2  (Duplicate of REDS_HOUSE_1)
-	INCLUDE "color/tilesets/gym.asm"         ; DOJO          (Duplicate of GYM)
-	INCLUDE "color/tilesets/pokecenter.asm"  ; POKECENTER    (Duplicate of MART)
-	INCLUDE "color/tilesets/gym.asm"         ; GYM           (Duplicate of DOJO)
-	INCLUDE "color/tilesets/house.asm"       ; HOUSE
-	INCLUDE "color/tilesets/gate.asm"        ; FOREST_GATE   (Duplicate of GATE and MUSEUM)
-	INCLUDE "color/tilesets/gate.asm"        ; MUSEUM        (Duplicate of GATE and FOREST_GATE)
-	INCLUDE "color/tilesets/underground.asm" ; UNDERGROUND
-	INCLUDE "color/tilesets/gate.asm"        ; GATE          (Duplicate of FOREST_GATE and MUSEUM)
-	INCLUDE "color/tilesets/ship.asm"        ; SHIP
-	INCLUDE "color/tilesets/ship_port.asm"   ; SHIP_PORT
-	INCLUDE "color/tilesets/cemetery.asm"    ; CEMETERY
-	INCLUDE "color/tilesets/interior.asm"    ; INTERIOR
-	INCLUDE "color/tilesets/cavern.asm"      ; CAVERN
-	INCLUDE "color/tilesets/lobby.asm"       ; LOBBY
-	INCLUDE "color/tilesets/mansion.asm"     ; MANSION
-	INCLUDE "color/tilesets/lab.asm"         ; LAB
-	INCLUDE "color/tilesets/club.asm"        ; CLUB
-	INCLUDE "color/tilesets/facility.asm"    ; FACILITY
-	INCLUDE "color/tilesets/plateau.asm"     ; PLATEAU
+	table_width 2, MapPaletteAssignments
+	dw OverworldPalMap   ; OVERWORLD
+	dw RedsHouse1PalMap  ; REDS_HOUSE_1
+	dw MartPalMap        ; MART
+	dw ForestPalMap      ; FOREST
+	dw RedsHouse2PalMap  ; REDS_HOUSE_2
+	dw DojoPalMap        ; DOJO
+	dw PokecenterPalMap  ; POKECENTER
+	dw GymPalMap         ; GYM
+	dw HousePalMap       ; HOUSE
+	dw ForestGatePalMap  ; FOREST_GATE
+	dw MuseumPalMap      ; MUSEUM
+	dw UndergroundPalMap ; UNDERGROUND
+	dw GatePalMap        ; GATE
+	dw ShipPalMap        ; SHIP
+	dw ShipPortPalMap    ; SHIP_PORT
+	dw CemeteryPalMap    ; CEMETERY
+	dw InteriorPalMap    ; INTERIOR
+	dw CavernPalMap      ; CAVERN
+	dw LobbyPalMap       ; LOBBY
+	dw MansionPalMap     ; MANSION
+	dw LabPalMap         ; LAB
+	dw ClubPalMap        ; CLUB
+	dw FacilityPalMap    ; FACILITY
+	dw PlateauPalMap     ; PLATEAU
+	assert_table_length NUM_TILESETS
+
+OverworldPalMap:
+	INCLUDE "color/tilesets/overworld.asm"
+
+RedsHouse1PalMap:
+RedsHouse2PalMap:
+	INCLUDE "color/tilesets/reds_house.asm"
+
+MartPalMap:
+PokecenterPalMap:
+	INCLUDE "color/tilesets/pokecenter.asm"
+
+ForestPalMap:
+	INCLUDE "color/tilesets/forest.asm"
+
+DojoPalMap:
+GymPalMap:
+	INCLUDE "color/tilesets/gym.asm"
+
+HousePalMap:
+	INCLUDE "color/tilesets/house.asm"
+
+GatePalMap:
+ForestGatePalMap:
+MuseumPalMap:
+	INCLUDE "color/tilesets/gate.asm"
+
+UndergroundPalMap:
+	INCLUDE "color/tilesets/underground.asm"
+
+ShipPalMap:
+	INCLUDE "color/tilesets/ship.asm"
+
+ShipPortPalMap:
+	INCLUDE "color/tilesets/ship_port.asm"
+
+CemeteryPalMap:
+	INCLUDE "color/tilesets/cemetery.asm"
+
+InteriorPalMap:
+	INCLUDE "color/tilesets/interior.asm"
+
+CavernPalMap:
+	INCLUDE "color/tilesets/cavern.asm"
+
+LobbyPalMap:
+	INCLUDE "color/tilesets/lobby.asm"
+
+MansionPalMap:
+	INCLUDE "color/tilesets/mansion.asm"
+
+LabPalMap:
+	INCLUDE "color/tilesets/lab.asm"
+
+ClubPalMap:
+	INCLUDE "color/tilesets/club.asm"
+
+FacilityPalMap:
+	INCLUDE "color/tilesets/facility.asm"
+
+PlateauPalMap:
+	INCLUDE "color/tilesets/plateau.asm"
