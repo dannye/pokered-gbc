@@ -101,7 +101,7 @@ GatePalSet:
 	db INDOOR_YELLOW
 	db INDOOR_BROWN
 	db INDOOR_LIGHT_BLUE
-	db ALT_TEXTBOX_PAL ; Uses variant of textbox palette for skeleton pokemon
+	db ALT_TEXTBOX_PAL ; Uses variant of textbox palette for skeleton pokemon and Articuno binoculars
 
 CemeteryPalSet:
 	db INDOOR_GRAY

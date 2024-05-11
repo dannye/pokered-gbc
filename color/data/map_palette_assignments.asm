@@ -1,5 +1,5 @@
-; One byte for each tile in the tileset
-; Remaining tiles are set to 7 (text palette).
+; One byte for each tile in the tileset, up to $60 tiles max.
+; Remaining tiles not reserved for the tileset ($a0 bytes) are set to 7 (text palette).
 ; Refer to MapPaletteSets for clarification on specific colors
 ; These use the pokecrystal macro for tileset palettes
 ; Also, this repo can use Polished Map's "Priority Colors" already
