@@ -405,3 +405,5 @@ hDelayFrameHookBank:: db
 hColorHackTmp:: db
 
 	ds 3
+
+ENDSECTION

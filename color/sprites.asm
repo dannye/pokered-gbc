@@ -1,26 +1,26 @@
 ; Handles sprite attributes
 
-ATK_PAL_GREY    EQU 0
-ATK_PAL_BLUE    EQU 1
-ATK_PAL_RED     EQU 2
-ATK_PAL_BROWN   EQU 3
-ATK_PAL_YELLOW  EQU 4
-ATK_PAL_GREEN   EQU 5
-ATK_PAL_ICE     EQU 6
-ATK_PAL_PURPLE  EQU 7
+DEF ATK_PAL_GREY    EQU 0
+DEF ATK_PAL_BLUE    EQU 1
+DEF ATK_PAL_RED     EQU 2
+DEF ATK_PAL_BROWN   EQU 3
+DEF ATK_PAL_YELLOW  EQU 4
+DEF ATK_PAL_GREEN   EQU 5
+DEF ATK_PAL_ICE     EQU 6
+DEF ATK_PAL_PURPLE  EQU 7
 ; 8: color based on attack type
 ; 9: don't change color palette (assume it's already set properly from elsewhere)
 
 
-SPR_PAL_ORANGE  EQU 0
-SPR_PAL_BLUE    EQU 1
-SPR_PAL_GREEN   EQU 2
-SPR_PAL_BROWN   EQU 3
-SPR_PAL_PURPLE  EQU 4
-SPR_PAL_EMOJI   EQU 5
-SPR_PAL_TREE    EQU 6
-SPR_PAL_ROCK    EQU 7
-SPR_PAL_RANDOM  EQU 8
+DEF SPR_PAL_ORANGE  EQU 0
+DEF SPR_PAL_BLUE    EQU 1
+DEF SPR_PAL_GREEN   EQU 2
+DEF SPR_PAL_BROWN   EQU 3
+DEF SPR_PAL_PURPLE  EQU 4
+DEF SPR_PAL_EMOJI   EQU 5
+DEF SPR_PAL_TREE    EQU 6
+DEF SPR_PAL_ROCK    EQU 7
+DEF SPR_PAL_RANDOM  EQU 8
 
 LoadOverworldSpritePalettes:
 	ldh a, [rSVBK]
@@ -307,6 +307,7 @@ ClearSpritePaletteMap:
 
 
 SpritePaletteAssignments: ; Characters on the overworld
+	table_width 1, SpritePaletteAssignments
 	; 0x01: SPRITE_RED
 	db SPR_PAL_ORANGE
 
@@ -523,6 +524,8 @@ SpritePaletteAssignments: ; Characters on the overworld
 	; 0x48: SPRITE_LYING_OLD_MAN
 	db SPR_PAL_BROWN
 
+	assert_table_length NUM_SPRITES
+
 
 AnimationTileset1Palettes:
 	INCBIN "color/data/animtileset1palettes.bin"
@@ -531,6 +534,7 @@ AnimationTileset2Palettes:
 	INCBIN "color/data/animtileset2palettes.bin"
 
 TypeColorTable: ; Used for a select few sprites to be colorized based on attack type
+	table_width 1, TypeColorTable
 	db 0 ; NORMAL EQU $00
 	db 0 ; FIGHTING EQU $01
 	db 0 ; FLYING EQU $02
@@ -558,5 +562,6 @@ TypeColorTable: ; Used for a select few sprites to be colorized based on attack 
 	db 7 ; PSYCHIC EQU $18
 	db 6 ; ICE EQU $19
 	db 1 ; DRAGON EQU $1A
+	assert_table_length NUM_TYPES
 
 INCLUDE "color/data/spritepalettes.asm"
