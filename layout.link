@@ -204,17 +204,17 @@ ROMX $2C
 ROMX $31
 	"bank31"
 ROMX $32
-	"bank32"
+	"Pics 7"
 ROMX $33
-	"bank33"
+	"Pics 8"
 ROMX $34
-	"bank34"
+	"Pics 9"
 ROMX $35
-	"bank35"
+	"Pics 10"
 ROMX $36
-	"bank36"
+	"Pics 11"
 ROMX $37
-	"bank37"
+	"Pics 12"
 WRAM0
 	"Audio RAM"
 	org $c100
