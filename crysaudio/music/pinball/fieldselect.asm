@@ -386,7 +386,7 @@ Music_FieldSelect_branch_49678:
 	sound_loop 0, Music_FieldSelect_branch_49678
 
 Music_FieldSelect_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 6
 	drum_note 9, 1
 	drum_note 9, 1

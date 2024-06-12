@@ -1060,7 +1060,7 @@ Music_WhackTheDugtrio_branch_4559a:
 	sound_ret
 
 Music_WhackTheDugtrio_Ch4:
-	toggle_noise 1
+	toggle_noise 8
 	drum_speed 12
 	drum_note 1, 8
 	drum_speed 8

@@ -1335,7 +1335,7 @@ Music_BlueField_branch_412dd:
 	sound_ret
 
 Music_BlueField_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 8
 	drum_note 7, 4
 	drum_note 8, 2

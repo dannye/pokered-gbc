@@ -974,7 +974,7 @@ Music_Title_branch_46222:
 	sound_ret
 
 Music_Title_Ch4:
-	toggle_noise 1
+	toggle_noise 8
 	drum_speed 8
 	drum_note 3, 1
 	drum_note 3, 1

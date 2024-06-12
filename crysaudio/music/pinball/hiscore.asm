@@ -1011,7 +1011,7 @@ Music_HiScore_branch_42244:
 	sound_ret
 
 Music_HiScore_Ch4:
-	toggle_noise 1
+	toggle_noise 8
 	drum_speed 8
 	drum_note 3, 4
 	drum_note 2, 2

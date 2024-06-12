@@ -165,7 +165,7 @@ Music_GameOver_Ch3:
 	sound_ret
 
 Music_GameOver_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 8
 	drum_note 3, 4
 	drum_note 4, 2

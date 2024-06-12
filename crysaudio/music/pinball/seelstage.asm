@@ -1216,7 +1216,7 @@ Music_SeelStage_branch_45c23:
 	sound_ret
 
 Music_SeelStage_Ch4:
-	toggle_noise 2
+	toggle_noise 9
 Music_SeelStage_branch_45c59:
 	drum_speed 12
 	sound_call Music_SeelStage_branch_45d1b

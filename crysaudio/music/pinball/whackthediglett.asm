@@ -675,7 +675,7 @@ Music_WhackTheDiglett_branch_44f8e:
 	sound_ret
 
 Music_WhackTheDiglett_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 6
 	drum_note 2, 1
 	drum_note 2, 1

@@ -621,7 +621,7 @@ Music_Pokedex_branch_3db3e:
 	sound_loop 0, Music_Pokedex_branch_3db3e
 
 Music_Pokedex_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 8
 	drum_note 6, 3
 	drum_note 2, 1
