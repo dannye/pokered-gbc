@@ -32,7 +32,6 @@ Music_DuelTheme1_Ch1:
 	note A_, 1
 	rest 2
 	inc_octave
-	volume_envelope 10, 8
 	note D_, 10
 	volume_envelope 3, 7
 	note D_, 12
@@ -192,8 +191,7 @@ Music_DuelTheme1_Ch1:
 	note G#, 4
 	note A_, 3
 	speed 7
-	note A_, 5
-	note A_, 10
+	note A_, 15
 	note A_, 6
 	volume_envelope 3, 7
 	note A_, 2
@@ -248,11 +246,9 @@ Music_DuelTheme1_Ch1:
 	sound_call Branch_f5580
 	volume_envelope 10, 8
 	note A_, 2
-	note A_, 8
-	note A_, 8
+	note A_, 16
 	note A_, 6
 	duty_cycle 1
-	volume_envelope 10, 8
 	speed 1
 	dec_octave
 	note B_, 4
@@ -296,10 +292,8 @@ Music_DuelTheme1_Ch1:
 	volume_envelope 3, 7
 	note D_, 2
 	volume_envelope 10, 8
-	note D_, 8
-	note D_, 8
-	note D_, 8
-	note D_, 8
+	note D_, 16
+	note D_, 16
 	volume_envelope 3, 7
 	note D_, 2
 	volume_envelope 10, 8
@@ -307,8 +301,7 @@ Music_DuelTheme1_Ch1:
 	volume_envelope 3, 7
 	note D_, 2
 	volume_envelope 10, 8
-	note D_, 6
-	note D_, 8
+	note D_, 14
 	rest 4
 	sound_loop 0, .MainLoop
 
@@ -747,7 +740,6 @@ Music_DuelTheme1_Ch2:
 	note F#, 1
 	note A_, 1
 	rest 1
-	volume_envelope 7, 8
 	sound_call Branch_f594d
 	volume_envelope 7, 8
 	octave 3
@@ -1003,8 +995,7 @@ Music_DuelTheme1_Ch2:
 	dec_octave
 	speed 7
 	sound_call Branch_f598c
-	note D_, 8
-	note D_, 8
+	note D_, 16
 	note C#, 6
 	dec_octave
 	duty_cycle 1
@@ -1035,10 +1026,8 @@ Music_DuelTheme1_Ch2:
 	dec_octave
 	note A_, 2
 	rest 2
-	note G_, 8
-	note G_, 8
-	note F#, 8
-	note F#, 8
+	note G_, 16
+	note F#, 16
 	rest 2
 	note G_, 12
 	rest 2

@@ -208,14 +208,13 @@ Music_Club2_Ch3:
 	note E_, 4
 	note C_, 4
 	note F#, 2
-	rest 2
 	rest 16
+	rest 2
 	note G_, 4
 	note A_, 4
 	note B_, 4
 	note F#, 2
-	rest 2
-	rest 14
+	rest 16
 	channel_volume 2
 	sound_call Branch_fa1cf
 	octave 5
@@ -226,30 +225,36 @@ Music_Club2_Ch3:
 	note G_, 8
 	sound_call Branch_fa1f3
 	octave 4
-	note G_, 16
-	note G_, 12
+	note_type 12, 1, 10
+	note G_, 14
+	note_type 6, 1, 10
 	rest 16
 	rest 8
 	note E_, 8
 	sound_call Branch_fa1f3
 	octave 4
-	note G_, 16
+	note_type 12, 1, 10
+	note G_, 14
 	note G_, 12
-	note G_, 16
-	note G_, 8
+	note_type 6, 1, 10
 	rest 4
 	note A_, 2
 	note G_, 2
-	note F#, 16
-	note F#, 12
+	note_type 12, 1, 10
+	note F#, 14
+	note_type 6, 1, 10
 	rest 4
 	note F#, 1
-	note G_, 15
-	note G_, 12
+	note G_, 1
+	note_type 12, 1, 10
+	note G_, 13
+	note_type 6, 1, 10
 	rest 4
 	note G#, 1
+	note A_, 1
+	note_type 12, 1, 10
 	note A_, 15
-	note A_, 16
+	note_type 6, 1, 10
 	rest 16
 	rest 16
 	sound_loop 0, .MainLoop
@@ -257,13 +262,16 @@ Music_Club2_Ch3:
 Branch_fa1cf:
 	octave 6
 	note C#, 1
-	note D_, 15
-	note D_, 12
+	note D_, 1
+	note_type 12, 2, 10
+	note D_, 13
+	note_type 6, 2, 10
 	note C_, 2
 	dec_octave
 	note B_, 2
-	note G_, 16
-	note G_, 8
+	note_type 12, 2, 10
+	note G_, 12
+	note_type 6, 2, 10
 	rest 4
 	note E_, 4
 	note B_, 4
@@ -271,8 +279,9 @@ Branch_fa1cf:
 	note C_, 4
 	dec_octave
 	note B_, 4
-	note A_, 16
-	note A_, 8
+	note_type 12, 2, 10
+	note A_, 12
+	note_type 6, 2, 10
 	note A_, 16
 	rest 4
 	sound_ret
@@ -287,8 +296,9 @@ Branch_fa1f3:
 	note B_, 4
 	inc_octave
 	note C_, 4
-	note D_, 16
-	note D_, 8
+	note_type 12, 1, 10
+	note D_, 12
+	note_type 6, 1, 10
 	rest 4
 	note C_, 2
 	dec_octave

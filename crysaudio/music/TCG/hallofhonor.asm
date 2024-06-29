@@ -214,23 +214,24 @@ Music_HallOfHonor_Ch3:
 	speed 1
 	note B_, 3
 	inc_octave
-	note C_, 4
-	speed 7
-	note C_, 15
-	note C_, 8
+	note C_, 11
+	note_type 14, 1, 12
+	note C_, 11
+	note_type 7, 1, 12
 	dec_octave
 	note B_, 2
 	note A_, 2
 	note G_, 6
-	note C_, 10
-	note C_, 12
+	note_type 14, 1, 12
+	note C_, 11
+	note_type 7, 1, 12
 	speed 1
 	note B_, 3
 	inc_octave
-	note C_, 4
-	speed 7
-	note C_, 15
-	note C_, 6
+	note C_, 11
+	note_type 14, 1, 12
+	note C_, 10
+	note_type 7, 1, 12
 	dec_octave
 	note B_, 2
 	inc_octave
@@ -239,31 +240,30 @@ Music_HallOfHonor_Ch3:
 	dec_octave
 	speed 1
 	note F#, 3
-	note G_, 4
-	speed 7
-	note G_, 15
-	note G_, 6
+	note G_, 11
+	note_type 14, 1, 12
+	note G_, 10
+	note_type 7, 1, 12
 	note G_, 2
 	note A_, 2
 	note B_, 2
+	speed 1
+	note B_, 3
+	inc_octave
+	note C_, 11
+	note_type 14, 1, 12
+	note C_, 11
+	note_type 7, 1, 12
+	dec_octave
+	note B_, 2
+	note A_, 2
+	note G_, 6
 	speed 1
 	note B_, 3
 	inc_octave
 	note C_, 4
 	speed 7
 	note C_, 15
-	note C_, 8
-	dec_octave
-	note B_, 2
-	note A_, 2
-	note G_, 6
-	speed 1
-	note B_, 3
-	inc_octave
-	note C_, 4
-	speed 7
-	note C_, 9
-	note C_, 6
 	dec_octave
 	note G_, 2
 	inc_octave
@@ -276,8 +276,9 @@ Music_HallOfHonor_Ch3:
 	note F_, 1
 	note E_, 2
 	note C_, 2
+	note_type 14, 1, 12
 	note C_, 10
-	note C_, 10
+	note_type 7, 1, 12
 	note E_, 2
 	speed 1
 	note E_, 3
@@ -286,35 +287,39 @@ Music_HallOfHonor_Ch3:
 	note F_, 1
 	note E_, 2
 	note C_, 2
-	note C_, 10
-	note C_, 12
+	note_type 14, 1, 12
+	note C_, 11
+	note_type 7, 1, 12
 	speed 1
 	note F#, 3
-	note G_, 4
-	speed 7
-	note G_, 15
-	note G_, 8
+	note G_, 11
+	note_type 14, 1, 12
+	note G_, 11
+	note_type 7, 1, 12
 	note F_, 2
 	note E_, 2
 	note F_, 2
 	note E_, 2
 	note C_, 2
 	dec_octave
+	note_type 14, 1, 12
 	note G_, 10
-	note G_, 10
+	note_type 7, 1, 12
 	note E_, 2
 	note F_, 2
 	inc_octave
 	note C_, 2
-	note C_, 12
-	note C_, 10
+	note_type 14, 1, 12
+	note C_, 11
+	note_type 7, 1, 12
 	dec_octave
 	note E_, 2
 	note F_, 2
 	inc_octave
 	note C_, 2
+	note_type 14, 1, 12
 	note C_, 12
-	note C_, 12
+	note_type 7, 1, 12
 	rest 3
 	channel_volume 3
 	sound_loop 0, .MainLoop
