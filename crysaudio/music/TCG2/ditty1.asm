@@ -188,8 +188,7 @@ Music_Ditty1_Ch1:
 
 
 Music_Ditty1_Ch3:
-	fade_wave 15
-	load_wave 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 13, 12, 11, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	fade_wave 14
 	speed 1
 	stereo_panning TRUE, TRUE
 	octave 2

@@ -1021,8 +1021,7 @@ Music_Fort2_Ch1:
 
 
 Music_Fort2_Ch3:
-	fade_wave 15
-	load_wave 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 13, 12, 11, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	fade_wave 14
 	channel_volume 2
 ;	echo 0
 	stereo_panning TRUE, TRUE

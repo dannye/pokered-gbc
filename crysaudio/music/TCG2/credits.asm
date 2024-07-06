@@ -4144,8 +4144,7 @@ Music_TCG2Credits_Ch1:
 
 
 Music_TCG2Credits_Ch3:
-	fade_wave 15
-	load_wave 12, 12, 12, 12, 12, 12, 12, 12, 11, 12, 12, 12, 11, 12, 12, 12, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11
+	fade_wave 14
 	stereo_panning TRUE, TRUE
 	speed 1
 	channel_volume 1
