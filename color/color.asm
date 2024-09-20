@@ -134,7 +134,7 @@ SetPal_Battle_Common:
 	ld e, 3
 	farcall LoadSGBPalette
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	; Player exp bar
 	ld d, PAL_EXP
 ELSE
@@ -154,7 +154,7 @@ ENDC
 	ld c, 11
 	call FillBox
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	; Bottom half; player lifebar
 	ld hl, W2_TilesetPaletteMap + 7 * 20 + 9
 	ld a, 2
@@ -170,7 +170,7 @@ IF GEN_2_GRAPHICS
 	call FillBox
 ENDC
 
-IF !GEN_2_GRAPHICS
+IF !EXP_BAR_AND_CAUGHT_INDICATOR
 	; Bottom half; player lifebar
 	ld hl, W2_TilesetPaletteMap + 7 * 20 + 9
 	ld a, 2
@@ -288,7 +288,7 @@ SetPal_StatusScreen:
 	ld e, 1
 	farcall LoadSGBPalette
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	ld d, PAL_EXP
 	ld e, 4
 	farcall LoadSGBPalette
@@ -334,7 +334,7 @@ ENDC
 	dec b
 	jr nz, .drawRow
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	; Player exp bar
 	ld hl, W2_TilesetPaletteMap + 11 + 5 * SCREEN_WIDTH
 	ld b, 8

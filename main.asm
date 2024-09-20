@@ -42,7 +42,7 @@ INCLUDE "engine/events/display_pokedex.asm"
 ; Hooks for color hack
 INCLUDE "color/cable_club.asm"
 INCLUDE "color/oak_intro.asm"
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 INCLUDE "color/load_hp_and_exp_bar.asm"
 ENDC
 
@@ -109,7 +109,7 @@ INCLUDE "engine/math/random.asm"
 
 INCLUDE "color/status_screen.asm"
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 EXPBarGraphics:  INCBIN "gfx/gs/exp_bar.2bpp"
 EXPBarGraphicsEnd:
 ENDC
@@ -284,7 +284,7 @@ SECTION "Trainer Sight", ROMX
 
 INCLUDE "engine/overworld/trainer_sight.asm"
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 INCLUDE "color/exp_bar.asm"
 ENDC
 

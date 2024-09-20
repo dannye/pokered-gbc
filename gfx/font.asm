@@ -1,5 +1,5 @@
 PokemonLogoGraphics: INCBIN "gfx/gs/new_pokemon_logo.2bpp"
-IF GEN_2_GRAPHICS
+IF GEN_2_GRAPHICS || EXP_BAR_AND_CAUGHT_INDICATOR
 FontGraphics:: INCBIN "gfx/gs/font.1bpp"
 FontGraphicsEnd::
 ELSE
