@@ -173,8 +173,8 @@ LoadTradingGFXAndMonNames:
 	call ClearSprites
 	ld a, $ff
 	ld [wUpdateSpritesEnabled], a
-	ld hl, wd730
-	set 6, [hl] ; turn on instant text printing
+	ld hl, wStatusFlags5
+	set BIT_NO_TEXT_DELAY, [hl]
 	ld a, [wOnSGB]
 	and a
 	ld a, $e4 ; non-SGB OBP0
@@ -186,14 +186,14 @@ LoadTradingGFXAndMonNames:
 	xor a
 	ldh [hAutoBGTransferEnabled], a
 	ld a, [wTradedPlayerMonSpecies]
-	ld [wd11e], a
+	ld [wNamedObjectIndex], a
 	call GetMonName
-	ld hl, wcd6d
+	ld hl, wNameBuffer
 	ld de, wStringBuffer
 	ld bc, NAME_LENGTH
 	call CopyData
 	ld a, [wTradedEnemyMonSpecies]
-	ld [wd11e], a
+	ld [wNamedObjectIndex], a
 	jp GetMonName
 
 Trade_LoadMonPartySpriteGfx:
@@ -218,8 +218,8 @@ Trade_SwapNames:
 Trade_Cleanup:
 	xor a
 	call LoadGBPal
-	ld hl, wd730
-	res 6, [hl] ; turn off instant text printing
+	ld hl, wStatusFlags5
+	res BIT_NO_TEXT_DELAY, [hl]
 	ret
 
 Trade_ShowPlayerMon:
@@ -727,8 +727,8 @@ Trade_CircleOAM3:
 
 ; a = species
 Trade_LoadMonSprite:
-	ld [wcf91], a
-	ld [wd0b5], a
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 	ld [wWholeScreenPaletteMonSpecies], a
 	ld b, SET_PAL_POKEMON_WHOLE_SCREEN
 	ld c, 0

@@ -69,7 +69,7 @@ SetPal_StatusScreen:
 	ld de, wPalPacket
 	ld bc, $10
 	call CopyData
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	cp NUM_POKEMON_INDEXES + 1
 	jr c, .pokemon
 	ld a, $1 ; not pokemon
@@ -97,7 +97,7 @@ SetPal_Pokedex:
 	ld de, wPalPacket
 	ld bc, $10
 	call CopyData
-	ld a, [wcf91]
+	ld a, [wCurPartySpecies]
 	call DeterminePaletteIDOutOfBattle
 	ld hl, wPalPacket + 3
 	ld [hl], a
@@ -275,13 +275,13 @@ DeterminePaletteID:
 	ret nz
 	ld a, [hl]
 DeterminePaletteIDOutOfBattle:
-	ld [wd11e], a
+	ld [wPokedexNum], a
 	and a ; is the mon index 0?
 	jr z, .skipDexNumConversion
 	push bc
 	predef IndexToPokedex
 	pop bc
-	ld a, [wd11e]
+	ld a, [wPokedexNum]
 .skipDexNumConversion
 	ld e, a
 	ld d, 0

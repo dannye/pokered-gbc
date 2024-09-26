@@ -15,9 +15,11 @@ PrepareTitleScreen::
 	xor a
 	ldh [hWY], a
 	ld [wLetterPrintingDelayFlags], a
-	ld hl, wd732
+	ld hl, wStatusFlags6
 	ld [hli], a
+	assert wStatusFlags6 + 1 == wStatusFlags7
 	ld [hli], a
+	assert wStatusFlags7 + 1 == wElite4Flags
 	ld [hl], a
 ;	ld a, 0 ; BANK(Music_TitleScreen)
 ;	ld [wAudioROMBank], a
@@ -218,7 +220,7 @@ ENDC
 ;	ld [wNewSoundID], a
 	call PlayMusic
 	xor a
-	ld [wUnusedCC5B], a
+	ld [wUnusedFlag], a
 
 ; Keep scrolling in new mons indefinitely until the user performs input.
 .awaitUserInterruptionLoop
@@ -359,8 +361,8 @@ ClearBothBGMaps:
 	jp FillMemory
 
 LoadTitleMonSprite:
-	ld [wcf91], a
-	ld [wd0b5], a
+	ld [wCurPartySpecies], a
+	ld [wCurSpecies], a
 	hlcoord 5, 10
 	call GetMonHeader
 	jp LoadFrontSpriteByMonIndex
