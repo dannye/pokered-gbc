@@ -124,13 +124,13 @@ PrepareOAMData::
 	inc hl
 	inc e
 	ld a, [hl]
-	bit 1, a ; is the tile allowed to set the sprite priority bit?
+	bit BIT_SPRITE_UNDER_GRASS, a
 	jr z, .skipPriority
 	ldh a, [hSpritePriority]
 	or [hl]
 .skipPriority
 	call _ColorOverworldSprite	; HAX
-	bit 0, a ; OAMFLAG_ENDOFDATA
+	bit BIT_END_OF_OAM_DATA, a
 	jr z, .tileLoop
 
 	ld a, e
@@ -148,8 +148,8 @@ PrepareOAMData::
 	ld h, HIGH(wShadowOAM)
 	ld de, $4
 	ld b, $a0
-	ld a, [wd736]
-	bit 6, a ; jumping down ledge or fishing animation?
+	ld a, [wMovementFlags]
+	bit BIT_LEDGE_OR_FISHING, a
 	ld a, $a0
 	jr z, .clear
 

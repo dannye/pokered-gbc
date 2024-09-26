@@ -10,8 +10,8 @@ PlayDefaultMusicFadeOutCurrent::
 ; Fade out the current music and then play the default music.
 	ld c, 10
 	ld d, 0
-	ld a, [wd72e]
-	bit 5, a ; has a battle just ended?
+	ld a, [wStatusFlags4]
+	bit BIT_BATTLE_OVER_OR_BLACKOUT, a
 	jr z, PlayDefaultMusicCommon
 	xor a
 	ld [wLastMusicSoundID], a
@@ -236,9 +236,9 @@ PlayCry::
 	push bc
 	push af
 
-	ld [wd11e], a
+	ld [wPokedexNum], a
 	predef IndexToPokedex
-	ld a, [wd11e]
+	ld a, [wPokedexNum]
 	dec a
 	ld e, a
 	ld d, 0

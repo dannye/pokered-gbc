@@ -62,14 +62,14 @@ SetPalFunctions:
 ; HAXed to give trainers palettes independantly
 ; Also skips the "transform" check, caller does that instead
 DeterminePaletteID:
-	ld [wd11e], a
+	ld [wPokedexNum], a
 	and a
 
 	push bc
 	predef IndexToPokedex ; turn Pokemon ID number into Pokedex number
 	pop bc
 
-	ld a, [wd11e]
+	ld a, [wPokedexNum]
 	ld hl, MonsterPalettes
 	and a
 	jr nz, .skipDexNumConversion ; Check if trainer?
@@ -105,14 +105,14 @@ ENDC
 	
 
 DetermineBackSpritePaletteID:
-	ld [wd11e], a
+	ld [wPokedexNum], a
 	and a
 
 	push bc
 	predef IndexToPokedex ; turn Pokemon ID number into Pokedex number
 	pop bc
 
-	ld a, [wd11e]
+	ld a, [wPokedexNum]
 	ld hl, MonsterPalettes
 	and a
 	jr nz, .getPaletteID ; Check if trainer?

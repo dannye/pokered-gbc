@@ -44,7 +44,7 @@ SafariZoneGameOver:
 ;	jr nz, .waitForMusicToPlay
 
 	ld a, TEXT_SAFARI_GAME_OVER
-	ldh [hSpriteIndexOrTextID], a
+	ldh [hTextID], a
 	call DisplayTextID
 	xor a
 	ld [wPlayerMovingDirection], a
