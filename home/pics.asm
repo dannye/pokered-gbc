@@ -11,7 +11,7 @@ UncompressMonSprite::
 
 	; HAX: code from Danny-E33's hack
 	; Each pokemon's picture bank is defined with an unused byte in its stats.
-	ld a, [wcf91] ; get Pokémon ID
+	ld a, [wCurPartySpecies] ; get Pokémon ID
 	ld b, BANK(FossilKabutopsPic)
 	cp FOSSIL_KABUTOPS
 	jr z, .RecallBank
