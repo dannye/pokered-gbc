@@ -3,7 +3,7 @@
 StatusScreenHook:
 	; b = SET_PAL_STATUS_SCREEN
 	call RunPaletteCommand
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	decoord 18, 5
 	ld a, [wBattleMonLevel]
 	push af
@@ -15,7 +15,7 @@ IF GEN_2_GRAPHICS
 ENDC
 	ret
 
-; Only called when GEN_2_GRAPHICS is set
+; Only called when EXP_BAR_AND_CAUGHT_INDICATOR is set
 StatusScreen2Hook:
 	hlcoord 19, 1
 	lb bc, 6, 10
