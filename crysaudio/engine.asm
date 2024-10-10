@@ -272,16 +272,21 @@ UpdateChannels:
 	jp hl
 
 .ChannelFunctions:
+	table_width 2, UpdateChannels.ChannelFunctions
+; music channels
 	dw .Channel1
 	dw .Channel2
 	dw .Channel3
 	dw .Channel4
-; sfx ch ptrs are identical to music chs
-; ..except 5
+	assert_table_length NUM_MUSIC_CHANS
+; sfx channels
+; identical to music channels, except .Channel5 is not disabled by the low-HP danger sound
+; (instead, PlayDanger does not play the danger sound if sfx is playing)
 	dw .Channel5
 	dw .Channel6
 	dw .Channel7
 	dw .Channel8
+	assert_table_length NUM_CHANNELS
 
 .Channel1:
 	ld a, [wLowHealthAlarm]
@@ -400,7 +405,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
-	ld hl, rNR20
+	ld hl, rNR21 - 1 ; there is no rNR20
 	call ClearChannel
 	ret
 
@@ -543,7 +548,7 @@ endr
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
-	ld hl, rNR40
+	ld hl, rNR41 - 1 ; there is no rNR40
 	call ClearChannel
 	ret
 
@@ -585,7 +590,7 @@ PlayDanger:
 	ret z
 
 	; Don't do anything if SFX is being played
-	and $ff ^ (1 << DANGER_ON_F)
+	and ~(1 << DANGER_ON_F)
 	ld d, a
 	call _CheckSFX
 	jr c, .increment
@@ -785,7 +790,7 @@ LoadNote:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; get direction of pitch slide
+	; subtract pitch slide from frequency
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, e
@@ -807,7 +812,7 @@ LoadNote:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; ????
+	; subtract frequency from pitch slide
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, [hl]
@@ -816,7 +821,6 @@ LoadNote:
 	ld a, d
 	sbc 0
 	ld d, a
-	; ????
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
 	ld a, [hl]
@@ -958,7 +962,7 @@ HandleTrackVibrato:
 	swap [hl]
 	or [hl]
 	ld [hl], a
-	; ????
+	; get the frequency
 	ld a, [wCurTrackFrequency]
 	ld e, a
 	; toggle vibrato up/down
@@ -1034,6 +1038,7 @@ ApplyPitchSlide:
 	add hl, bc
 	add [hl]
 	ld [hl], a
+	; could have done "jr nc, .no_rollover / inc de / .no_rollover"
 	ld a, 0
 	adc e
 	ld e, a
@@ -1074,6 +1079,7 @@ ApplyPitchSlide:
 	ld a, [hl]
 	add a
 	ld [hl], a
+	; could have done "jr nc, .no_rollover / dec de / .no_rollover"
 	ld a, e
 	sbc 0
 	ld e, a
@@ -1208,10 +1214,10 @@ ParseMusic:
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
 	bit SOUND_SFX, [hl]
-	jp nz, ParseSFXOrRest
-	bit SOUND_REST, [hl] ; rest
-	jp nz, ParseSFXOrRest
-	bit SOUND_NOISE, [hl] ; noise sample
+	jp nz, ParseSFXOrCry
+	bit SOUND_CRY, [hl]
+	jp nz, ParseSFXOrCry
+	bit SOUND_NOISE, [hl]
 	jp nz, GetNoiseSample
 ; normal note
 	; set note duration (bottom nybble)
@@ -1240,7 +1246,7 @@ ParseMusic:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; ????
+	; set noise sampling
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
 	set NOTE_NOISE_SAMPLING, [hl]
@@ -1259,8 +1265,9 @@ ParseMusic:
 	add hl, bc
 	bit SOUND_SUBROUTINE, [hl] ; in a subroutine?
 	jr nz, .readcommand ; execute
+	; are we in a sfx channel right now?
 	ld a, [wCurChannel]
-	cp CHAN5
+	cp NUM_MUSIC_CHANS
 	jr nc, .chan_5to8
 	; ????
 
@@ -1287,15 +1294,15 @@ ParseMusic:
 .chan_5to8
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	bit SOUND_REST, [hl]
+	bit SOUND_CRY, [hl]
 	call nz, RestoreVolume
 	; end music
 	ld a, [wCurChannel]
 	cp CHAN5
 	jr nz, .ok
-	; ????
+	; sweep = 0
 	xor a
-	ldh [rNR10], a ; sweep = 0
+	ldh [rNR10], a
 .ok
 ; stop playing
 	; turn channel off
@@ -1334,7 +1341,7 @@ RestoreVolume:
 	ld [wSFXPriority], a
 	ret
 
-ParseSFXOrRest:
+ParseSFXOrCry:
 	; turn noise sampling on
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
@@ -1415,7 +1422,7 @@ GetNoiseSample:
 	ld [wNoiseSampleAddress], a
 	ld a, [hl]
 	ld [wNoiseSampleAddress + 1], a
-	; clear ????
+	; clear noise sample delay
 	xor a
 	ld [wNoiseSampleDelay], a
 	ret
@@ -1439,6 +1446,7 @@ ParseMusicCommand:
 
 MusicCommands:
 ; entries correspond to audio constants (see macros/scripts/audio.asm)
+	table_width 2, MusicCommands
 	dw Music_Octave8
 	dw Music_Octave7
 	dw Music_Octave6
@@ -1448,29 +1456,29 @@ MusicCommands:
 	dw Music_Octave2
 	dw Music_Octave1
 	dw Music_NoteType ; note length + volume envelope
-	dw Music_Transpose 
+	dw Music_Transpose
 	dw Music_Tempo
 	dw Music_DutyCycle
-	dw Music_VolumeEnvelope 
+	dw Music_VolumeEnvelope
 	dw Music_PitchSweep
 	dw Music_DutyCyclePattern
-	dw Music_ToggleSFX 
-	dw Music_PitchSlide 
-	dw Music_Vibrato 
+	dw Music_ToggleSFX
+	dw Music_PitchSlide
+	dw Music_Vibrato
 	dw MusicE2 ; unused
-	dw Music_ToggleNoise 
-	dw Music_ForceStereoPanning 
-	dw Music_Volume 
-	dw Music_PitchOffset 
+	dw Music_ToggleNoise
+	dw Music_ForceStereoPanning
+	dw Music_Volume
+	dw Music_PitchOffset
 	dw MusicE7 ; unused
 	dw MusicE8 ; unused
-	dw Music_TempoRelative
+	dw Music_TempoRelative ; unused
 	dw Music_RestartChannel
-	dw Music_NewSong 
-	dw Music_SFXPriorityOn 
-	dw Music_SFXPriorityOff 
+	dw Music_NewSong ; unused
+	dw Music_SFXPriorityOn
+	dw Music_SFXPriorityOff
 	dw MusicEE ; unused
-	dw Music_StereoPanning 
+	dw Music_StereoPanning
 	dw Music_SFXToggleNoise
 	dw MusicF1 ; nothing
 	dw MusicF2 ; nothing
@@ -1481,12 +1489,13 @@ MusicCommands:
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
 	dw MusicF9 ; unused
-	dw Music_SetCondition 
+	dw Music_SetCondition
 	dw Music_JumpIf
 	dw Music_Jump
 	dw Music_Loop
 	dw Music_Call
 	dw Music_Ret
+	assert_table_length $100 - FIRST_MUSIC_CMD
 
 MusicF1:
 MusicF2:
@@ -1758,7 +1767,7 @@ MusicEE:
 ; params: 2
 ;		ll hh ; pointer
 
-; if ????, jump
+; if condition is set, jump
 	; get channel
 	ld a, [wCurChannel]
 	maskbits NUM_MUSIC_CHANS
@@ -2335,7 +2344,7 @@ SetNoteDuration:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	; add ???? to the next result
+	; add ??? to the next result
 	ld hl, CHANNEL_FIELD16
 	add hl, bc
 	ld l, [hl]
@@ -2344,7 +2353,7 @@ SetNoteDuration:
 	; copy result to de
 	ld e, l
 	ld d, h
-	; store result in ????
+	; store result in ???
 	ld hl, CHANNEL_FIELD16
 	add hl, bc
 	ld [hl], e
@@ -2379,7 +2388,7 @@ SetGlobalTempo:
 	push bc ; save current channel
 	; are we dealing with music or sfx?
 	ld a, [wCurChannel]
-	cp CHAN5
+	cp NUM_MUSIC_CHANS
 	jr nc, .sfxchannels
 	ld bc, wChannel1
 	call Tempo
@@ -2413,7 +2422,7 @@ Tempo:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	; clear ????
+	; clear ???
 	xor a
 	ld hl, CHANNEL_FIELD16
 	add hl, bc
@@ -2538,7 +2547,7 @@ _PlayCry::
 
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
-	set SOUND_REST, [hl]
+	set SOUND_CRY, [hl]
 
 	ld hl, CHANNEL_FLAGS2
 	add hl, bc
@@ -3047,20 +3056,22 @@ StereoTracks:
 	db $11, $22, $44, $88
 
 ChannelPointers:
+	table_width 2, ChannelPointers
 ; music channels
 	dw wChannel1
 	dw wChannel2
 	dw wChannel3
 	dw wChannel4
+	assert_table_length NUM_MUSIC_CHANS
 ; sfx channels
 	dw wChannel5
 	dw wChannel6
 	dw wChannel7
 	dw wChannel8
+	assert_table_length NUM_CHANNELS
 
 ClearChannels::
 ; runs ClearChannel for all 4 channels
-; doesn't seem to be used, but functionally identical to InitSound
 	ld hl, rNR50
 	xor a
 	ld [hli], a

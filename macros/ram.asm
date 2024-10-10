@@ -144,7 +144,7 @@ MACRO channel_struct
 \1VibratoRate::       db ; hi:frames for each alt lo:frames to the next alt
 \1PitchSlideTarget::  dw ; frequency endpoint for pitch slide
 \1PitchSlideAmount::  db
-\1PitchSlideAmountFraction::   db
+\1PitchSlideAmountFraction:: db
 \1Field25::           db
                       ds 1
 \1PitchOffset::       dw

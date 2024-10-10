@@ -252,7 +252,7 @@ PlayCry::
 	ld [MBC1RomBank], a
 
 	ld hl, PokemonCries
-rept 6 ; sizeof(mon_cry)
+rept 6 ; MON_CRY_LENGTH
 	add hl, de
 endr
 
