@@ -453,7 +453,10 @@ SetPal_Slots:
 
 	xor a
 	ldh [rSVBK], a
-	ret
+	
+	; Wait 3 frames to allow tilemap updates to apply. Prevents garbage
+	; Prevents garbage from appearing when the slots machine open.
+	jp Delay3
 
 ; Titlescreen with cycling pokemon
 SetPal_TitleScreen:
