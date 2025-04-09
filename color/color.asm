@@ -454,7 +454,7 @@ SetPal_Slots:
 	xor a
 	ldh [rSVBK], a
 	
-	; Wait 3 frames to allow tilemap updates to apply. Prevents garbage
+	; Wait 3 frames to allow tilemap updates to apply.
 	; Prevents garbage from appearing when the slots machine open.
 	jp Delay3
 
