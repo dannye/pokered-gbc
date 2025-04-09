@@ -38,6 +38,9 @@ LoadOverworldSpritePalettes:
 	ld hl, SpritePalettesPokecenter
 	cp POKECENTER
 	jr z, .gotPaletteList
+	ld a, [wCurMap]
+	cp INDIGO_PLATEAU_LOBBY
+	jr z, .gotPaletteList
 	; If not, load the normal Object Pals
 	ld hl, SpritePalettes
 .gotPaletteList
