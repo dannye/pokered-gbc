@@ -31,7 +31,7 @@ LoadTextBoxTilePatterns::
 	jp CopyVideoData ; if LCD is on, transfer during V-blank
 
 LoadHpBarAndStatusTilePatterns::
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	farcall LoadHPBarAndEXPBar
 	ret
 	ds $17
