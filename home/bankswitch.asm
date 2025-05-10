@@ -33,3 +33,19 @@ Bankswitch::
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	ret
+
+
+SetRomBank::
+	ldh [hLoadedROMBank], a
+	ld [MBC1RomBank], a
+	ret
+
+_LoadMapVramAndColors:
+	ldh a, [hLoadedROMBank]
+	push af
+	ld a, BANK(LoadMapVramAndColors)
+	ld [MBC1RomBank], a
+	call LoadMapVramAndColors
+	pop af
+	ld [MBC1RomBank], a
+	ret

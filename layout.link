@@ -3,20 +3,20 @@ ROM0
 	"NULL"
 	org $0000
 	"rst0"
-;	org $0008
-;	"rst8"
+	org $0008
+	"rst8"
 	org $0010
 	"rst10"
 	org $0018
 	"rst18"
-;	org $0020
-;	"rst20"
-;	org $0028
-;	"rst28"
-;	org $0030
-;	"rst30"
-;	org $0038
-;	"rst38"
+	org $0020
+	"rst20"
+	org $0028
+	"rst28"
+	org $0030
+	"rst30"
+	org $0038
+	"rst38"
 	org $0040
 	"vblank"
 	org $0048
