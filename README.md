@@ -1,3 +1,9 @@
+# pokered-crysaudio
+
+Pokémon Red/Blue with the Pokémon Crystal sound engine stitched in. Made by Sanqui and dannye.
+
+Original README follows...
+
 # Pokémon Red and Blue [![Build Status][ci-badge]][ci]
 
 This is a disassembly of Pokémon Red and Blue.
