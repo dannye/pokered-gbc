@@ -1,6 +1,6 @@
 SFX:
 ; entries correspond to SFX_* constants
-	table_width 3, SFX
+	table_width 3
 	dbw 0, 0
 	dba SFX_Get_Item1_1
 
