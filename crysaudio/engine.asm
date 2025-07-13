@@ -488,39 +488,39 @@ endr
 	add hl, de
 	cp $f
 	jr z, .skip
-	; load wavepattern into rWave_0-rWave_f
+	; load wavepattern into rAUD3WAVE_0-rAUD3WAVE_F
 	ld a, [hli]
-	ldh [rWave_0], a
+	ldh [rAUD3WAVE_0], a
 	ld a, [hli]
-	ldh [rWave_1], a
+	ldh [rAUD3WAVE_1], a
 	ld a, [hli]
-	ldh [rWave_2], a
+	ldh [rAUD3WAVE_2], a
 	ld a, [hli]
-	ldh [rWave_3], a
+	ldh [rAUD3WAVE_3], a
 	ld a, [hli]
-	ldh [rWave_4], a
+	ldh [rAUD3WAVE_4], a
 	ld a, [hli]
-	ldh [rWave_5], a
+	ldh [rAUD3WAVE_5], a
 	ld a, [hli]
-	ldh [rWave_6], a
+	ldh [rAUD3WAVE_6], a
 	ld a, [hli]
-	ldh [rWave_7], a
+	ldh [rAUD3WAVE_7], a
 	ld a, [hli]
-	ldh [rWave_8], a
+	ldh [rAUD3WAVE_8], a
 	ld a, [hli]
-	ldh [rWave_9], a
+	ldh [rAUD3WAVE_9], a
 	ld a, [hli]
-	ldh [rWave_a], a
+	ldh [rAUD3WAVE_A], a
 	ld a, [hli]
-	ldh [rWave_b], a
+	ldh [rAUD3WAVE_B], a
 	ld a, [hli]
-	ldh [rWave_c], a
+	ldh [rAUD3WAVE_C], a
 	ld a, [hli]
-	ldh [rWave_d], a
+	ldh [rAUD3WAVE_D], a
 	ld a, [hli]
-	ldh [rWave_e], a
+	ldh [rAUD3WAVE_E], a
 	ld a, [hli]
-	ldh [rWave_f], a
+	ldh [rAUD3WAVE_F], a
 .skip
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
@@ -1501,8 +1501,8 @@ MusicF1:
 MusicF2:
 MusicF3:
 ;custom waveform
-	ld e, 16
-	ld hl, rWave_0
+	ld e, AUD3WAVE_SIZE
+	ld hl, _AUD3WAVERAM
 .read
 	call GetMusicByte
 	ld [hli], a

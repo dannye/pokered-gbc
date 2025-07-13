@@ -1,5 +1,5 @@
 MapSongBanks::
-	table_width 2, MapSongBanks
+	table_width 2
 	db MUSIC_PALLET_TOWN, 0 ; PALLET_TOWN
 	db MUSIC_CITIES1, 0 ; VIRIDIAN_CITY
 	db MUSIC_CITIES1, 0 ; PEWTER_CITY

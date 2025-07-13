@@ -39,7 +39,7 @@ HandleLedges::
 	ldh a, [hJoyHeld]
 	and e
 	ret z
-	ld a, A_BUTTON | B_BUTTON | SELECT | START | D_RIGHT | D_LEFT | D_UP | D_DOWN
+	ld a, PAD_BUTTONS | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld hl, wMovementFlags
 	set BIT_LEDGE_OR_FISHING, [hl]
@@ -63,7 +63,7 @@ LoadHoppingShadowOAM:
 	call CopyVideoDataDouble
 	ld a, $9
 	lb bc, $54, $48 ; b, c = y, x coordinates of shadow
-	ld de, LedgeHoppingShadowOAM
+	ld de, LedgeHoppingShadowOAMBlock
 	call WriteOAMBlock
 	ret
 
@@ -71,6 +71,9 @@ LedgeHoppingShadow:
 	INCBIN "gfx/overworld/shadow.1bpp"
 LedgeHoppingShadowEnd:
 
-LedgeHoppingShadowOAM:
-	dbsprite  2, -1,  0,  7, $ff, OAM_HFLIP
-	dbsprite  8, -1,  0,  7, $ff, OAM_HFLIP | OAM_VFLIP
+LedgeHoppingShadowOAMBlock:
+; tile ID, attributes
+	db $ff, OAM_PAL1
+	db $ff, OAM_XFLIP
+	db $ff, OAM_YFLIP
+	db $ff, OAM_XFLIP | OAM_YFLIP
