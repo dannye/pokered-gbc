@@ -121,12 +121,15 @@ LoadCutGrassAnimationTilePattern:
 WriteCutAnimationOAMBlock:
 	call GetCutAnimationOffsets
 	ld a, $9
-	ld de, CutAnimationTilesAndAttributes
+	ld de, .OAMBlock
 	jp WriteOAMBlock
 
-CutAnimationTilesAndAttributes:
-	dbsprite  2, -1,  6,  4, $fd, OAM_OBP1 | 6
-	dbsprite  2, -1,  6,  6, $ff, OAM_OBP1 | 6 ; Uses palette 6 (green, specifically for cut trees)
+.OAMBlock:
+; tile ID, attributes
+	db $fc, OAM_PAL1 | 6
+	db $fd, OAM_PAL1 | 6
+	db $fe, OAM_PAL1 | 6
+	db $ff, OAM_PAL1 | 6 ; Uses palette 6 (green, specifically for cut trees)
 
 GetCutAnimationOffsets:
 	ld hl, wSpritePlayerStateData1YPixels

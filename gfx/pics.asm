@@ -145,7 +145,7 @@ SECTION "Pics 5", ROMX
 ; Removed 'mon sprites from here
 
 
-SECTION "Pics 6", ROMX
+SECTION "Trainer Pics", ROMX
 
 TrainerPics::
 IF GEN_2_GRAPHICS

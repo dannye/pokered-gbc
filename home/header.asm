@@ -3,10 +3,10 @@ _LoadMapVramAndColors:
 	ldh a, [hLoadedROMBank]
 	push af
 	ld a, BANK(LoadMapVramAndColors)
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	call LoadMapVramAndColors
 	pop af
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	ret
 
 ;SECTION "rst8", ROM0[$0008]
@@ -25,7 +25,7 @@ SECTION "rst18", ROM0[$0018]
 
 SetRomBank::
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	ret
 
 

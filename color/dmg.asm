@@ -79,7 +79,7 @@ Code_d000:
 	farcall FadeOutAudio
 	ld a, [wAudioROMBank]
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	call $5177 ; Audio4_UpdateMusic
 	pop hl
 	pop de
