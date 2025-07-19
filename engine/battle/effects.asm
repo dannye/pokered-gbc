@@ -216,7 +216,9 @@ FreezeBurnParalyzeEffect:
 	jr c, .regular_effectiveness
 ; extra effectiveness
 	ld b, 30 percent + 1
-	sub BURN_SIDE_EFFECT2 - BURN_SIDE_EFFECT1 ; treat extra effective as regular from now on
+	ASSERT PARALYZE_SIDE_EFFECT2 - PARALYZE_SIDE_EFFECT1 == BURN_SIDE_EFFECT2 - BURN_SIDE_EFFECT1
+	ASSERT PARALYZE_SIDE_EFFECT2 - PARALYZE_SIDE_EFFECT1 == FREEZE_SIDE_EFFECT2 - FREEZE_SIDE_EFFECT1
+	sub PARALYZE_SIDE_EFFECT2 - PARALYZE_SIDE_EFFECT1 ; treat extra effective as regular from now on
 .regular_effectiveness
 	push af
 	call BattleRandom ; get random 8bit value for probability test
@@ -226,7 +228,7 @@ FreezeBurnParalyzeEffect:
 	ld a, b ; what type of effect is this?
 	cp BURN_SIDE_EFFECT1
 	jr z, .burn1
-	cp FREEZE_SIDE_EFFECT
+	cp FREEZE_SIDE_EFFECT1
 	jr z, .freeze1
 ; .paralyze1
 	ld a, 1 << PAR
@@ -279,7 +281,7 @@ FreezeBurnParalyzeEffect:
 	ld a, b
 	cp BURN_SIDE_EFFECT1
 	jr z, .burn2
-	cp FREEZE_SIDE_EFFECT
+	cp FREEZE_SIDE_EFFECT1
 	jr z, .freeze2
 ; .paralyze2
 	ld a, 1 << PAR
@@ -293,7 +295,7 @@ FreezeBurnParalyzeEffect:
 	ld hl, BurnedText
 	jp PrintText
 .freeze2
-; hyper beam bits aren't reseted for opponent's side
+; hyper beam bits aren't reset for opponent's side
 	ld a, 1 << FRZ
 	ld [wBattleMonStatus], a
 	ld hl, FrozenText
@@ -1330,7 +1332,7 @@ DisableEffect:
 	or [hl]
 	inc hl
 	or [hl]
-	and $3f
+	and PP_MASK
 	pop hl ; wBattleMonPP or wEnemyMonPP
 	jr z, .moveMissedPopHL ; nothing to do if all moves have no PP left
 	add hl, bc

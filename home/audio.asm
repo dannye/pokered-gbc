@@ -106,13 +106,13 @@ PlaySound::
 ;	push af
 ;	ld a, BANK(_InitSound)
 ;	ldh [hLoadedROMBank], a
-;	ld [MBC1RomBank], a
+;	ld [rROMB], a
 ;
 ;	call _InitSound
 ;
 ;	pop af
 ;	ldh [hLoadedROMBank], a
-;	ld [MBC1RomBank], a
+;	ld [rROMB], a
 ;
 ;	pop af
 ;	pop bc
@@ -130,13 +130,13 @@ UpdateSound::
 	push af
 	ld a, BANK(_UpdateSound)
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	call _UpdateSound
 
 	pop af
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 ;	pop af
 ;	pop bc
@@ -147,14 +147,14 @@ UpdateSound::
 _LoadMusicByte::
 ; [wCurMusicByte] = [a:de]
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	ld a, [de]
 	ld [wCurMusicByte], a
 	ld a, BANK(LoadMusicByte)
 
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	ret
 
 PlayMusic::
@@ -172,7 +172,7 @@ PlayMusic::
 	push af
 	ld a, BANK(_PlayMusic) ; aka BANK(_InitSound)
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	ld a, e
 	and a
@@ -187,7 +187,7 @@ PlayMusic::
 .end
 	pop af
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	pop af
 	pop bc
 	pop de
@@ -209,7 +209,7 @@ PlayMusic::
 ;	push af
 ;	ld a, BANK(_PlayMusic)
 ;	ldh [hLoadedROMBank], a
-;	ld [MBC1RomBank], a
+;	ld [rROMB], a
 ;
 ;	push de
 ;	ld de, MUSIC_NONE
@@ -220,7 +220,7 @@ PlayMusic::
 ;
 ;	pop af
 ;	ldh [hLoadedROMBank], a
-;	ld [MBC1RomBank], a
+;	ld [rROMB], a
 ;
 ;	pop af
 ;	pop bc
@@ -249,7 +249,7 @@ PlayCry::
 	; Cries are stuck in one bank.
 	ld a, BANK(PokemonCries)
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	ld hl, PokemonCries
 rept 6 ; sizeof(mon_cry)
@@ -272,13 +272,13 @@ endr
 
 	ld a, BANK(_PlayCry)
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	call _PlayCry
 
 	pop af
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 	
 	call WaitForSoundToFinish
 
@@ -314,7 +314,7 @@ PlayBattleSound::
 
 	ld a, BANK(_PlayBattleSound)
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	ld a, e
 	ld [wCurSFX], a
@@ -322,7 +322,7 @@ PlayBattleSound::
 
 	pop af
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	pop af
 	pop bc
@@ -353,7 +353,7 @@ PlaySFX::
 	push af
 	ld a, BANK(_PlaySFX)
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	ld a, e
 	ld [wCurSFX], a
@@ -361,7 +361,7 @@ PlaySFX::
 
 	pop af
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 .done
 	pop af

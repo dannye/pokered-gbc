@@ -37,7 +37,7 @@ VBlank::
 	;ldh [hLoadedROMBank], a
 	nop
 	nop
-	;ld [MBC1RomBank], a
+	;ld [rROMB], a
 	nop
 	nop
 	nop
@@ -69,7 +69,7 @@ VBlank::
 
 ;	ld a, [wAudioROMBank] ; music ROM bank
 ;	ldh [hLoadedROMBank], a
-;	ld [MBC1RomBank], a
+;	ld [rROMB], a
 
 ;	cp BANK(Audio1_UpdateMusic)
 ;	jr nz, .checkForAudio2
@@ -95,7 +95,7 @@ VBlank::
 
 	ld a, [wVBlankSavedROMBank]
 	ldh [hLoadedROMBank], a
-	ld [MBC1RomBank], a
+	ld [rROMB], a
 
 	pop hl
 	pop de

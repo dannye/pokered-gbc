@@ -80,7 +80,7 @@ StatusScreen:
 	ld hl, wStatusFlags2
 	set BIT_NO_AUDIO_FADE_OUT, [hl]
 	ld a, $33
-	ldh [rNR50], a ; Reduce the volume
+	ldh [rAUDVOL], a ; Reduce the volume
 	call GBPalWhiteOutWithDelay3
 	call ClearScreen
 	call UpdateSprites
@@ -375,7 +375,7 @@ ENDC
 	ld bc, wPartyMon1PP - wPartyMon1Moves - 1
 	add hl, bc
 	ld a, [hl]
-	and $3f
+	and PP_MASK
 	ld [wStatusScreenCurrentPP], a
 	ld h, d
 	ld l, e
@@ -444,7 +444,7 @@ ENDC
 	ld hl, wStatusFlags2
 	res BIT_NO_AUDIO_FADE_OUT, [hl]
 	ld a, $77
-	ldh [rNR50], a
+	ldh [rAUDVOL], a
 	call GBPalWhiteOut
 	jp ClearScreen
 

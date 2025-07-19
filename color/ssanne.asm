@@ -2,19 +2,19 @@
 EraseSSAnneWithColor::
 	; Tilemap
 	ld hl, wVermilionDockTileMapBuffer
-	ld bc, (5 * BG_MAP_WIDTH) + SCREEN_WIDTH
+	ld bc, (5 * TILEMAP_WIDTH) + SCREEN_WIDTH
 	ld a, $14 ; water tile
 	call FillMemory
 
 	hlbgcoord 0, 10
 	ld de, wVermilionDockTileMapBuffer
-	ld bc, (6 * BG_MAP_WIDTH) / 16
+	ld bc, (6 * TILEMAP_WIDTH) / 16
 	call CopyVideoData
 
 	; Palette
 
 	ld hl, wVermilionDockTileMapBuffer
-	ld bc, (5 * BG_MAP_WIDTH) + SCREEN_WIDTH
+	ld bc, (5 * TILEMAP_WIDTH) + SCREEN_WIDTH
 	ld a, PAL_BG_WATER
 	call FillMemory
 
@@ -26,7 +26,7 @@ EraseSSAnneWithColor::
 
 	hlbgcoord 0, 10
 	ld de, wVermilionDockTileMapBuffer
-	ld bc, (6 * BG_MAP_WIDTH) / 16
+	ld bc, (6 * TILEMAP_WIDTH) / 16
 	call CopyVideoData
 
 	xor a
