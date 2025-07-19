@@ -1753,7 +1753,7 @@ Music_CatchEmBlue_branch_41b7e:
 	sound_ret
 
 Music_CatchEmBlue_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 8
 	drum_note 4, 3
 	drum_note 3, 3

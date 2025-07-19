@@ -1835,7 +1835,7 @@ Music_NameEntry_branch_4ddc7:
 	sound_ret
 
 Music_NameEntry_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 12
 	drum_note 6, 16
 	rest 8

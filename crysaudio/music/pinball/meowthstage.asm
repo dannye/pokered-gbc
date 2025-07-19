@@ -979,7 +979,7 @@ Music_MeowthStage_branch_49b66:
 	sound_ret
 
 Music_MeowthStage_Ch4:
-	toggle_noise 1
+	toggle_noise 8
 	drum_speed 12
 	drum_note 1, 16
 	rest 8

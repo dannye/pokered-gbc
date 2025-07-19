@@ -2,9 +2,9 @@
 
 Music:
 ; entries correspond to MUSIC_* constants
+	table_width 3
 
 IF GEN_2_MUSIC
-
 	dba Music_Nothing
 	dba Music_PalletTown
 	dba Music_PokemonCenter
@@ -51,9 +51,7 @@ IF GEN_2_MUSIC
 	dba Music_LookHiker
 	dba Music_LookLass
 	dba Music_LookOfficer
-
 ELSE
-
 	dba Music_Nothing
 	dba Music_RBYPalletTown
 	dba Music_Pokecenter
@@ -100,5 +98,6 @@ ELSE
 	dba Music_MeetEvilTrainer
 	dba Music_MeetFemaleTrainer
 	dba Music_MeetMaleTrainer
-
 ENDC
+
+	assert_table_length NUM_MUSIC_SONGS

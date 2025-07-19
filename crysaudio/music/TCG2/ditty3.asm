@@ -57,8 +57,7 @@ Music_Ditty3_Ch1:
 
 
 Music_Ditty3_Ch3:
-	fade_wave 15
-	load_wave 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 13, 12, 11, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	fade_wave 14
 	speed 1
 	channel_volume 2
 ;	echo 128

@@ -15,6 +15,7 @@ Music_Overworld_Ch1:
 	rest 3
 	sound_call Branch_f72ba
 	rest 3
+	volume_envelope 10, 2
 .MainLoop:
 	sound_call Branch_f72ba
 	duty_cycle 1
@@ -168,14 +169,12 @@ Music_Overworld_Ch1:
 	note G_, 5
 	volume_envelope 3, 7
 	note G_, 1
-	volume_envelope 9, 8
+	note_type 14, 9, 8
+	note F_, 16
+	vibrato 0, 3, 3
 	note F_, 8
-	note F_, 8
-	note F_, 8
-	note F_, 8
-	note F_, 8
-	note F_, 8
-	volume_envelope 3, 7
+	note_type 7, 3, 7
+	vibrato 25, 3, 3
 	note F_, 3
 	duty_cycle 0
 	volume_envelope 10, 2

@@ -6,6 +6,9 @@ Drumkits:
 	dw Drumkit4
 	dw Drumkit5
 	dw Drumkit6
+	dw Drumkit7
+	dw Drumkit8
+	dw Drumkit9
 
 Drumkit0:
 	dw Drum00
@@ -105,6 +108,57 @@ Drumkit6:
 	dw Snare9
 	dw Snare9
 	dw Snare9
+Drumkit7:
+	dw Drum21
+	dw Snare12
+	dw Snare13
+	dw Snare14
+	dw Drum38
+	dw Drum39
+	dw Drum20
+	dw Drum27
+	dw Drum28
+	dw Drum29
+	dw Drum40
+	dw Drum41
+	dw Crash2
+	dw Drum21
+	dw Drum21
+	dw Drum21
+Drumkit8:
+	dw Drum21
+	dw Drum20
+	dw Snare13
+	dw Snare14
+	dw Drum38
+	dw Drum33
+	dw Triangle5
+	dw Drum35
+	dw Drum31
+	dw Drum32
+	dw Drum36
+	dw Drum41
+	dw Crash1
+	dw Drum21
+	dw Drum21
+	dw Drum21
+Drumkit9:
+	dw Drum21
+	dw Drum40
+	dw Drum41
+	dw Snare14
+	dw Drum38
+	dw Drum42
+	dw Drum43
+	dw Drum44
+	dw Drum28
+	dw Drum29
+	dw Drum45
+	dw Drum46
+	dw Drum47
+	dw Drum21
+	dw Drum21
+	dw Drum21
 
 Drum00:
 	noise_note 32, 1, 1, 0
@@ -272,4 +326,46 @@ Drum36:
 Kick2:
 	noise_note 32, 10, 8, 107
 	noise_note 32, 7, 1, 0
+	sound_ret
+
+Drum38:
+	noise_note 33, 7, 1, 112
+	noise_note 32, 1, 1, 17
+	sound_ret
+
+Drum39:
+	noise_note 48, 8, 2, 76
+	noise_note 34, 6, 1, 32
+	sound_ret
+
+Drum40:
+	noise_note 1, 1, 8, 1
+	sound_ret
+
+Drum41:
+	noise_note 1, 2, 8, 1
+	sound_ret
+
+Drum42:
+	noise_note 1, 3, 8, 1
+	sound_ret
+
+Drum43:
+	noise_note 1, 4, 8, 1
+	sound_ret
+
+Drum44:
+	noise_note 1, 5, 8, 1
+	sound_ret
+
+Drum45:
+	noise_note 1, 6, 8, 1
+	sound_ret
+
+Drum46:
+	noise_note 1, 7, 8, 1
+	sound_ret
+
+Drum47:
+	noise_note 1, 8, 8, 1
 	sound_ret

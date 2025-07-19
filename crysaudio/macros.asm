@@ -10,17 +10,11 @@ MACRO maskbits
 ; 	cp 26
 ; 	jr nc, .loop
 	assert 0 < (\1) && (\1) <= $100, "bitmask must be 8-bit"
-	DEF x = 1
-	rept 8
-		if x + 1 < (\1)
-			DEF x = (x << 1) | 1
-		endc
-	endr
+	DEF x = (1 << BITWIDTH((\1) - 1)) - 1
 	if _NARG == 2
-		and x << (\2)
-	else
-		and x
+		DEF x <<= \2
 	endc
+	and x
 ENDM
 
 MACRO channel_count
@@ -219,7 +213,7 @@ ENDM
 	const tempo_relative_cmd ; $e9
 MACRO tempo_relative
 	db tempo_relative_cmd
-	bigdw \1 ; tempo adjustment
+	db \1 ; tempo adjustment
 ENDM
 
 	const restart_channel_cmd ; $ea
@@ -231,7 +225,7 @@ ENDM
 	const new_song_cmd ; $eb
 MACRO new_song
 	db new_song_cmd
-	bigdw \1 ; id
+	dw \1 ; id
 ENDM
 
 	const sfx_priority_on_cmd ; $ec

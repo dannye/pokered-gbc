@@ -5,6 +5,7 @@ ENDM
 
 PokemonCries::
 ; entries correspond to constants/pokemon_constants.asm
+	table_width MON_CRY_LENGTH
 	mon_cry CRY_BULBASAUR,   128,  129 ; BULBASAUR
 	mon_cry CRY_BULBASAUR,    32,  256 ; IVYSAUR
 	mon_cry CRY_BULBASAUR,     0,  320 ; VENUSAUR
@@ -156,6 +157,7 @@ PokemonCries::
 	mon_cry CRY_BULBASAUR,    60,  320 ; DRAGONITE
 	mon_cry CRY_PARAS,       153,  383 ; MEWTWO
 	mon_cry CRY_PARAS,       238,  383 ; MEW
+	assert_table_length NUM_POKEMON
 	mon_cry CRY_CHIKORITA,   -16,  176 ; CHIKORITA
 	mon_cry CRY_CHIKORITA,   -34,  288 ; BAYLEEF
 	mon_cry CRY_CHIKORITA,  -183,  512 ; MEGANIUM
@@ -260,3 +262,4 @@ PokemonCries::
 	mon_cry CRY_NIDORAN_M,     0,    0 ; 253
 	mon_cry CRY_NIDORAN_M,     0,    0 ; 254
 	mon_cry CRY_NIDORAN_M,     0,    0 ; 255
+	assert_table_length $ff

@@ -1119,7 +1119,7 @@ Music_MewtwoStage_branch_49237:
 	sound_ret
 
 Music_MewtwoStage_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 12
 	drum_note 9, 2
 	drum_note 9, 2

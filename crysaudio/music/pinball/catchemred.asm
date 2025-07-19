@@ -1062,7 +1062,7 @@ Music_CatchEmRed_branch_3d645:
 	sound_loop 0, Music_CatchEmRed_branch_3d615
 
 Music_CatchEmRed_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 8
 	drum_note 8, 2
 	drum_note 8, 1

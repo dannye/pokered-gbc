@@ -728,7 +728,7 @@ Music_GengarInTheGraveyard_branch_3e382:
 	sound_ret
 
 Music_GengarInTheGraveyard_Ch4:
-	toggle_noise 0
+	toggle_noise 7
 	drum_speed 12
 	drum_note 6, 16
 	rest 16
