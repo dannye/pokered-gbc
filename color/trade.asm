@@ -2,7 +2,7 @@
 Trade_LoadCablePalettes:
 	; Load PAL_MEWMON to all background palettes
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld d, PAL_MEWMON
 	ld e, 0
 .loop
@@ -17,7 +17,7 @@ Trade_LoadCablePalettes:
 	ld a, 1
 	ld [W2_ForceBGPUpdate], a
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 
@@ -28,7 +28,7 @@ Trade_InitGameboyTransferGfx_ColorHook:
 	call Trade_LoadCablePalettes
 
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	callfar LoadAttackSpritePalettes
 
@@ -57,7 +57,7 @@ Trade_InitGameboyTransferGfx_ColorHook:
 	jr nz, .loop2
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	jp Trade_InitGameboyTransferGfx
 

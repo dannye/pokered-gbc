@@ -3,11 +3,11 @@
 ; This is called from the lcd interrupt, at line $70
 GbcPrepareVBlank::
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call RefreshWindowPalettesPreVBlank
 	call RefreshPalettesPreVBlank
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 ; Refresh palettes based on BGP and OBP registers
@@ -142,10 +142,10 @@ RefreshWindowPalettesPreVBlank:
 	and a
 	ret z
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 	ld a, $02
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc ; Push last wram bank
 
 	; Check that vblank has updated the window from last frame (if not, let it catch up)
@@ -261,7 +261,7 @@ ENDR
 
 .palettesDone:
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 
@@ -280,7 +280,7 @@ GbcVBlankHook::
 	ldh [rSTAT], a
 
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; Don't try to refresh palette if a row or column was drawn this frame.
 	; This isn't really necessary, but it prevents a 1-frame artifact that occurs when
@@ -295,7 +295,7 @@ GbcVBlankHook::
 .end
 	xor a
 	ld [W2_DrewRowOrColumn], a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 ; If necessary, copy palettes which were generated in the pre-vblank routines.

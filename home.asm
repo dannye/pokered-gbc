@@ -129,7 +129,7 @@ INCLUDE "home/hidden_objects.asm"
 INCLUDE "home/predef_text.asm"
 
 
-; Note: this saves rSVBK before calling an interrupt. It would also make sense to save
+; Note: this saves rWBK before calling an interrupt. It would also make sense to save
 ; rVBK. However, doing that would break the code that fixes the ss anne's palettes on
 ; departure. Instead, just be careful not to set the vram bank to 1 while interrupts are
 ; enabled...? (Or better yet do the ss anne fix properly...)
@@ -137,7 +137,7 @@ InterruptWrapper:
 	push af
 	push bc
 	push de
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 
 	ldh a, [hLoadedROMBank]
@@ -153,13 +153,13 @@ InterruptWrapper:
 .notInDelayFrame
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld de, .ret
 	push de
 	jp hl
 .ret
 	ld a, b
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, c
 	call SetRomBank
 	pop de
@@ -177,10 +177,10 @@ DelayFrameHook:
 	push de
 	push hl
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc ; Save wram bank
 
 	; Save the current rom bank to a variable. This is important because the game does
@@ -206,7 +206,7 @@ DelayFrameHook:
 	ldh [hDelayFrameHookBank], a
 
 	pop af
-	ldh [rSVBK], a ; Restore wram bank
+	ldh [rWBK], a ; Restore wram bank
 
 	ld a, 1
 	ldh [hVBlankOccurred], a

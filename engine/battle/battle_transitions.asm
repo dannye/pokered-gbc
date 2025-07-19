@@ -163,11 +163,11 @@ INCLUDE "data/maps/dungeon_maps.asm"
 ; The tile itself was relocated to make room.
 LoadBattleTransitionTile:
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, 7
 	ld [W2_TilesetPaletteMap + $ff], a
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, vChars1 tile $7f
 	ld de, BlackTile
