@@ -30,7 +30,7 @@ DrawHPBarWithColor:
 	call GetHealthBarColor ; Reads value of 'e' (bar length) to determine color
 
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; wHPBarType = 0 for enemy hp bar, 1 for player hp bar, 2 for pokemon menu.
 	ld a, [wHPBarType]
@@ -74,7 +74,7 @@ DrawHPBarWithColor:
 	ld [W2_ForceBGPUpdate], a
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop hl
 	pop de

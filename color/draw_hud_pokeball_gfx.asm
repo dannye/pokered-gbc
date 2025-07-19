@@ -9,7 +9,7 @@ LoadPartyPokeballGfx:
 	CALL_INDIRECT LoadOverworldSpritePalettes
 
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; Set the palette the pokeball sprite uses
 	ld hl, W2_SpritePaletteMap + $31
@@ -20,7 +20,7 @@ LoadPartyPokeballGfx:
 	ld [hli], a
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	jp LoadPartyPokeballGfx_orig
 

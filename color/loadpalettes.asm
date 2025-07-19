@@ -10,14 +10,14 @@ LoadTilesetPalette:
 	push bc
 	push de
 	push hl
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld d, a
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wCurMapTileset] ; Located in wram bank 1
 	ld b, a
 	ld a, $02
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push de ; push previous wram bank
 
 	ld a, 1
@@ -99,11 +99,11 @@ LoadTilesetPalette:
 
 	; Switch to wram bank 1 just to read wCurMap
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wCurMap]
 	ld b, a
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; Check for celadon mart roof (make the "outside" blue)
 	ld a, b
@@ -135,12 +135,12 @@ LoadTilesetPalette:
 	ld b, a
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wCurMapTileset]
 	ld c, a
 
 	ld a, b
-	ldh [rSVBK], a ; Restore previous wram bank
+	ldh [rWBK], a ; Restore previous wram bank
 
 	ld a, c
 	and a ; Check whether tileset 0 is loaded
@@ -155,10 +155,10 @@ LoadTilesetPalette:
 
 ; Towns have different roof colors while using the same tileset
 LoadTownPalette:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; Get the current map.
 	ld a, [wCurMap]
@@ -175,7 +175,7 @@ LoadTownPalette:
 	ld c, a
 
 	ld a, $02
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc ; push previous wram bank
 
 	push de
@@ -201,5 +201,5 @@ LoadTownPalette:
 	ld [W2_TownMapLoaded], a
 
 	pop af
-	ldh [rSVBK], a ; Restore wram bank
+	ldh [rWBK], a ; Restore wram bank
 	ret

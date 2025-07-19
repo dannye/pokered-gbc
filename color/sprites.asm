@@ -23,10 +23,10 @@ DEF SPR_PAL_ROCK    EQU 7
 DEF SPR_PAL_RANDOM  EQU 8
 
 LoadOverworldSpritePalettes:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc
 	; Does the map we're on use dark/night palettes?
 	; Load the matching Object Pals if so
@@ -46,17 +46,17 @@ LoadOverworldSpritePalettes:
 .gotPaletteList
 	pop bc
 	ld a, b
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	jr LoadSpritePaletteData
 
 LoadAttackSpritePalettes:
 	ld hl, AttackSpritePalettes
 
 LoadSpritePaletteData:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc
 
 	ld de, W2_SprPaletteData
@@ -71,7 +71,7 @@ LoadSpritePaletteData:
 	ld [W2_ForceOBPUpdate], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 ; Set an overworld sprite's colors
@@ -134,7 +134,7 @@ ColorOverworldSprite::
 ; This colorizes: attack sprites, party menu, exclamation mark, trades, perhaps more?
 ColorNonOverworldSprites::
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wShadowOAM
 	ld b, 40
@@ -165,11 +165,11 @@ ColorNonOverworldSprites::
 
 	; Load animation (move) being used
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wAnimationID]
 	ld d, a
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; If the absorb animation is playing, it's always green. (Needed for leech seed)
 	ld a, d
@@ -224,7 +224,7 @@ ColorNonOverworldSprites::
 
 .end
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 ; Called whenever an animation plays in-battle. There are two animation tilesets, each
@@ -234,7 +234,7 @@ LoadAnimationTilesetPalettes:
 	ld a, [wWhichBattleAnimTileset] ; Animation tileset (0-2)
 	ld c, a
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	xor a
 	ld [W2_UseOBP1], a
@@ -282,7 +282,7 @@ LoadAnimationTilesetPalettes:
 	ld [W2_ForceOBPUpdate], a
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	pop de
 	ret
@@ -290,10 +290,10 @@ LoadAnimationTilesetPalettes:
 
 ; Set all sprite palettes to not be colorized by "ColorNonOverworldSprites".
 ClearSpritePaletteMap:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc
 
 	ld hl, W2_SpritePaletteMap
@@ -305,7 +305,7 @@ ClearSpritePaletteMap:
 	jr nz, .loop
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 

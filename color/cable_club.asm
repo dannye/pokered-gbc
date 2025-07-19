@@ -20,7 +20,7 @@ CableClub_DoBattleOrTrade_ColorHook:
 
 LoadCableClubTextPaletteAndMap:
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call LoadCableClubTextPalette
 
@@ -36,7 +36,7 @@ LoadCableClubTextPaletteAndMap:
 	ld [W2_StaticPaletteMapChanged], a
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 LoadCableClubTextPalette:

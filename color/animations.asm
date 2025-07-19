@@ -13,7 +13,7 @@ SpriteifyPlayerPokemon:
 	call CopyVideoData
 
 	ld a, 2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, W2_BgPaletteData
 	ld de, W2_SprPaletteData
 	ld bc, 8
@@ -23,5 +23,5 @@ SpriteifyPlayerPokemon:
 	ld [W2_LastOBP0], a
 
 	xor a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
