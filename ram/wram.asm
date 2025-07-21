@@ -2242,7 +2242,7 @@ wBoxMonNicksEnd::
 
 wBoxDataEnd::
 
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 wEXPBarPixelLength::  ds 1
 wEXPBarBaseEXP::      ds 3
 wEXPBarCurEXP::       ds 3

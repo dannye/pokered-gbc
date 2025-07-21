@@ -105,7 +105,7 @@ StatusScreen:
 	push af
 	xor a
 	ldh [hTileAnimations], a
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	hlcoord 19, 3
 	lb bc, 2, 8
 ELSE
@@ -129,7 +129,7 @@ ENDC
 	ld hl, wStatusScreenHPBarColor
 	call GetHealthBarColor
 	ld b, SET_PAL_STATUS_SCREEN
-	call StatusScreenHook ; HAX: Draws EXP bar if GEN_2_GRAPHICS is set
+	call StatusScreenHook ; HAX: Draws EXP bar if EXP_BAR_AND_CAUGHT_INDICATORS is set
 	hlcoord 16, 6
 	ld de, wLoadedMonStatus
 	call PrintStatusCondition
@@ -317,7 +317,7 @@ StatusScreen2:
 	hlcoord 9, 2
 	lb bc, 5, 10
 	call ClearScreenArea ; Clear under name
-IF GEN_2_GRAPHICS
+IF EXP_BAR_AND_CAUGHT_INDICATOR
 	call StatusScreen2Hook
 	nop
 	nop
