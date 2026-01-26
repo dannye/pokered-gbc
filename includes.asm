@@ -1,4 +1,5 @@
 DEF GEN_2_GRAPHICS EQU 1
+DEF EXP_BAR_AND_CAUGHT_INDICATOR EQU 1
 
 INCLUDE "macros/asserts.asm"
 INCLUDE "macros/const.asm"

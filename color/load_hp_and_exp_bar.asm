@@ -1,4 +1,4 @@
-; This file only included if GEN_2_GRAPHICS is set
+; This file only included if EXP_BAR_AND_CAUGHT_INDICATOR is set
 
 LoadHPBarAndEXPBar::
 	ld de, HpBarAndStatusGraphics
