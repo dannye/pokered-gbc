@@ -259,6 +259,34 @@ LoadAnimationTilesetPalettes:
 	dec b
 	jr nz, .copyLoop
 
+;Per-ball colors for pokeballs
+	ld a, c
+	and a		;check if c == 0
+	jr nz, .notBall
+	ld a, [wCurPartySpecies]
+	cp SAFARI_BALL
+	ld b, ATK_PAL_GREEN
+	jr z, .gotColor
+ 	cp POKE_BALL
+	ld b, ATK_PAL_RED
+	jr z, .gotColor
+	cp GREAT_BALL
+	ld b, ATK_PAL_BLUE
+	jr z, .gotColor
+	cp ULTRA_BALL
+	ld b, ATK_PAL_GREY
+	jr z, .gotColor
+	ld b, ATK_PAL_PURPLE ;masterball color
+.gotColor
+	ld a, b
+	ld [W2_SpritePaletteMap + $33], a
+	ld [W2_SpritePaletteMap + $43], a
+	ld [W2_SpritePaletteMap + $37], a
+	ld [W2_SpritePaletteMap + $47], a
+	ld [W2_SpritePaletteMap + $38], a
+	ld [W2_SpritePaletteMap + $48], a
+.notBall
+
 	; If in a trade, some of the tiles near the end are different. Override some tiles
 	; for the link cable, and replace the "purple" palette to match the exact color of
 	; the link cable.
